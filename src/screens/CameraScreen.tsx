@@ -14,14 +14,26 @@ export default function CameraScreen() {
   const [analyzing, setAnalyzing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [facingMode, setFacingMode] = useState<'user' | 'environment'>('environment');
+  const [cameraStarted, setCameraStarted] = useState(false);
+  const [showInstallPrompt, setShowInstallPrompt] = useState(false);
 
   useEffect(() => {
-    startCamera();
+    // Detect if app is already installed / standalone; show prompt otherwise
+    if (typeof window !== 'undefined') {
+      const isStandalone = window.matchMedia?.('(display-mode: standalone)').matches || (window.navigator as any).standalone;
+      setShowInstallPrompt(!isStandalone);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (cameraStarted) {
+      startCamera();
+    }
     return () => {
       stopCamera();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [facingMode]);
+  }, [facingMode, cameraStarted]);
 
   const startCamera = async () => {
     try {
@@ -38,7 +50,8 @@ export default function CameraScreen() {
       }
     } catch (err: any) {
       console.error('Error accessing camera:', err);
-      setError('Unable to access camera. Please grant camera permissions.');
+      setError('Unable to access camera. Please grant camera permissions and try again.');
+      setCameraStarted(false);
     }
   };
 
@@ -186,22 +199,53 @@ export default function CameraScreen() {
   return (
     <div className="flex flex-col min-h-screen bg-black">
       <div className="flex-1 relative">
-        <video
-          ref={videoRef}
-          autoPlay
-          playsInline
-          muted
-          className="w-full h-full object-cover"
-        />
+        {cameraStarted ? (
+          <video
+            ref={videoRef}
+            autoPlay
+            playsInline
+            muted
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-b from-slate-900 to-black flex items-center justify-center px-6 text-center">
+            <div className="space-y-4">
+              <h1 className="text-2xl font-bold text-white">Food Nutrition Analyzer</h1>
+              <p className="text-sm text-slate-200">
+                We’ll ask for camera access when you tap Start. If prompted, choose “Always Allow” to skip repeated prompts.
+              </p>
+              <div className="flex flex-col gap-3">
+                <button
+                  onClick={() => {
+                    setCameraStarted(true);
+                    setError(null);
+                  }}
+                  className="w-full px-4 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition shadow-lg"
+                >
+                  Start camera
+                </button>
+                <label className="w-full px-4 py-3 rounded-lg bg-white bg-opacity-10 text-white cursor-pointer hover:bg-opacity-20 transition backdrop-blur-sm border border-white/10">
+                  <span className="text-sm font-semibold">Or pick from gallery</span>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileSelect}
+                    className="hidden"
+                  />
+                </label>
+              </div>
+            </div>
+          </div>
+        )}
         
-        <div className="absolute inset-0 flex flex-col">
+        <div className="absolute inset-0 flex flex-col pointer-events-none">
           <div className="bg-black bg-opacity-50 p-6 pt-16 text-center">
             <h1 className="text-2xl font-bold text-white">Food Nutrition Analyzer</h1>
           </div>
 
           <div className="flex-1"></div>
 
-          <div className="bg-black bg-opacity-50 p-4 pb-32 sm:pb-12 pb-safe">
+          <div className="bg-black bg-opacity-50 p-4 pb-32 sm:pb-12 pb-safe pointer-events-auto">
             <div className="flex justify-around items-center gap-2">
               <label className="px-3 py-2 sm:px-4 rounded-lg bg-white bg-opacity-20 text-white cursor-pointer hover:bg-opacity-30 transition backdrop-blur-sm">
                 <span className="text-xs sm:text-sm font-semibold">Gallery</span>
@@ -215,8 +259,8 @@ export default function CameraScreen() {
 
               <button
                 onClick={handleCapture}
-                className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white border-4 border-blue-500 flex items-center justify-center hover:scale-105 transition shadow-2xl z-10 relative"
-                disabled={analyzing}
+                className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white border-4 border-blue-500 flex items-center justify-center hover:scale-105 transition shadow-2xl z-10 relative disabled:opacity-60 disabled:cursor-not-allowed"
+                disabled={analyzing || !cameraStarted}
                 style={{
                   boxShadow: '0 0 20px rgba(59, 130, 246, 0.5), 0 4px 6px rgba(0, 0, 0, 0.3)'
                 }}
@@ -226,7 +270,8 @@ export default function CameraScreen() {
 
               <button
                 onClick={toggleCameraFacing}
-                className="px-3 py-2 sm:px-4 rounded-lg bg-white bg-opacity-20 text-white hover:bg-opacity-30 transition backdrop-blur-sm"
+                className="px-3 py-2 sm:px-4 rounded-lg bg-white bg-opacity-20 text-white hover:bg-opacity-30 transition backdrop-blur-sm disabled:opacity-60 disabled:cursor-not-allowed"
+                disabled={!cameraStarted}
               >
                 <span className="text-xs sm:text-sm font-semibold">Flip</span>
               </button>
@@ -244,6 +289,23 @@ export default function CameraScreen() {
           >
             Dismiss
           </button>
+        </div>
+      )}
+
+      {showInstallPrompt && (
+        <div className="bg-white border border-gray-200 shadow-md rounded-lg m-4 p-4 space-y-2 text-gray-800">
+          <div className="flex items-center justify-between">
+            <p className="font-semibold">Add to Home Screen</p>
+            <button
+              onClick={() => setShowInstallPrompt(false)}
+              className="text-sm text-gray-500 hover:text-gray-700"
+            >
+              Dismiss
+            </button>
+          </div>
+          <p className="text-sm text-gray-600">
+            iPhone: tap Share → “Add to Home Screen”. Android (Chrome): tap ⋮ → “Add to Home screen”.
+          </p>
         </div>
       )}
     </div>
