@@ -3,6 +3,15 @@ import { NextRequest, NextResponse } from 'next/server';
 import { saveFoodEntry, getFoodEntries } from '@/services/foodEntryService';
 import { uploadFoodImage } from '@/services/storageService';
 
+const ALLOWED_MEAL_TYPES = ['breakfast', 'lunch', 'dinner', 'snack'] as const;
+type AllowedMealType = (typeof ALLOWED_MEAL_TYPES)[number];
+
+function normalizeMealType(raw: string | null): AllowedMealType | null {
+  if (!raw) return null;
+  const lower = raw.toString().trim().toLowerCase();
+  return (ALLOWED_MEAL_TYPES as readonly string[]).includes(lower) ? (lower as AllowedMealType) : null;
+}
+
 // POST: Create new food entry
 export async function POST(request: NextRequest) {
   try {
@@ -40,6 +49,11 @@ export async function POST(request: NextRequest) {
     }
 
     const nutritionalData = JSON.parse(nutritionalDataStr);
+    const normalizedMealType = normalizeMealType(mealType || nutritionalData?.meal_type || null);
+    const sanitizedNutritionalData = {
+      ...nutritionalData,
+      meal_type: normalizedMealType || undefined,
+    };
 
     // Generate entry ID for storage path
     const entryId = crypto.randomUUID();
@@ -59,9 +73,9 @@ export async function POST(request: NextRequest) {
     const entry = await saveFoodEntry({
       imageUrl: url,
       imageStoragePath: path,
-      mealType: mealType as any || undefined,
+      mealType: normalizedMealType || undefined,
       dateTime: new Date(dateTime),
-      nutritionalData,
+      nutritionalData: sanitizedNutritionalData,
     });
 
     return NextResponse.json({ entry }, { status: 201 });
