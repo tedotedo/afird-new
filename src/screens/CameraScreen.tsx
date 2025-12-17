@@ -170,10 +170,10 @@ export default function CameraScreen() {
             <h1 className="text-2xl font-bold text-white">Food Nutrition Analyzer</h1>
           </div>
 
-          <div className="bg-black bg-opacity-50 p-8 pb-12">
-            <div className="flex justify-around items-center">
-              <label className="px-4 py-2 rounded-lg bg-white bg-opacity-20 text-white cursor-pointer hover:bg-opacity-30 transition">
-                <span className="text-sm font-semibold">Gallery</span>
+          <div className="bg-black bg-opacity-50 p-4 pb-safe sm:pb-12">
+            <div className="flex justify-around items-center gap-2">
+              <label className="px-3 py-2 sm:px-4 rounded-lg bg-white bg-opacity-20 text-white cursor-pointer hover:bg-opacity-30 transition backdrop-blur-sm">
+                <span className="text-xs sm:text-sm font-semibold">Gallery</span>
                 <input
                   type="file"
                   accept="image/*"
@@ -184,17 +184,20 @@ export default function CameraScreen() {
 
               <button
                 onClick={handleCapture}
-                className="w-20 h-20 rounded-full bg-white border-4 border-blue-500 flex items-center justify-center hover:scale-105 transition"
+                className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white border-4 border-blue-500 flex items-center justify-center hover:scale-105 transition shadow-2xl z-10 relative"
                 disabled={analyzing}
+                style={{
+                  boxShadow: '0 0 20px rgba(59, 130, 246, 0.5), 0 4px 6px rgba(0, 0, 0, 0.3)'
+                }}
               >
-                <div className="w-15 h-15 rounded-full bg-blue-500"></div>
+                <div className="w-12 h-12 sm:w-15 sm:h-15 rounded-full bg-blue-500"></div>
               </button>
 
               <button
                 onClick={toggleCameraFacing}
-                className="px-4 py-2 rounded-lg bg-white bg-opacity-20 text-white hover:bg-opacity-30 transition"
+                className="px-3 py-2 sm:px-4 rounded-lg bg-white bg-opacity-20 text-white hover:bg-opacity-30 transition backdrop-blur-sm"
               >
-                <span className="text-sm font-semibold">Flip</span>
+                <span className="text-xs sm:text-sm font-semibold">Flip</span>
               </button>
             </div>
           </div>
