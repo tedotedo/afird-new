@@ -6,6 +6,78 @@ export interface ResizeResult {
 }
 
 /**
+ * Resize a File for upload to reduce storage usage.
+ * Defaults: max dimension 1800px, jpeg quality 0.82.
+ */
+export async function resizeFileForUpload(
+  file: File,
+  maxDimension: number = 1800,
+  quality: number = 0.82
+): Promise<File> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+
+    img.onload = () => {
+      try {
+        let { width, height } = img;
+
+        // Scale down while preserving aspect ratio
+        if (width > maxDimension || height > maxDimension) {
+          if (width > height) {
+            height = (height * maxDimension) / width;
+            width = maxDimension;
+          } else {
+            width = (width * maxDimension) / height;
+            height = maxDimension;
+          }
+        }
+
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.round(width);
+        canvas.height = Math.round(height);
+
+        const ctx = canvas.getContext('2d');
+        if (!ctx) {
+          throw new Error('Failed to get canvas context');
+        }
+
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+        canvas.toBlob(
+          (blob) => {
+            if (!blob) {
+              reject(new Error('Failed to resize image'));
+              return;
+            }
+
+            // Preserve filename but ensure jpeg extension
+            const newName = file.name.replace(/\.[^/.]+$/, '') + '.jpg';
+            const resizedFile = new File([blob], newName, {
+              type: 'image/jpeg',
+              lastModified: Date.now(),
+            });
+            resolve(resizedFile);
+          },
+          'image/jpeg',
+          quality
+        );
+      } catch (error) {
+        reject(new Error('Failed to resize image'));
+      }
+    };
+
+    img.onerror = () => reject(new Error('Failed to load image'));
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      img.src = e.target?.result as string;
+    };
+    reader.onerror = () => reject(new Error('Failed to read file'));
+    reader.readAsDataURL(file);
+  });
+}
+
+/**
  * Resize image to optimize for Gemini API token usage
  * Target: Keep under 1024px to minimize tiling
  * Uses Canvas API for web

@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { FoodEntry } from '@/services/foodEntryService';
 import { NutritionalData } from '@/types/nutrition';
+import { resizeFileForUpload } from '@/services/imageService';
 
 interface UseFoodEntriesOptions {
   startDate?: Date;
@@ -67,8 +68,11 @@ export function useFoodEntries(options: UseFoodEntriesOptions = {}) {
       setLoading(true);
       setError(null);
 
+      // Resize/compress before upload to reduce storage usage
+      const optimizedFile = await resizeFileForUpload(imageFile);
+
       const formData = new FormData();
-      formData.append('image', imageFile);
+      formData.append('image', optimizedFile);
       formData.append('nutritionalData', JSON.stringify(nutritionalData));
       if (mealType) {
         formData.append('mealType', mealType);

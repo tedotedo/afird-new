@@ -38,17 +38,14 @@ export async function uploadFoodImage(
     });
 
   if (error) {
-    const errorMessage = error.message || 'Unknown error';
-    const lowerMessage = errorMessage.toLowerCase();
-    
-    // Check for quota-related errors
-    if (lowerMessage.includes('quota') || 
-        lowerMessage.includes('storage quota') ||
-        lowerMessage.includes('insufficient')) {
-      throw new Error('Storage quota exceeded. Please check your Supabase storage limits or contact support.');
-    }
-    
-    throw new Error(`Failed to upload image: ${errorMessage}`);
+    const status = (error as any).statusCode || (error as any).status;
+    const code = (error as any).error || (error as any).code;
+    const errorMessage = error.message || 'Unknown storage error';
+    throw new Error(
+      `Supabase storage upload failed${status ? ` (status ${status})` : ''}${
+        code ? ` [${code}]` : ''
+      }: ${errorMessage}`
+    );
   }
 
   // Get public URL
