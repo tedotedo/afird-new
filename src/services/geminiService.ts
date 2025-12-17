@@ -138,13 +138,20 @@ export async function analyzeFoodImage(
     const errorMessage = error.message || error.toString() || 'Unknown error';
     const lowerMessage = errorMessage.toLowerCase();
     
-    // Check for quota-related errors
-    if (lowerMessage.includes('quota') || 
-        lowerMessage.includes('rate limit') || 
-        lowerMessage.includes('resource exhausted') ||
-        lowerMessage.includes('429') ||
-        error.status === 429) {
+    // Check for quota/rate limit errors
+    if (error.status === 429 ||
+        lowerMessage.includes('quota exceeded') ||
+        lowerMessage.includes('rate limit') ||
+        lowerMessage.includes('quota')) {
       throw new Error('API quota exceeded. Please try again later or check your Gemini API quota limits.');
+    }
+
+    // Handle cases where the request is too large/complex for the model
+    if (lowerMessage.includes('resource exhausted') ||
+        lowerMessage.includes('exceeded maximum') ||
+        lowerMessage.includes('too large') ||
+        lowerMessage.includes('compute limit')) {
+      throw new Error('The image looks too complex to process. Try a clearer photo, closer crop, or smaller image.');
     }
     
     if (lowerMessage.includes('api key') || lowerMessage.includes('authentication')) {
