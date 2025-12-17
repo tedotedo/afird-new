@@ -172,7 +172,7 @@ export default function CameraScreen() {
 
           <div className="flex-1"></div>
 
-          <div className="bg-black bg-opacity-50 p-4 pb-24 sm:pb-12 pb-safe">
+          <div className="bg-black bg-opacity-50 p-4 pb-32 sm:pb-12 pb-safe">
             <div className="flex justify-around items-center gap-2">
               <label className="px-3 py-2 sm:px-4 rounded-lg bg-white bg-opacity-20 text-white cursor-pointer hover:bg-opacity-30 transition backdrop-blur-sm">
                 <span className="text-xs sm:text-sm font-semibold">Gallery</span>
