@@ -135,15 +135,27 @@ export async function analyzeFoodImage(
   } catch (error: any) {
     console.error('Error analyzing food with Gemini:', error);
     
-    if (error.message?.includes('API key')) {
+    const errorMessage = error.message || error.toString() || 'Unknown error';
+    const lowerMessage = errorMessage.toLowerCase();
+    
+    // Check for quota-related errors
+    if (lowerMessage.includes('quota') || 
+        lowerMessage.includes('rate limit') || 
+        lowerMessage.includes('resource exhausted') ||
+        lowerMessage.includes('429') ||
+        error.status === 429) {
+      throw new Error('API quota exceeded. Please try again later or check your Gemini API quota limits.');
+    }
+    
+    if (lowerMessage.includes('api key') || lowerMessage.includes('authentication')) {
       throw new Error('Invalid or missing Gemini API key');
     }
     
-    if (error.message?.includes('JSON')) {
+    if (lowerMessage.includes('json') || lowerMessage.includes('parse')) {
       throw new Error('Failed to parse nutritional data from API response');
     }
     
-    throw new Error(`Failed to analyze food: ${error.message || 'Unknown error'}`);
+    throw new Error(`Failed to analyze food: ${errorMessage}`);
   }
 }
 

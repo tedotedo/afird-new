@@ -140,7 +140,15 @@ export default function CameraScreen() {
       router.push('/results');
     } catch (err: any) {
       console.error('Error processing image:', err);
-      setError(err.message || 'Failed to analyze food image. Please try again.');
+      const errorMessage = err.message || 'Failed to analyze food image. Please try again.';
+      setError(errorMessage);
+      
+      // If it's a quota error, provide additional guidance
+      if (errorMessage.toLowerCase().includes('quota')) {
+        setTimeout(() => {
+          setError(null);
+        }, 10000); // Auto-dismiss after 10 seconds for quota errors
+      }
     } finally {
       setAnalyzing(false);
     }
