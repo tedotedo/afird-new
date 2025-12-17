@@ -1,0 +1,100 @@
+import { createClient } from '@/lib/supabase/server';
+import { NextRequest, NextResponse } from 'next/server';
+import { saveFoodEntry, getFoodEntries } from '@/services/foodEntryService';
+import { uploadFoodImage } from '@/services/storageService';
+
+// POST: Create new food entry
+export async function POST(request: NextRequest) {
+  try {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      );
+    }
+
+    const formData = await request.formData();
+    const imageFile = formData.get('image') as File;
+    const nutritionalData = JSON.parse(formData.get('nutritionalData') as string);
+    const mealType = formData.get('mealType') as string | null;
+    const dateTime = formData.get('dateTime') as string;
+
+    if (!imageFile || !nutritionalData) {
+      return NextResponse.json(
+        { error: 'Image and nutritional data are required' },
+        { status: 400 }
+      );
+    }
+
+    // Generate entry ID for storage path
+    const entryId = crypto.randomUUID();
+
+    // Get server client for storage operations
+    const serverSupabase = await createClient();
+
+    // Upload image to storage
+    const { url, path } = await uploadFoodImage(
+      serverSupabase,
+      imageFile,
+      user.id,
+      entryId
+    );
+
+    // Save entry to database
+    const entry = await saveFoodEntry({
+      imageUrl: url,
+      imageStoragePath: path,
+      mealType: mealType as any || undefined,
+      dateTime: new Date(dateTime),
+      nutritionalData,
+    });
+
+    return NextResponse.json({ entry }, { status: 201 });
+  } catch (error: any) {
+    console.error('Error creating food entry:', error);
+    return NextResponse.json(
+      { error: error.message || 'Failed to create food entry' },
+      { status: 500 }
+    );
+  }
+}
+
+// GET: Retrieve food entries
+export async function GET(request: NextRequest) {
+  try {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      );
+    }
+
+    const searchParams = request.nextUrl.searchParams;
+    const startDate = searchParams.get('startDate');
+    const endDate = searchParams.get('endDate');
+    const mealType = searchParams.get('mealType') as any;
+    const limit = searchParams.get('limit');
+
+    const entries = await getFoodEntries({
+      startDate: startDate ? new Date(startDate) : undefined,
+      endDate: endDate ? new Date(endDate) : undefined,
+      mealType,
+      limit: limit ? parseInt(limit) : undefined,
+    });
+
+    return NextResponse.json({ entries });
+  } catch (error: any) {
+    console.error('Error fetching food entries:', error);
+    return NextResponse.json(
+      { error: error.message || 'Failed to fetch food entries' },
+      { status: 500 }
+    );
+  }
+}
+
