@@ -74,6 +74,14 @@ export default function CameraScreen() {
           throw new Error('Failed to capture image');
         }
         
+        // Check file size (50 MB limit for Supabase free tier)
+        const maxSize = 50 * 1024 * 1024; // 50 MB in bytes
+        if (blob.size > maxSize) {
+          setError(`Image is too large. Maximum file size is 50 MB. Your image is ${(blob.size / (1024 * 1024)).toFixed(2)} MB.`);
+          setAnalyzing(false);
+          return;
+        }
+        
         const file = new File([blob], 'photo.jpg', { type: 'image/jpeg' });
         await processImage(file, canvas.toDataURL('image/jpeg'));
       }, 'image/jpeg', 0.9);
@@ -87,6 +95,13 @@ export default function CameraScreen() {
   const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      // Check file size (50 MB limit for Supabase free tier)
+      const maxSize = 50 * 1024 * 1024; // 50 MB in bytes
+      if (file.size > maxSize) {
+        setError(`Image is too large. Maximum file size is 50 MB. Your file is ${(file.size / (1024 * 1024)).toFixed(2)} MB.`);
+        return;
+      }
+
       setAnalyzing(true);
       setError(null);
       

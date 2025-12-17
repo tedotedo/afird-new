@@ -29,6 +29,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Check file size (50 MB limit for Supabase free tier)
+    const maxSize = 50 * 1024 * 1024; // 50 MB in bytes
+    if (imageFile.size > maxSize) {
+      const fileSizeMB = (imageFile.size / (1024 * 1024)).toFixed(2);
+      return NextResponse.json(
+        { error: `Image is too large. Maximum file size is 50 MB. Your file is ${fileSizeMB} MB.` },
+        { status: 400 }
+      );
+    }
+
     const nutritionalData = JSON.parse(nutritionalDataStr);
 
     // Generate entry ID for storage path

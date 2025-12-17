@@ -14,6 +14,13 @@ export async function uploadFoodImage(
   userId: string,
   entryId: string
 ): Promise<{ url: string; path: string }> {
+  // Check file size (50 MB limit for Supabase free tier)
+  const maxSize = 50 * 1024 * 1024; // 50 MB in bytes
+  if (file.size > maxSize) {
+    const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
+    throw new Error(`Image is too large. Maximum file size is 50 MB. Your file is ${fileSizeMB} MB.`);
+  }
+
   // Check if file is a File object (safely handle environments where File might not be defined)
   const isFile = typeof File !== 'undefined' && file instanceof File;
   const fileExt = isFile ? (file as File).name.split('.').pop() : 'jpg';
