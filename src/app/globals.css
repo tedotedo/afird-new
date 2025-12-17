@@ -89,7 +89,7 @@ a {
 
 /* Safe area support for mobile devices */
 .pb-safe {
-  padding-bottom: max(2rem, env(safe-area-inset-bottom));
+  padding-bottom: max(5rem, calc(env(safe-area-inset-bottom) + 3rem));
 }
 
 .pt-safe {
