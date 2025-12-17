@@ -1,10 +1,19 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
 import AuthGuard from '@/components/AuthGuard';
 import FoodEntryList from '@/components/FoodEntryList';
 import { useFoodEntries } from '@/hooks/useFoodEntries';
-import { FoodEntry } from '@/services/foodEntryService';
+
+const AddAnotherButton = () => (
+  <Link
+    href="/"
+    className="inline-flex items-center justify-center px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg shadow transition"
+  >
+    Add Another Entry
+  </Link>
+);
 
 export default function HistoryPage() {
   const [mealTypeFilter, setMealTypeFilter] = useState<string>('all');
@@ -28,10 +37,13 @@ export default function HistoryPage() {
     <AuthGuard>
       <div className="min-h-screen bg-gray-50">
         <div className="container mx-auto px-4 py-8 max-w-4xl">
-          <div className="mb-6">
-            <h1 className="text-3xl font-bold text-gray-800 mb-4">Food History</h1>
-            
-            <div className="flex gap-2 mb-4">
+          <div className="mb-6 space-y-4">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <h1 className="text-3xl font-bold text-gray-800">Food History</h1>
+              <AddAnotherButton />
+            </div>
+
+            <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => setMealTypeFilter('all')}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
@@ -107,6 +119,9 @@ export default function HistoryPage() {
                 onDelete={handleDelete}
                 showDelete={true}
               />
+              <div className="flex justify-center mt-6">
+                <AddAnotherButton />
+              </div>
             </div>
           )}
         </div>
