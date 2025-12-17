@@ -17,17 +17,19 @@ export async function POST(request: NextRequest) {
     }
 
     const formData = await request.formData();
-    const imageFile = formData.get('image') as File;
-    const nutritionalData = JSON.parse(formData.get('nutritionalData') as string);
+    const imageFile = formData.get('image') as File | Blob | null;
+    const nutritionalDataStr = formData.get('nutritionalData') as string | null;
     const mealType = formData.get('mealType') as string | null;
-    const dateTime = formData.get('dateTime') as string;
+    const dateTime = formData.get('dateTime') as string | null;
 
-    if (!imageFile || !nutritionalData) {
+    if (!imageFile || !nutritionalDataStr || !dateTime) {
       return NextResponse.json(
-        { error: 'Image and nutritional data are required' },
+        { error: 'Image, nutritional data, and dateTime are required' },
         { status: 400 }
       );
     }
+
+    const nutritionalData = JSON.parse(nutritionalDataStr);
 
     // Generate entry ID for storage path
     const entryId = crypto.randomUUID();

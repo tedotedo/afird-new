@@ -14,7 +14,9 @@ export async function uploadFoodImage(
   userId: string,
   entryId: string
 ): Promise<{ url: string; path: string }> {
-  const fileExt = file instanceof File ? file.name.split('.').pop() : 'jpg';
+  // Check if file is a File object (safely handle environments where File might not be defined)
+  const isFile = typeof File !== 'undefined' && file instanceof File;
+  const fileExt = isFile ? (file as File).name.split('.').pop() : 'jpg';
   const fileName = `${entryId}.${fileExt}`;
   const filePath = `${userId}/${fileName}`;
 
@@ -24,7 +26,7 @@ export async function uploadFoodImage(
   const { data, error } = await supabase.storage
     .from('food-images')
     .upload(filePath, arrayBuffer, {
-      contentType: file instanceof File ? file.type : 'image/jpeg',
+      contentType: isFile ? (file as File).type : 'image/jpeg',
       upsert: false,
     });
 

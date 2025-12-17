@@ -30,7 +30,7 @@ export default function ResultsScreen() {
         setResult(parsed);
 
         // Restore image file if available
-        if (storedFile) {
+        if (storedFile && typeof File !== 'undefined') {
           // Convert base64 back to File
           const fileData = JSON.parse(storedFile);
           fetch(fileData.dataUrl)
@@ -38,6 +38,9 @@ export default function ResultsScreen() {
             .then(blob => {
               const file = new File([blob], fileData.name, { type: fileData.type });
               setImageFile(file);
+            })
+            .catch(err => {
+              console.error('Error restoring image file:', err);
             });
         }
       } catch (err) {
