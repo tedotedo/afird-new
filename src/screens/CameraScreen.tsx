@@ -239,9 +239,11 @@ export default function CameraScreen() {
         )}
         
         <div className="absolute inset-0 flex flex-col pointer-events-none">
-          <div className="bg-gradient-to-b from-black/70 to-transparent p-6 pt-16 text-center">
-            <h1 className="text-2xl font-bold text-white drop-shadow">Food Nutrition Analyzer</h1>
-          </div>
+          {cameraStarted && (
+            <div className="bg-gradient-to-b from-black/70 to-transparent p-6 pt-16 text-center">
+              <h1 className="text-2xl font-bold text-white drop-shadow">Food Nutrition Analyzer</h1>
+            </div>
+          )}
 
           <div className="flex-1"></div>
 
