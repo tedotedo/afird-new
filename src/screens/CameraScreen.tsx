@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { resizeImageForAnalysis, convertToBase64 } from '@/services/imageService';
 import { analyzeFoodImage } from '@/services/geminiService';
 import { FoodAnalysisResult } from '@/types/nutrition';
+import ChristmasLoading from '@/components/ChristmasLoading';
 
 export default function CameraScreen() {
   const router = useRouter();
@@ -150,13 +151,7 @@ export default function CameraScreen() {
   };
 
   if (analyzing) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-white p-8">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mb-4"></div>
-        <p className="text-lg font-semibold text-gray-800">Analyzing food...</p>
-        <p className="text-sm text-gray-600 mt-2">This may take a few seconds</p>
-      </div>
-    );
+    return <ChristmasLoading />;
   }
 
   return (

@@ -24,3 +24,66 @@ a {
   text-decoration: none;
 }
 
+/* Christmas Loading Animations */
+@keyframes christmas-snow {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes christmas-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes christmas-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes christmas-twinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+.christmas-snow {
+  animation: christmas-snow linear infinite;
+}
+
+.christmas-bounce {
+  animation: christmas-bounce 2s ease-in-out infinite;
+}
+
+.christmas-spin {
+  animation: christmas-spin 3s linear infinite;
+}
+
+.christmas-twinkle {
+  animation: christmas-twinkle 1.5s ease-in-out infinite;
+}
+
