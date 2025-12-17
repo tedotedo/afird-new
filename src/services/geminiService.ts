@@ -137,6 +137,14 @@ export async function analyzeFoodImage(
     
     const errorMessage = error.message || error.toString() || 'Unknown error';
     const lowerMessage = errorMessage.toLowerCase();
+
+    // Log structured error details to help identify the exact wording/source
+    console.error('Gemini error details', {
+      status: error.status,
+      code: error.code,
+      message: errorMessage,
+      response: error.response?.data || error.response,
+    });
     
     // Check for quota/rate limit errors
     if (error.status === 429 ||

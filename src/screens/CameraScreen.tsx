@@ -130,27 +130,33 @@ export default function CameraScreen() {
       // Analyze with Gemini
       const nutritionalData = await analyzeFoodImage(base64, resized.mimeType);
 
-      // Create result with current date/time
+      // Create result with current date/time (use resized preview to keep storage small)
       const result: FoodAnalysisResult = {
-        imageUri: originalDataUrl, // Use original for display
+        imageUri: resized.dataUrl,
         dateTime: new Date(),
         nutritionalData,
       };
 
-      // Store result and image file in sessionStorage
-      sessionStorage.setItem('analysisResult', JSON.stringify(result));
-      
-      // Convert data URL to File for saving
-      const response = await fetch(originalDataUrl);
-      const blob = await response.blob();
-      const imageFile = new File([blob], 'food-photo.jpg', { type: 'image/jpeg' });
-      
-      // Store file info (we'll convert back to File in ResultsScreen)
-      sessionStorage.setItem('analysisImageFile', JSON.stringify({
-        dataUrl: originalDataUrl,
-        name: 'food-photo.jpg',
-        type: 'image/jpeg',
-      }));
+      // Create a File from the resized image for saving
+      const imageBlob = await (await fetch(resized.dataUrl)).blob();
+      const imageFile = new File([imageBlob], 'food-photo.jpg', { type: resized.mimeType || 'image/jpeg' });
+      const objectUrl = URL.createObjectURL(imageFile);
+
+      try {
+        // Store result and lightweight file reference in sessionStorage
+        sessionStorage.setItem('analysisResult', JSON.stringify(result));
+        sessionStorage.setItem('analysisImageFile', JSON.stringify({
+          objectUrl,
+          name: 'food-photo.jpg',
+          type: imageFile.type,
+        }));
+      } catch (storageErr: any) {
+        console.error('Failed to store analysis data', storageErr);
+        URL.revokeObjectURL(objectUrl);
+        setError('Could not save analysis data locally (browser storage limit). Try a smaller or closer photo, then retry.');
+        setAnalyzing(false);
+        return;
+      }
 
       router.push('/results');
     } catch (err: any) {
