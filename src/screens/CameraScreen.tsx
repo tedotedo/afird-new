@@ -239,13 +239,13 @@ export default function CameraScreen() {
         )}
         
         <div className="absolute inset-0 flex flex-col pointer-events-none">
-          <div className="bg-black bg-opacity-50 p-6 pt-16 text-center">
-            <h1 className="text-2xl font-bold text-white">Food Nutrition Analyzer</h1>
+          <div className="bg-gradient-to-b from-black/70 to-transparent p-6 pt-16 text-center">
+            <h1 className="text-2xl font-bold text-white drop-shadow">Food Nutrition Analyzer</h1>
           </div>
 
           <div className="flex-1"></div>
 
-          <div className="bg-black bg-opacity-50 p-4 pb-32 sm:pb-12 pb-safe pointer-events-auto">
+          <div className="bg-gradient-to-t from-black/80 via-black/60 to-black/20 p-4 pb-32 sm:pb-12 pb-safe pointer-events-auto">
             <div className="flex justify-around items-center gap-2">
               <label className="px-3 py-2 sm:px-4 rounded-lg bg-white bg-opacity-20 text-white cursor-pointer hover:bg-opacity-30 transition backdrop-blur-sm">
                 <span className="text-xs sm:text-sm font-semibold">Gallery</span>
