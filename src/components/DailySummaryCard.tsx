@@ -16,7 +16,7 @@ export default function DailySummaryCard({
   return (
     <div className="space-y-6">
       <div className="bg-white rounded-xl p-6 shadow-lg">
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between mb-2">
           <h2 className="text-2xl font-bold text-gray-800">
             Daily Summary
           </h2>
@@ -29,7 +29,7 @@ export default function DailySummaryCard({
             })}
           </div>
         </div>
-        <p className="text-gray-600 mb-4">
+        <p className="text-gray-600">
           {totalEntries} {totalEntries === 1 ? 'entry' : 'entries'} for this day
         </p>
       </div>
