@@ -86,6 +86,10 @@ export async function analyzeFoodImage(
       contents: contents,
     });
 
+    if (!response.text) {
+      throw new Error('No response text received from Gemini API');
+    }
+
     const text = response.text.trim();
 
     // Extract JSON from response (handle markdown code blocks if present)
