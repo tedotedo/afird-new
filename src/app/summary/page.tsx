@@ -5,9 +5,11 @@ import AuthGuard from '@/components/AuthGuard';
 import DailySummaryCard from '@/components/DailySummaryCard';
 import FoodEntryList from '@/components/FoodEntryList';
 import NutritionComparisonTable from '@/components/NutritionComparisonTable';
+import NutritionOverviewDashboard from '@/components/NutritionOverviewDashboard';
 import { useChildContext } from '@/contexts/ChildContext';
 import { getRecommendations } from '@/data/whoRecommendations';
 import { calculateAge } from '@/utils/dateUtils';
+import Link from 'next/link';
 
 export default function SummaryPage() {
   const [selectedDate, setSelectedDate] = useState(() => {
@@ -133,13 +135,54 @@ export default function SummaryPage() {
 
           {!loading && !error && summary && (
             <>
-              <DailySummaryCard
-                totals={summary.totals}
-                totalEntries={summary.totalEntries}
-                date={summary.date}
-              />
+              {/* Visual Overview Dashboard - NEW */}
+              {summary.totalEntries > 0 && (
+                <div className="mt-8">
+                  <NutritionOverviewDashboard
+                    totals={summary.totals}
+                    recommendations={
+                      selectedChild 
+                        ? getRecommendations(calculateAge(selectedChild.date_of_birth), selectedChild.sex)
+                        : getRecommendations(30, 'male')
+                    }
+                  />
+                </div>
+              )}
 
-              {/* WHO Comparison Table - Show for children or adults */}
+              {/* Daily Summary Card - Basic Totals */}
+              <div className="mt-8">
+                <DailySummaryCard
+                  totals={summary.totals}
+                  totalEntries={summary.totalEntries}
+                  date={summary.date}
+                />
+              </div>
+
+              {/* Section Divider with CTA */}
+              {summary.totalEntries > 0 && (
+                <div className="mt-12 mb-8">
+                  <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                      <div>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                          Detailed Nutritional Analysis
+                        </h2>
+                        <p className="text-gray-600">
+                          Compare against WHO recommendations and learn more about each nutrient
+                        </p>
+                      </div>
+                      <Link
+                        href="/nutrition-info"
+                        className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition whitespace-nowrap"
+                      >
+                        Learn About Nutrients →
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* WHO Comparison Table - Detailed */}
               {summary.totalEntries > 0 && (
                 <div className="mt-8">
                   <h2 className="text-2xl font-bold text-gray-800 mb-4">
@@ -150,7 +193,7 @@ export default function SummaryPage() {
                     recommendations={
                       selectedChild 
                         ? getRecommendations(calculateAge(selectedChild.date_of_birth), selectedChild.sex)
-                        : getRecommendations(30, 'male') // Default adult values if no child selected
+                        : getRecommendations(30, 'male')
                     }
                     age={selectedChild ? calculateAge(selectedChild.date_of_birth) : 30}
                     sex={selectedChild ? selectedChild.sex : 'adult'}
@@ -158,6 +201,7 @@ export default function SummaryPage() {
                 </div>
               )}
 
+              {/* Food Entries List */}
               {summary.entries && summary.entries.length > 0 && (
                 <div className="mt-8">
                   <h2 className="text-2xl font-bold text-gray-800 mb-4">Entries for this day</h2>

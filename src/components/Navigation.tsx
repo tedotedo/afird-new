@@ -37,6 +37,7 @@ export default function Navigation() {
     { href: '/history', label: 'History' },
     { href: '/summary', label: 'Summary' },
     { href: '/profile', label: 'Children' },
+    { href: '/nutrition-info', label: 'Nutrition Info' },
     { href: '/settings', label: 'Settings' },
     ...(isAdminUser ? [{ href: '/admin', label: 'Admin' }] : []),
   ];
