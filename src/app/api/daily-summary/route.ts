@@ -16,6 +16,7 @@ export async function GET(request: NextRequest) {
 
     const searchParams = request.nextUrl.searchParams;
     const dateParam = searchParams.get('date');
+    const childId = searchParams.get('childId');
 
     if (!dateParam) {
       return NextResponse.json(
@@ -32,7 +33,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const summary = await getDailySummary(targetDate);
+    const summary = await getDailySummary(targetDate, childId || undefined);
 
     return NextResponse.json(summary);
   } catch (error: any) {

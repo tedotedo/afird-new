@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
 import { useEffect, useState } from 'react';
+import ChildSelector from '@/components/ChildSelector';
 
 export default function Navigation() {
   const { user, signOut } = useAuth();
@@ -73,6 +74,8 @@ export default function Navigation() {
           </div>
 
           <div className="flex items-center space-x-3">
+            <ChildSelector />
+            
             {user && (
               <span className="text-sm text-gray-600 hidden sm:block truncate max-w-[180px]">
                 {user.email}

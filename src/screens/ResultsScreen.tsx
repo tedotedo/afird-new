@@ -7,7 +7,7 @@ import FoodImageDisplay from '@/components/FoodImageDisplay';
 import DateTimeDisplay from '@/components/DateTimeDisplay';
 import NutritionCard from '@/components/NutritionCard';
 import { useFoodEntries } from '@/hooks/useFoodEntries';
-import { Child } from '@/types/child';
+import { useChildContext } from '@/contexts/ChildContext';
 
 export default function ResultsScreen() {
   const router = useRouter();
@@ -16,9 +16,7 @@ export default function ResultsScreen() {
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [saveSuccess, setSaveSuccess] = useState(false);
-  const [children, setChildren] = useState<Child[]>([]);
-  const [selectedChildId, setSelectedChildId] = useState<string>('');
-  const [loadingChildren, setLoadingChildren] = useState(true);
+  const { selectedChild, children } = useChildContext();
   const { saveEntry } = useFoodEntries({ autoFetch: false });
 
   useEffect(() => {
@@ -56,26 +54,7 @@ export default function ResultsScreen() {
     } else {
       router.push('/');
     }
-
-    // Fetch children list
-    fetchChildren();
   }, [router]);
-
-  const fetchChildren = async () => {
-    try {
-      setLoadingChildren(true);
-      const response = await fetch('/api/children');
-      const data = await response.json();
-
-      if (response.ok) {
-        setChildren(data.children || []);
-      }
-    } catch (err) {
-      console.error('Error fetching children:', err);
-    } finally {
-      setLoadingChildren(false);
-    }
-  };
 
   const handleSave = async () => {
     if (!result || !imageFile) {
@@ -93,7 +72,7 @@ export default function ResultsScreen() {
         result.nutritionalData,
         result.nutritionalData.meal_type,
         result.dateTime,
-        selectedChildId || undefined
+        selectedChild?.id || undefined
       );
       setSaveSuccess(true);
       // Clear session storage after successful save
@@ -134,27 +113,40 @@ export default function ResultsScreen() {
 
         <DateTimeDisplay dateTime={result.dateTime} />
 
-        {/* Child Selector */}
-        {!loadingChildren && children.length > 0 && (
-          <div className="bg-white rounded-lg shadow-md p-4 mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Select Child (optional)
-            </label>
-            <select
-              value={selectedChildId}
-              onChange={(e) => setSelectedChildId(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            >
-              <option value="">For myself (parent)</option>
-              {children.map((child) => (
-                <option key={child.id} value={child.id}>
-                  {child.name}
-                </option>
-              ))}
-            </select>
-            <p className="text-xs text-gray-500 mt-2">
-              Choose which child this food entry is for, or leave as "For myself"
-            </p>
+        {/* Selected Child Indicator */}
+        {selectedChild && (
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+              </svg>
+              <div>
+                <p className="text-sm font-semibold text-blue-900">
+                  Recording for: {selectedChild.name}
+                </p>
+                <p className="text-xs text-blue-700">
+                  Change in the navigation menu if needed
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {!selectedChild && children.length > 0 && (
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-6">
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+              </svg>
+              <div>
+                <p className="text-sm font-semibold text-gray-900">
+                  Recording for: Yourself (Parent)
+                </p>
+                <p className="text-xs text-gray-600">
+                  Select a child in the navigation menu to record for them
+                </p>
+              </div>
+            </div>
           </div>
         )}
 

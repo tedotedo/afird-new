@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import Navigation from '@/components/Navigation';
+import { ChildProvider } from '@/contexts/ChildContext';
 
 export const metadata: Metadata = {
   title: 'Food Nutrition Analyzer',
@@ -22,8 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navigation />
-        {children}
+        <ChildProvider>
+          <Navigation />
+          {children}
+        </ChildProvider>
       </body>
     </html>
   );

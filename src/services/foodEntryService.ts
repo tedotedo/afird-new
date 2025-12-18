@@ -162,7 +162,7 @@ export async function deleteFoodEntry(entryId: string): Promise<void> {
 /**
  * Get daily summary for a specific date
  */
-export async function getDailySummary(targetDate: Date): Promise<{
+export async function getDailySummary(targetDate: Date, childId?: string): Promise<{
   date: string;
   totalEntries: number;
   totals: NutritionalData;
@@ -171,6 +171,7 @@ export async function getDailySummary(targetDate: Date): Promise<{
   const entries = await getFoodEntries({
     startDate: new Date(targetDate.setHours(0, 0, 0, 0)),
     endDate: new Date(targetDate.setHours(23, 59, 59, 999)),
+    childId,
   });
 
   const totals = calculateDailyTotals(entries);

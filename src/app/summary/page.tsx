@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import AuthGuard from '@/components/AuthGuard';
 import DailySummaryCard from '@/components/DailySummaryCard';
 import FoodEntryList from '@/components/FoodEntryList';
-import { useFoodEntries } from '@/hooks/useFoodEntries';
+import { useChildContext } from '@/contexts/ChildContext';
 
 export default function SummaryPage() {
   const [selectedDate, setSelectedDate] = useState(() => {
@@ -14,13 +14,18 @@ export default function SummaryPage() {
   const [summary, setSummary] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { selectedChild } = useChildContext();
 
   const fetchSummary = async (date: string) => {
     try {
       setLoading(true);
       setError(null);
 
-      const response = await fetch(`/api/daily-summary?date=${date}`);
+      const url = selectedChild 
+        ? `/api/daily-summary?date=${date}&childId=${selectedChild.id}`
+        : `/api/daily-summary?date=${date}`;
+      
+      const response = await fetch(url);
       if (!response.ok) {
         throw new Error('Failed to fetch summary');
       }
@@ -36,7 +41,7 @@ export default function SummaryPage() {
 
   useEffect(() => {
     fetchSummary(selectedDate);
-  }, [selectedDate]);
+  }, [selectedDate, selectedChild]);
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedDate(e.target.value);
@@ -64,7 +69,19 @@ export default function SummaryPage() {
       <div className="min-h-screen bg-gray-50">
         <div className="container mx-auto px-4 py-6 max-w-4xl">
           <div className="mb-6 space-y-4">
-            <h1 className="text-3xl font-bold text-gray-800">Daily Summary</h1>
+            <div>
+              <h1 className="text-3xl font-bold text-gray-800">Daily Summary</h1>
+              {selectedChild && (
+                <p className="text-sm text-blue-600 mt-1">
+                  Showing summary for {selectedChild.name}
+                </p>
+              )}
+              {!selectedChild && (
+                <p className="text-sm text-gray-600 mt-1">
+                  Showing your summary (parent)
+                </p>
+              )}
+            </div>
             
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-3">
               <div className="flex gap-3">

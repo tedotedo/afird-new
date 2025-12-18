@@ -11,6 +11,7 @@ interface UseFoodEntriesOptions {
   mealType?: 'breakfast' | 'lunch' | 'dinner' | 'snack';
   limit?: number;
   autoFetch?: boolean;
+  childId?: string;
 }
 
 export function useFoodEntries(options: UseFoodEntriesOptions = {}) {
@@ -37,6 +38,9 @@ export function useFoodEntries(options: UseFoodEntriesOptions = {}) {
       if (fetchOptions.limit) {
         params.append('limit', fetchOptions.limit.toString());
       }
+      if (fetchOptions.childId) {
+        params.append('childId', fetchOptions.childId);
+      }
 
       const response = await fetch(`/api/food-entries?${params.toString()}`);
       if (!response.ok) {
@@ -50,7 +54,7 @@ export function useFoodEntries(options: UseFoodEntriesOptions = {}) {
     } finally {
       setLoading(false);
     }
-  }, [fetchOptions.startDate, fetchOptions.endDate, fetchOptions.mealType, fetchOptions.limit]);
+  }, [fetchOptions.startDate, fetchOptions.endDate, fetchOptions.mealType, fetchOptions.limit, fetchOptions.childId]);
 
   useEffect(() => {
     if (autoFetch) {

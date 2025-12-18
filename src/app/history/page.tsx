@@ -1,10 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AuthGuard from '@/components/AuthGuard';
 import FoodEntryList from '@/components/FoodEntryList';
 import { useFoodEntries } from '@/hooks/useFoodEntries';
+import { useChildContext } from '@/contexts/ChildContext';
 
 const AddAnotherButton = () => (
   <Link
@@ -17,7 +18,13 @@ const AddAnotherButton = () => (
 
 export default function HistoryPage() {
   const [mealTypeFilter, setMealTypeFilter] = useState<string>('all');
-  const { entries, loading, error, deleteEntry } = useFoodEntries();
+  const { selectedChild } = useChildContext();
+  const { entries, loading, error, deleteEntry, fetchEntries } = useFoodEntries();
+
+  // Refetch when selected child changes
+  useEffect(() => {
+    fetchEntries();
+  }, [selectedChild, fetchEntries]);
 
   const handleDelete = async (entryId: string) => {
     if (confirm('Are you sure you want to delete this entry?')) {
@@ -29,9 +36,18 @@ export default function HistoryPage() {
     }
   };
 
-  const filteredEntries = mealTypeFilter === 'all'
-    ? entries
-    : entries.filter(entry => entry.meal_type === mealTypeFilter);
+  // Filter entries by selected child and meal type
+  const filteredEntries = entries.filter(entry => {
+    // Filter by child
+    const childMatch = selectedChild 
+      ? entry.child_id === selectedChild.id 
+      : !entry.child_id; // Show only entries without child_id when no child selected
+    
+    // Filter by meal type
+    const mealMatch = mealTypeFilter === 'all' || entry.meal_type === mealTypeFilter;
+    
+    return childMatch && mealMatch;
+  });
 
   return (
     <AuthGuard>
@@ -39,7 +55,19 @@ export default function HistoryPage() {
         <div className="container mx-auto px-4 py-8 max-w-4xl">
           <div className="mb-6 space-y-4">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <h1 className="text-3xl font-bold text-gray-800">Food History</h1>
+              <div>
+                <h1 className="text-3xl font-bold text-gray-800">Food History</h1>
+                {selectedChild && (
+                  <p className="text-sm text-blue-600 mt-1">
+                    Showing entries for {selectedChild.name}
+                  </p>
+                )}
+                {!selectedChild && (
+                  <p className="text-sm text-gray-600 mt-1">
+                    Showing your entries (parent)
+                  </p>
+                )}
+              </div>
               <AddAnotherButton />
             </div>
 
