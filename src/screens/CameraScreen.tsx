@@ -236,7 +236,7 @@ export default function CameraScreen() {
 
   return (
     <div className="flex flex-col min-h-screen bg-black">
-      <div className="flex-1 relative">
+      <div className="flex-1 relative pb-24 sm:pb-16">
         {cameraStarted ? (
           <video
             ref={videoRef}
@@ -309,7 +309,7 @@ export default function CameraScreen() {
 
           <div className="flex-1"></div>
 
-          <div className="bg-gradient-to-t from-black/80 via-black/60 to-black/20 p-4 pb-32 sm:pb-12 pb-safe pointer-events-auto">
+          <div className="bg-gradient-to-t from-black/80 via-black/60 to-black/20 p-4 pb-4 sm:pb-6 pointer-events-auto">
             <div className="flex justify-around items-center gap-2">
               <label className="px-3 py-2 sm:px-4 rounded-lg bg-white bg-opacity-20 text-white cursor-pointer hover:bg-opacity-30 transition backdrop-blur-sm">
                 <span className="text-xs sm:text-sm font-semibold">Gallery</span>
@@ -323,13 +323,13 @@ export default function CameraScreen() {
 
               <button
                 onClick={handleCapture}
-                className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white border-4 border-blue-500 flex items-center justify-center hover:scale-105 transition shadow-2xl z-10 relative disabled:opacity-60 disabled:cursor-not-allowed"
+                className="w-16 h-16 sm:w-18 sm:h-18 rounded-full bg-white border-4 border-blue-500 flex items-center justify-center hover:scale-105 transition shadow-2xl z-10 relative disabled:opacity-60 disabled:cursor-not-allowed"
                 disabled={analyzing || !cameraStarted}
                 style={{
                   boxShadow: '0 0 20px rgba(59, 130, 246, 0.5), 0 4px 6px rgba(0, 0, 0, 0.3)'
                 }}
               >
-                <div className="w-12 h-12 sm:w-15 sm:h-15 rounded-full bg-blue-500"></div>
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-blue-500"></div>
               </button>
 
               <button
