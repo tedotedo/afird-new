@@ -5,14 +5,12 @@ import { format } from 'date-fns';
 
 interface GrowthDataPoint {
   date: string;
-  height?: number;
-  weight?: number;
-  bmi?: number;
+  [key: string]: any;
 }
 
 interface GrowthTrendChartProps {
   data: GrowthDataPoint[];
-  metric: 'height' | 'weight' | 'bmi';
+  metric: string;
   title: string;
   color?: string;
   unit: string;

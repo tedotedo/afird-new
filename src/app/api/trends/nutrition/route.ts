@@ -77,6 +77,8 @@ export async function GET(request: NextRequest) {
           calcium: 0,
           iron: 0,
           vitaminA: 0,
+          vitaminB1: 0,
+          vitaminB12: 0,
           vitaminC: 0,
           vitaminD: 0,
           entryCount: 0,
@@ -95,6 +97,8 @@ export async function GET(request: NextRequest) {
         dailyData[date].calcium += nutrition.minerals?.calcium || 0;
         dailyData[date].iron += nutrition.minerals?.iron || 0;
         dailyData[date].vitaminA += nutrition.vitamins?.a || 0;
+        dailyData[date].vitaminB1 += nutrition.vitamins?.vitaminB1 || 0;
+        dailyData[date].vitaminB12 += nutrition.vitamins?.vitaminB12 || 0;
         dailyData[date].vitaminC += nutrition.vitamins?.c || 0;
         dailyData[date].vitaminD += nutrition.vitamins?.d || 0;
         dailyData[date].entryCount += 1;
@@ -119,6 +123,8 @@ export async function GET(request: NextRequest) {
       calcium: parseFloat(day.calcium.toFixed(1)),
       iron: parseFloat(day.iron.toFixed(1)),
       vitaminA: parseFloat(day.vitaminA.toFixed(1)),
+      vitaminB1: parseFloat(day.vitaminB1.toFixed(1)),
+      vitaminB12: parseFloat(day.vitaminB12.toFixed(1)),
       vitaminC: parseFloat(day.vitaminC.toFixed(1)),
       vitaminD: parseFloat(day.vitaminD.toFixed(1)),
     }));
@@ -148,6 +154,8 @@ export async function GET(request: NextRequest) {
             calcium: 0,
             iron: 0,
             vitaminA: 0,
+            vitaminB1: 0,
+            vitaminB12: 0,
             vitaminC: 0,
             vitaminD: 0,
             dayCount: 0,
@@ -165,6 +173,8 @@ export async function GET(request: NextRequest) {
         weeklyData[weekKey].calcium += day.calcium;
         weeklyData[weekKey].iron += day.iron;
         weeklyData[weekKey].vitaminA += day.vitaminA;
+        weeklyData[weekKey].vitaminB1 += day.vitaminB1;
+        weeklyData[weekKey].vitaminB12 += day.vitaminB12;
         weeklyData[weekKey].vitaminC += day.vitaminC;
         weeklyData[weekKey].vitaminD += day.vitaminD;
         weeklyData[weekKey].dayCount += 1;
@@ -186,6 +196,8 @@ export async function GET(request: NextRequest) {
           calcium: parseFloat((week.calcium / days).toFixed(1)),
           iron: parseFloat((week.iron / days).toFixed(1)),
           vitaminA: parseFloat((week.vitaminA / days).toFixed(1)),
+          vitaminB1: parseFloat((week.vitaminB1 / days).toFixed(1)),
+          vitaminB12: parseFloat((week.vitaminB12 / days).toFixed(1)),
           vitaminC: parseFloat((week.vitaminC / days).toFixed(1)),
           vitaminD: parseFloat((week.vitaminD / days).toFixed(1)),
           dayCount: week.dayCount,

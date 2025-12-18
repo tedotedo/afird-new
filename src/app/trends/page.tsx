@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { useChildContext } from '@/contexts/ChildContext';
 import AuthGuard from '@/components/AuthGuard';
 import { GrowthTrendChart } from '@/components/GrowthTrendChart';
-import { NutritionTrendChart } from '@/components/NutritionTrendChart';
 import { format, subDays, subWeeks, subMonths, startOfWeek, endOfWeek } from 'date-fns';
 
 type TimeRange = '1week' | '2weeks' | '1month' | '3months' | '6months' | 'custom';
@@ -261,54 +260,58 @@ export default function TrendsPage() {
 
           {/* Nutrition Charts Section */}
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Nutrition Trends</h2>
-            <div className="grid grid-cols-1 gap-6">
-              {/* Macronutrients */}
-              <NutritionTrendChart
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Key Vitamins & Minerals</h2>
+            
+            {/* Vitamins Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+              <GrowthTrendChart
                 data={nutritionData}
-                title="Macronutrients"
-                metrics={[
-                  { key: 'calories', label: 'Calories', color: '#ef4444', unit: 'kcal' },
-                  { key: 'protein', label: 'Protein', color: '#3b82f6', unit: 'g' },
-                  { key: 'carbs', label: 'Carbs', color: '#f59e0b', unit: 'g' },
-                  { key: 'fat', label: 'Fat', color: '#8b5cf6', unit: 'g' },
-                ]}
-                showLegend={true}
+                metric="vitaminA"
+                title="Vitamin A"
+                color="#f59e0b"
+                unit="μg"
               />
-
-              {/* Fiber and Sugar */}
-              <NutritionTrendChart
+              <GrowthTrendChart
                 data={nutritionData}
-                title="Fiber & Sugar"
-                metrics={[
-                  { key: 'fiber', label: 'Fiber', color: '#10b981', unit: 'g' },
-                  { key: 'sugar', label: 'Sugar', color: '#ec4899', unit: 'g' },
-                ]}
-                showLegend={true}
+                metric="vitaminB1"
+                title="Vitamin B1 (Thiamine)"
+                color="#3b82f6"
+                unit="mg"
               />
-
-              {/* Minerals */}
-              <NutritionTrendChart
+              <GrowthTrendChart
                 data={nutritionData}
-                title="Key Minerals"
-                metrics={[
-                  { key: 'calcium', label: 'Calcium', color: '#06b6d4', unit: 'mg' },
-                  { key: 'iron', label: 'Iron', color: '#f97316', unit: 'mg' },
-                  { key: 'sodium', label: 'Sodium', color: '#64748b', unit: 'mg' },
-                ]}
-                showLegend={true}
+                metric="vitaminB12"
+                title="Vitamin B12"
+                color="#8b5cf6"
+                unit="μg"
               />
-
-              {/* Vitamins */}
-              <NutritionTrendChart
+              <GrowthTrendChart
                 data={nutritionData}
-                title="Key Vitamins"
-                metrics={[
-                  { key: 'vitaminA', label: 'Vitamin A', color: '#f59e0b', unit: 'μg' },
-                  { key: 'vitaminC', label: 'Vitamin C', color: '#10b981', unit: 'mg' },
-                  { key: 'vitaminD', label: 'Vitamin D', color: '#8b5cf6', unit: 'μg' },
-                ]}
-                showLegend={true}
+                metric="vitaminC"
+                title="Vitamin C"
+                color="#10b981"
+                unit="mg"
+              />
+              <GrowthTrendChart
+                data={nutritionData}
+                metric="vitaminD"
+                title="Vitamin D"
+                color="#f97316"
+                unit="μg"
+              />
+              <GrowthTrendChart
+                data={nutritionData}
+                metric="calcium"
+                title="Calcium"
+                color="#06b6d4"
+                unit="mg"
+              />
+              <GrowthTrendChart
+                data={nutritionData}
+                metric="iron"
+                title="Iron"
+                color="#ef4444"
+                unit="mg"
               />
             </div>
           </div>
