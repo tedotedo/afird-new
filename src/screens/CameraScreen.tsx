@@ -235,8 +235,8 @@ export default function CameraScreen() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-black">
-      <div className="flex-1 relative overflow-hidden">
+    <div className="relative h-screen bg-black overflow-hidden">
+      <div className="absolute inset-0">
         {cameraStarted ? (
           <video
             ref={videoRef}
@@ -347,7 +347,7 @@ export default function CameraScreen() {
       </div>
 
       {error && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 m-4 rounded">
+        <div className="absolute top-4 left-4 right-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded z-50">
           <p>{error}</p>
           <button
             onClick={() => setError(null)}
