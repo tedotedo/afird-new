@@ -300,16 +300,14 @@ export default function CameraScreen() {
           </div>
         )}
         
-        <div className="absolute inset-0 flex flex-col pointer-events-none">
+        <div className="absolute inset-0 pointer-events-none">
           {cameraStarted && (
             <div className="bg-gradient-to-b from-black/70 to-transparent p-6 pt-16 text-center">
               <h1 className="text-2xl font-bold text-white drop-shadow">Food Nutrition Analyzer</h1>
             </div>
           )}
 
-          <div className="flex-1"></div>
-
-          <div className="bg-gradient-to-t from-black/90 to-transparent px-2 pt-1 pb-[calc(env(safe-area-inset-bottom)+0.25rem)] pointer-events-auto">
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent px-2 pt-1 pb-[calc(env(safe-area-inset-bottom)+0.25rem)] pointer-events-auto">
             <div className="flex items-center gap-2">
               <div className="flex-1 flex justify-start">
                 <label className="px-3 py-2 sm:px-4 rounded-lg bg-white bg-opacity-20 text-white cursor-pointer hover:bg-opacity-30 transition backdrop-blur-sm">
