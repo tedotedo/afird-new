@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useChild } from '@/contexts/ChildContext';
+import { useChildContext } from '@/contexts/ChildContext';
 import AuthGuard from '@/components/AuthGuard';
 import { GrowthTrendChart } from '@/components/GrowthTrendChart';
 import { NutritionTrendChart } from '@/components/NutritionTrendChart';
@@ -10,7 +10,7 @@ import { format, subDays, subWeeks, subMonths, startOfWeek, endOfWeek } from 'da
 type TimeRange = '1week' | '2weeks' | '1month' | '3months' | '6months' | 'custom';
 
 export default function TrendsPage() {
-  const { selectedChild } = useChild();
+  const { selectedChild } = useChildContext();
   const [timeRange, setTimeRange] = useState<TimeRange>('1month');
   const [customStartDate, setCustomStartDate] = useState('');
   const [customEndDate, setCustomEndDate] = useState('');
@@ -78,7 +78,7 @@ export default function TrendsPage() {
         endDate,
       });
       if (selectedChild) {
-        growthParams.append('childId', selectedChild);
+        growthParams.append('childId', selectedChild.id);
       }
 
       const growthResponse = await fetch(`/api/trends/growth?${growthParams}`);
@@ -97,7 +97,7 @@ export default function TrendsPage() {
         groupBy,
       });
       if (selectedChild) {
-        nutritionParams.append('childId', selectedChild);
+        nutritionParams.append('childId', selectedChild.id);
       }
 
       const nutritionResponse = await fetch(`/api/trends/nutrition?${nutritionParams}`);
