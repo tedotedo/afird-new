@@ -305,6 +305,13 @@ export default function TrendsPage() {
               />
               <GrowthTrendChart
                 data={nutritionData}
+                metric="folate"
+                title="Folate (Vitamin B9)"
+                color="#ec4899"
+                unit="μg"
+              />
+              <GrowthTrendChart
+                data={nutritionData}
                 metric="vitaminC"
                 title="Vitamin C"
                 color="#10b981"

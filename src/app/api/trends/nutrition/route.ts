@@ -81,6 +81,7 @@ export async function GET(request: NextRequest) {
           vitaminB12: 0,
           vitaminC: 0,
           vitaminD: 0,
+          folate: 0,
           entryCount: 0,
         };
       }
@@ -101,6 +102,7 @@ export async function GET(request: NextRequest) {
         dailyData[date].vitaminB12 += nutrition.vitamins?.vitaminB12 || 0;
         dailyData[date].vitaminC += nutrition.vitamins?.c || 0;
         dailyData[date].vitaminD += nutrition.vitamins?.d || 0;
+        dailyData[date].folate += nutrition.vitamins?.folate || 0;
         dailyData[date].entryCount += 1;
       }
     });
@@ -127,6 +129,7 @@ export async function GET(request: NextRequest) {
       vitaminB12: parseFloat(day.vitaminB12.toFixed(1)),
       vitaminC: parseFloat(day.vitaminC.toFixed(1)),
       vitaminD: parseFloat(day.vitaminD.toFixed(1)),
+      folate: parseFloat(day.folate.toFixed(1)),
     }));
 
     // If groupBy is week, aggregate by week
@@ -158,6 +161,7 @@ export async function GET(request: NextRequest) {
             vitaminB12: 0,
             vitaminC: 0,
             vitaminD: 0,
+            folate: 0,
             dayCount: 0,
             entryCount: 0,
           };
@@ -177,6 +181,7 @@ export async function GET(request: NextRequest) {
         weeklyData[weekKey].vitaminB12 += day.vitaminB12;
         weeklyData[weekKey].vitaminC += day.vitaminC;
         weeklyData[weekKey].vitaminD += day.vitaminD;
+        weeklyData[weekKey].folate += day.folate;
         weeklyData[weekKey].dayCount += 1;
         weeklyData[weekKey].entryCount += day.entryCount;
       });
@@ -200,6 +205,7 @@ export async function GET(request: NextRequest) {
           vitaminB12: parseFloat((week.vitaminB12 / days).toFixed(1)),
           vitaminC: parseFloat((week.vitaminC / days).toFixed(1)),
           vitaminD: parseFloat((week.vitaminD / days).toFixed(1)),
+          folate: parseFloat((week.folate / days).toFixed(1)),
           dayCount: week.dayCount,
           entryCount: week.entryCount,
         };
