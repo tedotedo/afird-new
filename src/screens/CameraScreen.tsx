@@ -307,7 +307,7 @@ export default function CameraScreen() {
             </div>
           )}
 
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent px-2 pt-1 pb-[calc(env(safe-area-inset-bottom)+0.25rem)] pointer-events-auto">
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent px-2 pt-1 pb-[calc(env(safe-area-inset-bottom)+1.5rem)] pointer-events-auto">
             <div className="flex items-center gap-2">
               <div className="flex-1 flex justify-start">
                 <label className="px-3 py-2 sm:px-4 rounded-lg bg-white bg-opacity-20 text-white cursor-pointer hover:bg-opacity-30 transition backdrop-blur-sm">
