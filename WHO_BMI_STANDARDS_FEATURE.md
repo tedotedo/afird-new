@@ -22,12 +22,14 @@ The WHO uses fixed BMI ranges for adults:
 
 | BMI Range | Category | Color Code | Health Implications |
 |-----------|----------|------------|-------------------|
-| < 18.5 | **Underweight** | 🔵 Blue | May need to gain weight; possible nutritional deficiency |
+| < 18.5 | **Underweight** | 🔴 Red | Low weight - May indicate malnutrition or ARFID; medical attention advised |
 | 18.5 - 24.9 | **Normal Weight** | 🟢 Green | Healthy weight range; maintain current lifestyle |
 | 25.0 - 29.9 | **Overweight** | 🟡 Yellow | Increased health risk; consider lifestyle changes |
 | ≥ 30.0 | **Obese** | 🔴 Red | Significant health risks; medical consultation advised |
 
 **Source:** WHO Global Database on Body Mass Index (BMI)
+
+**Note:** In the context of ARFID (Avoidant/Restrictive Food Intake Disorder), underweight is an important concern that needs attention, hence the red (warning) color coding for both extremes.
 
 ### For Children (Ages 2-19)
 
@@ -35,12 +37,14 @@ Children's BMI is **age and sex-specific** because body composition changes as c
 
 | Percentile Range | Category | Color Code | What It Means |
 |------------------|----------|------------|---------------|
-| < 5th percentile | **Underweight** | 🔵 Blue | Below healthy weight for age/sex |
+| < 5th percentile | **Underweight** | 🔴 Red | Low weight for age/sex - May indicate ARFID, malnutrition, or growth issues; pediatric evaluation recommended |
 | 5th - 85th percentile | **Healthy Weight** | 🟢 Green | Appropriate weight for age/sex |
 | 85th - 95th percentile | **Overweight** | 🟡 Yellow | Above healthy weight; monitor closely |
 | > 95th percentile | **Obese** | 🔴 Red | Significantly above healthy weight |
 
 **Example:** A 10-year-old girl at the 60th percentile means she has a higher BMI than 60% of girls her age, which falls in the healthy range.
+
+**ARFID Context:** For children with Avoidant/Restrictive Food Intake Disorder, underweight status is a primary concern that needs medical attention. The red color coding helps highlight the importance of addressing nutritional needs.
 
 **Sources:** 
 - WHO Child Growth Standards (ages 2-5)
@@ -101,12 +105,13 @@ Percentiles account for these differences automatically.
 ### 3. Visual Indicators
 
 #### Color Coding System
-The app uses intuitive color coding:
+The app uses ARFID-appropriate color coding:
 
-- 🔵 **Blue (Underweight)**: Cool color suggesting need for nourishment
-- 🟢 **Green (Healthy)**: Universal color for "good to go"
-- 🟡 **Yellow (Overweight)**: Caution color suggesting awareness
-- 🔴 **Red (Obese)**: Warning color suggesting action needed
+- 🔴 **Red (Underweight & Obese)**: Both extremes need medical attention
+- 🟢 **Green (Healthy)**: Goal range - healthy weight for age/sex
+- 🟡 **Yellow (Overweight)**: Caution - monitor and encourage healthy habits
+
+**ARFID-Specific Design:** In the context of Avoidant/Restrictive Food Intake Disorder, underweight needs attention just like obesity. Both extremes use red to highlight the importance of professional medical guidance.
 
 #### Information Display
 Each BMI card shows:
@@ -235,19 +240,19 @@ Form component for adding/updating parent measurements with validation.
 
 ## Health Recommendations
 
-### 🔵 Underweight
-- **Adults**: Consider consulting healthcare provider; may need to gain weight through balanced diet
-- **Children**: Consult pediatrician to rule out underlying issues
+### 🔴 Underweight (LOW)
+- **Adults**: Medical attention advised - May indicate ARFID, malnutrition, or underlying health conditions; consult healthcare provider for nutritional support and assessment
+- **Children**: Pediatric evaluation recommended - Screen for ARFID, feeding disorders, or other issues; specialized support may be helpful
 
-### 🟢 Normal/Healthy Weight
+### 🟢 Normal/Healthy Weight (GOAL)
 - **Adults**: Maintain current lifestyle with balanced diet and regular exercise
-- **Children**: Continue healthy eating habits and active play
+- **Children**: Continue healthy eating habits and active play; celebrate food exploration and variety
 
-### 🟡 Overweight
+### 🟡 Overweight (MONITOR)
 - **Adults**: Consider lifestyle modifications (diet, exercise); may benefit from weight loss
 - **Children**: Encourage healthy habits; monitor growth; consult pediatrician if concerned
 
-### 🔴 Obese
+### 🔴 Obese (HIGH)
 - **Adults**: Strongly advised to consult healthcare provider; increased risk for various health conditions
 - **Children**: Consult pediatrician for personalized weight management plan
 

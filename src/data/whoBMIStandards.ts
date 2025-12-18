@@ -3,6 +3,14 @@
  * 
  * Adult standards are based on WHO BMI classification
  * Children standards use BMI-for-age percentiles (sex and age specific)
+ * 
+ * Color Coding (ARFID-appropriate):
+ * 🔴 RED: Underweight & Obese (both extremes require medical attention)
+ * 🟡 YELLOW: Overweight (caution, monitor)
+ * 🟢 GREEN: Normal/Healthy (goal range)
+ * 
+ * Note: In ARFID context, underweight is a critical concern requiring
+ * immediate medical attention, hence the red (urgent) color coding.
  */
 
 export type BMICategory = 'underweight' | 'normal' | 'overweight' | 'obese';
@@ -24,10 +32,10 @@ export const ADULT_BMI_CATEGORIES: Record<BMICategory, BMICategoryInfo> = {
   underweight: {
     category: 'underweight',
     label: 'Underweight',
-    color: 'text-blue-700',
-    bgColor: 'bg-blue-100',
+    color: 'text-red-700',
+    bgColor: 'bg-red-100',
     description: 'BMI below 18.5',
-    recommendation: 'May need to gain weight. Consult healthcare provider for personalized advice.'
+    recommendation: 'Low weight. Consult healthcare provider for nutritional support and assessment.'
   },
   normal: {
     category: 'normal',
@@ -63,10 +71,10 @@ export const CHILD_BMI_CATEGORIES: Record<BMICategory, BMICategoryInfo> = {
   underweight: {
     category: 'underweight',
     label: 'Underweight',
-    color: 'text-blue-700',
-    bgColor: 'bg-blue-100',
+    color: 'text-red-700',
+    bgColor: 'bg-red-100',
     description: 'Below 5th percentile',
-    recommendation: 'Consult pediatrician to rule out underlying health issues and discuss nutrition.'
+    recommendation: 'Low weight for age and sex. Consult pediatrician to rule out ARFID or other health issues.'
   },
   normal: {
     category: 'normal',

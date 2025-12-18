@@ -99,15 +99,17 @@ After saving, you should see:
 
 ✅ **BMI Card** displaying:
 - Your BMI value (e.g., "24.2 kg/m²")
-- Color-coded category badge:
-  - 🔵 Blue for Underweight (BMI < 18.5)
-  - 🟢 Green for Normal (BMI 18.5-24.9)
-  - 🟡 Yellow for Overweight (BMI 25-29.9)
-  - 🔴 Red for Obese (BMI ≥ 30)
+- Color-coded category badge (ARFID-appropriate):
+  - 🔴 Red for Underweight (BMI < 18.5) - **LOW**
+  - 🟢 Green for Normal (BMI 18.5-24.9) - **GOAL**
+  - 🟡 Yellow for Overweight (BMI 25-29.9) - **MONITOR**
+  - 🔴 Red for Obese (BMI ≥ 30) - **HIGH**
 - Your height and weight
 - WHO category description
-- Personalized recommendations
+- ARFID-aware personalized recommendations
 - "Based on WHO BMI standards" badge
+
+**Note:** Both underweight and obese show as red because both extremes need medical attention, especially in the ARFID context where underweight is a primary concern.
 
 ### Test Children BMI
 
@@ -118,25 +120,27 @@ After saving, you should see:
    - Shows "65th percentile for age and sex" (example)
    - Color codes based on WHO BMI-for-age standards
 
-## Step 3: Understanding the Color Codes
+## Step 3: Understanding the Color Codes (ARFID-Appropriate)
 
 ### For Parents (Adults 18+)
 
 | Color | Category | BMI Range | What It Means |
 |-------|----------|-----------|---------------|
-| 🔵 Blue | Underweight | < 18.5 | May need to gain weight |
-| 🟢 Green | Normal | 18.5-24.9 | Healthy weight range |
-| 🟡 Yellow | Overweight | 25-29.9 | Consider weight loss |
-| 🔴 Red | Obese | ≥ 30 | Consult healthcare provider |
+| 🔴 Red | Underweight | < 18.5 | **LOW** - Medical attention advised; may indicate ARFID or malnutrition |
+| 🟢 Green | Normal | 18.5-24.9 | Healthy weight range - goal status |
+| 🟡 Yellow | Overweight | 25-29.9 | Monitor - consider healthy lifestyle changes |
+| 🔴 Red | Obese | ≥ 30 | **HIGH** - Consult healthcare provider |
 
 ### For Children (Ages 2-17)
 
 | Color | Category | Percentile Range | What It Means |
 |-------|----------|-----------------|---------------|
-| 🔵 Blue | Underweight | < 5th | Below healthy weight |
-| 🟢 Green | Healthy | 5th-85th | Appropriate weight |
-| 🟡 Yellow | Overweight | 85th-95th | Monitor closely |
-| 🔴 Red | Obese | > 95th | Consult pediatrician |
+| 🔴 Red | Underweight | < 5th | **LOW** - Pediatric evaluation recommended; screen for ARFID/feeding disorders |
+| 🟢 Green | Healthy | 5th-85th | Appropriate weight - goal status |
+| 🟡 Yellow | Overweight | 85th-95th | Monitor closely with pediatrician |
+| 🔴 Red | Obese | > 95th | **HIGH** - Consult pediatrician for intervention |
+
+**ARFID Context:** This app is designed for tracking nutrition in the context of Avoidant/Restrictive Food Intake Disorder. Underweight status is an important concern and uses red (warning) color coding to highlight the need for medical attention.
 
 ## Step 4: API Testing (Optional)
 
