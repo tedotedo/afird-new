@@ -24,6 +24,8 @@ export default function Navigation() {
     setMenuOpen(false);
   }, [pathname]);
 
+  const isAdminUser = user?.email?.toLowerCase() === 'aszkenasy@gmail.com';
+
   // Don't show navigation on login page
   if (pathname === '/login') {
     return null;
@@ -34,7 +36,7 @@ export default function Navigation() {
     { href: '/history', label: 'History' },
     { href: '/summary', label: 'Summary' },
     { href: '/settings', label: 'Settings' },
-    { href: '/admin', label: 'Admin' },
+    ...(isAdminUser ? [{ href: '/admin', label: 'Admin' }] : []),
   ];
 
   const NavLinks = ({ className = '', onClick }: { className?: string; onClick?: () => void }) => (
