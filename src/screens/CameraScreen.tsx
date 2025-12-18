@@ -17,11 +17,34 @@ export default function CameraScreen() {
   const [cameraStarted, setCameraStarted] = useState(false);
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
 
+  const INSTALL_SNOOZE_KEY = 'pwaInstallDismissedUntil';
+  const INSTALL_HIDE_KEY = 'pwaInstallHideForever';
+  const PROMPT_COOLDOWN_DAYS = 7;
+
   useEffect(() => {
-    // Detect if app is already installed / standalone; show prompt otherwise
+    // Detect if app is already installed / standalone; show prompt otherwise (respect snooze/forever hide)
     if (typeof window !== 'undefined') {
       const isStandalone = window.matchMedia?.('(display-mode: standalone)').matches || (window.navigator as any).standalone;
-      setShowInstallPrompt(!isStandalone);
+      if (isStandalone) {
+        setShowInstallPrompt(false);
+        return;
+      }
+      try {
+        const hideForever = localStorage.getItem(INSTALL_HIDE_KEY) === 'true';
+        if (hideForever) {
+          setShowInstallPrompt(false);
+          return;
+        }
+        const dismissedUntil = parseInt(localStorage.getItem(INSTALL_SNOOZE_KEY) || '0', 10);
+        const now = Date.now();
+        if (dismissedUntil && dismissedUntil > now) {
+          setShowInstallPrompt(false);
+          return;
+        }
+      } catch (e) {
+        // If storage unavailable, fall back to showing prompt
+      }
+      setShowInstallPrompt(true);
     }
   }, []);
 
@@ -192,6 +215,21 @@ export default function CameraScreen() {
     setFacingMode(current => current === 'user' ? 'environment' : 'user');
   };
 
+  const handleDismissInstallPrompt = (forever = false) => {
+    try {
+      if (forever) {
+        localStorage.setItem(INSTALL_HIDE_KEY, 'true');
+        localStorage.removeItem(INSTALL_SNOOZE_KEY);
+      } else {
+        const snoozeUntil = Date.now() + PROMPT_COOLDOWN_DAYS * 24 * 60 * 60 * 1000;
+        localStorage.setItem(INSTALL_SNOOZE_KEY, snoozeUntil.toString());
+      }
+    } catch (e) {
+      // Ignore storage errors
+    }
+    setShowInstallPrompt(false);
+  };
+
   if (analyzing) {
     return <ChristmasLoading />;
   }
@@ -209,7 +247,7 @@ export default function CameraScreen() {
           />
         ) : (
           <div className="w-full h-full bg-gradient-to-b from-slate-900 to-black flex items-center justify-center px-6 text-center">
-            <div className="space-y-4">
+            <div className="space-y-4 max-w-md">
               <h1 className="text-2xl font-bold text-white">Food Nutrition Analyzer</h1>
               <p className="text-sm text-slate-200">
                 We’ll ask for camera access when you tap Start. If prompted, choose “Always Allow” to skip repeated prompts.
@@ -234,6 +272,30 @@ export default function CameraScreen() {
                   />
                 </label>
               </div>
+              {showInstallPrompt && (
+                <div className="mt-2 w-full text-left bg-white/5 border border-white/10 rounded-lg p-3 text-sm text-slate-100">
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <p className="font-semibold">Add to Home Screen</p>
+                      <p className="text-xs text-slate-200 mt-1">
+                        iPhone: Share → “Add to Home Screen”. Android (Chrome): ⋮ → “Add to Home screen”.
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => handleDismissInstallPrompt()}
+                      className="text-xs text-slate-200 hover:text-white"
+                    >
+                      Dismiss
+                    </button>
+                  </div>
+                  <button
+                    onClick={() => handleDismissInstallPrompt(true)}
+                    className="mt-2 text-xs text-slate-200 underline hover:text-white"
+                  >
+                    Don’t show again
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -291,23 +353,6 @@ export default function CameraScreen() {
           >
             Dismiss
           </button>
-        </div>
-      )}
-
-      {showInstallPrompt && (
-        <div className="bg-white border border-gray-200 shadow-md rounded-lg m-4 p-4 space-y-2 text-gray-800">
-          <div className="flex items-center justify-between">
-            <p className="font-semibold">Add to Home Screen</p>
-            <button
-              onClick={() => setShowInstallPrompt(false)}
-              className="text-sm text-gray-500 hover:text-gray-700"
-            >
-              Dismiss
-            </button>
-          </div>
-          <p className="text-sm text-gray-600">
-            iPhone: tap Share → “Add to Home Screen”. Android (Chrome): tap ⋮ → “Add to Home screen”.
-          </p>
         </div>
       )}
     </div>
