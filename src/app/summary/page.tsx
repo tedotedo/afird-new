@@ -4,7 +4,10 @@ import { useState, useEffect } from 'react';
 import AuthGuard from '@/components/AuthGuard';
 import DailySummaryCard from '@/components/DailySummaryCard';
 import FoodEntryList from '@/components/FoodEntryList';
+import NutritionComparisonTable from '@/components/NutritionComparisonTable';
 import { useChildContext } from '@/contexts/ChildContext';
+import { getRecommendations } from '@/data/whoRecommendations';
+import { calculateAge } from '@/utils/dateUtils';
 
 export default function SummaryPage() {
   const [selectedDate, setSelectedDate] = useState(() => {
@@ -135,6 +138,25 @@ export default function SummaryPage() {
                 totalEntries={summary.totalEntries}
                 date={summary.date}
               />
+
+              {/* WHO Comparison Table - Show for children or adults */}
+              {summary.totalEntries > 0 && (
+                <div className="mt-8">
+                  <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                    Nutritional Intake vs WHO Recommendations
+                  </h2>
+                  <NutritionComparisonTable
+                    totals={summary.totals}
+                    recommendations={
+                      selectedChild 
+                        ? getRecommendations(calculateAge(selectedChild.date_of_birth), selectedChild.sex)
+                        : getRecommendations(30, 'male') // Default adult values if no child selected
+                    }
+                    age={selectedChild ? calculateAge(selectedChild.date_of_birth) : 30}
+                    sex={selectedChild ? selectedChild.sex : 'adult'}
+                  />
+                </div>
+              )}
 
               {summary.entries && summary.entries.length > 0 && (
                 <div className="mt-8">
