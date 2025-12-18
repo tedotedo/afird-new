@@ -30,6 +30,7 @@ export async function POST(request: NextRequest) {
     const nutritionalDataStr = formData.get('nutritionalData') as string | null;
     const mealType = formData.get('mealType') as string | null;
     const dateTime = formData.get('dateTime') as string | null;
+    const childId = formData.get('childId') as string | null;
 
     if (!imageFile || !nutritionalDataStr || !dateTime) {
       return NextResponse.json(
@@ -76,6 +77,7 @@ export async function POST(request: NextRequest) {
       mealType: normalizedMealType || undefined,
       dateTime: new Date(dateTime),
       nutritionalData: sanitizedNutritionalData,
+      childId: childId || undefined,
     });
 
     return NextResponse.json({ entry }, { status: 201 });
@@ -106,12 +108,14 @@ export async function GET(request: NextRequest) {
     const endDate = searchParams.get('endDate');
     const mealType = searchParams.get('mealType') as any;
     const limit = searchParams.get('limit');
+    const childId = searchParams.get('childId');
 
     const entries = await getFoodEntries({
       startDate: startDate ? new Date(startDate) : undefined,
       endDate: endDate ? new Date(endDate) : undefined,
       mealType,
       limit: limit ? parseInt(limit) : undefined,
+      childId: childId || undefined,
     });
 
     return NextResponse.json({ entries });

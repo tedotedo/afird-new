@@ -62,7 +62,8 @@ export function useFoodEntries(options: UseFoodEntriesOptions = {}) {
     imageFile: File,
     nutritionalData: NutritionalData,
     mealType?: 'breakfast' | 'lunch' | 'dinner' | 'snack',
-    dateTime?: Date
+    dateTime?: Date,
+    childId?: string
   ): Promise<FoodEntry> => {
     try {
       setLoading(true);
@@ -76,6 +77,9 @@ export function useFoodEntries(options: UseFoodEntriesOptions = {}) {
       formData.append('nutritionalData', JSON.stringify(nutritionalData));
       if (mealType) {
         formData.append('mealType', mealType);
+      }
+      if (childId) {
+        formData.append('childId', childId);
       }
       formData.append('dateTime', (dateTime || new Date()).toISOString());
 

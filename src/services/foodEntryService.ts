@@ -6,6 +6,7 @@ import { calculateDailyTotals } from '@/utils/nutritionCalculations';
 export interface FoodEntry {
   id: string;
   user_id: string;
+  child_id: string | null;
   image_url: string;
   image_storage_path: string;
   meal_type: 'breakfast' | 'lunch' | 'dinner' | 'snack' | null;
@@ -21,6 +22,7 @@ export interface CreateFoodEntryInput {
   mealType?: 'breakfast' | 'lunch' | 'dinner' | 'snack';
   dateTime: Date;
   nutritionalData: NutritionalData;
+  childId?: string;
 }
 
 /**
@@ -38,6 +40,7 @@ export async function saveFoodEntry(input: CreateFoodEntryInput): Promise<FoodEn
     .from('food_entries')
     .insert({
       user_id: user.id,
+      child_id: input.childId || null,
       image_url: input.imageUrl,
       image_storage_path: input.imageStoragePath,
       meal_type: input.mealType || null,
@@ -62,6 +65,7 @@ export async function getFoodEntries(options?: {
   endDate?: Date;
   mealType?: 'breakfast' | 'lunch' | 'dinner' | 'snack';
   limit?: number;
+  childId?: string;
 }): Promise<FoodEntry[]> {
   const supabase = await createClient();
   
@@ -86,6 +90,10 @@ export async function getFoodEntries(options?: {
 
   if (options?.mealType) {
     query = query.eq('meal_type', options.mealType);
+  }
+
+  if (options?.childId) {
+    query = query.eq('child_id', options.childId);
   }
 
   if (options?.limit) {

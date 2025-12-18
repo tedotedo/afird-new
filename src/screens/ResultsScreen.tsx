@@ -7,6 +7,7 @@ import FoodImageDisplay from '@/components/FoodImageDisplay';
 import DateTimeDisplay from '@/components/DateTimeDisplay';
 import NutritionCard from '@/components/NutritionCard';
 import { useFoodEntries } from '@/hooks/useFoodEntries';
+import { Child } from '@/types/child';
 
 export default function ResultsScreen() {
   const router = useRouter();
@@ -15,6 +16,9 @@ export default function ResultsScreen() {
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [saveSuccess, setSaveSuccess] = useState(false);
+  const [children, setChildren] = useState<Child[]>([]);
+  const [selectedChildId, setSelectedChildId] = useState<string>('');
+  const [loadingChildren, setLoadingChildren] = useState(true);
   const { saveEntry } = useFoodEntries({ autoFetch: false });
 
   useEffect(() => {
@@ -52,7 +56,26 @@ export default function ResultsScreen() {
     } else {
       router.push('/');
     }
+
+    // Fetch children list
+    fetchChildren();
   }, [router]);
+
+  const fetchChildren = async () => {
+    try {
+      setLoadingChildren(true);
+      const response = await fetch('/api/children');
+      const data = await response.json();
+
+      if (response.ok) {
+        setChildren(data.children || []);
+      }
+    } catch (err) {
+      console.error('Error fetching children:', err);
+    } finally {
+      setLoadingChildren(false);
+    }
+  };
 
   const handleSave = async () => {
     if (!result || !imageFile) {
@@ -69,7 +92,8 @@ export default function ResultsScreen() {
         imageFile,
         result.nutritionalData,
         result.nutritionalData.meal_type,
-        result.dateTime
+        result.dateTime,
+        selectedChildId || undefined
       );
       setSaveSuccess(true);
       // Clear session storage after successful save
@@ -109,6 +133,30 @@ export default function ResultsScreen() {
         <FoodImageDisplay imageUri={result.imageUri} />
 
         <DateTimeDisplay dateTime={result.dateTime} />
+
+        {/* Child Selector */}
+        {!loadingChildren && children.length > 0 && (
+          <div className="bg-white rounded-lg shadow-md p-4 mb-6">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Select Child (optional)
+            </label>
+            <select
+              value={selectedChildId}
+              onChange={(e) => setSelectedChildId(e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="">For myself (parent)</option>
+              {children.map((child) => (
+                <option key={child.id} value={child.id}>
+                  {child.name}
+                </option>
+              ))}
+            </select>
+            <p className="text-xs text-gray-500 mt-2">
+              Choose which child this food entry is for, or leave as "For myself"
+            </p>
+          </div>
+        )}
 
         <NutritionCard nutritionalData={result.nutritionalData} />
 

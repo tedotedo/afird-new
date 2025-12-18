@@ -35,6 +35,7 @@ export default function Navigation() {
     { href: '/', label: 'Camera' },
     { href: '/history', label: 'History' },
     { href: '/summary', label: 'Summary' },
+    { href: '/profile', label: 'Children' },
     { href: '/settings', label: 'Settings' },
     ...(isAdminUser ? [{ href: '/admin', label: 'Admin' }] : []),
   ];
