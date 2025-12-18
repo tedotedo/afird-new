@@ -3,16 +3,21 @@
 import React, { useState, useEffect } from 'react';
 import AuthGuard from '@/components/AuthGuard';
 import { ChildWithLatestMeasurement } from '@/types/child';
+import { ParentMeasurement } from '@/types/parent';
 import { useRouter } from 'next/navigation';
+import { BMICard } from '@/components/BMICard';
+import { ParentMeasurementForm } from '@/components/ParentMeasurementForm';
 
 export default function ProfilePage() {
   const router = useRouter();
   const [children, setChildren] = useState<ChildWithLatestMeasurement[]>([]);
+  const [parentMeasurement, setParentMeasurement] = useState<ParentMeasurement | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showAddForm, setShowAddForm] = useState(false);
   const [selectedChild, setSelectedChild] = useState<ChildWithLatestMeasurement | null>(null);
   const [showMeasurementForm, setShowMeasurementForm] = useState(false);
+  const [showParentForm, setShowParentForm] = useState(false);
 
   // Form states
   const [name, setName] = useState('');
@@ -28,8 +33,12 @@ export default function ProfilePage() {
   const [notes, setNotes] = useState('');
 
   useEffect(() => {
-    fetchChildren();
+    fetchData();
   }, []);
+
+  const fetchData = async () => {
+    await Promise.all([fetchChildren(), fetchParentMeasurement()]);
+  };
 
   const fetchChildren = async () => {
     try {
@@ -48,6 +57,20 @@ export default function ProfilePage() {
       setError(err.message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchParentMeasurement = async () => {
+    try {
+      const response = await fetch('/api/parent-measurements/latest');
+      const data = await response.json();
+
+      if (response.ok && data) {
+        setParentMeasurement(data);
+      }
+    } catch (err: any) {
+      console.error('Error fetching parent measurement:', err);
+      // Don't show error for missing parent measurement, it's optional
     }
   };
 
@@ -152,6 +175,30 @@ export default function ProfilePage() {
     }
   };
 
+  const handleAddParentMeasurement = async (data: any) => {
+    setError(null);
+
+    try {
+      const response = await fetch('/api/parent-measurements', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to add parent measurement');
+      }
+
+      setShowParentForm(false);
+      await fetchParentMeasurement();
+    } catch (err: any) {
+      console.error('Error adding parent measurement:', err);
+      throw err; // Re-throw to let form handle it
+    }
+  };
+
   const calculateAge = (dateOfBirth: string) => {
     const today = new Date();
     const birthDate = new Date(dateOfBirth);
@@ -194,8 +241,8 @@ export default function ProfilePage() {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="mb-6">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Children Profiles</h1>
-            <p className="text-gray-600">Manage your children's profiles and track their growth</p>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Family Health Profile</h1>
+            <p className="text-gray-600">Track your health and your children's growth with WHO BMI standards</p>
           </div>
 
           {/* Error Message */}
@@ -210,6 +257,61 @@ export default function ProfilePage() {
               </button>
             </div>
           )}
+
+          {/* Parent Profile Section */}
+          <div className="mb-8">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-2xl font-bold text-gray-900">Your Profile (Parent)</h2>
+              {parentMeasurement && !showParentForm && (
+                <button
+                  onClick={() => setShowParentForm(true)}
+                  className="text-sm text-blue-600 hover:text-blue-800 font-medium"
+                >
+                  Update Measurement
+                </button>
+              )}
+            </div>
+
+            {!parentMeasurement && !showParentForm ? (
+              <div className="bg-white rounded-lg shadow-md p-6">
+                <p className="text-gray-600 mb-4">
+                  Add your height and weight to track your BMI with WHO standards
+                </p>
+                <button
+                  onClick={() => setShowParentForm(true)}
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition"
+                >
+                  Add Your Measurement
+                </button>
+              </div>
+            ) : showParentForm ? (
+              <div className="bg-white rounded-lg shadow-md p-6">
+                <ParentMeasurementForm
+                  onSubmit={handleAddParentMeasurement}
+                  onCancel={() => setShowParentForm(false)}
+                  initialData={parentMeasurement || undefined}
+                />
+              </div>
+            ) : parentMeasurement ? (
+              <BMICard
+                heightCm={parentMeasurement.height_cm}
+                weightKg={parentMeasurement.weight_kg}
+                ageYears={25} // TODO: Get actual age from user profile
+                sex="male" // TODO: Get actual sex from user profile
+                name="You"
+                isParent={true}
+              />
+            ) : null}
+          </div>
+
+          {/* Divider */}
+          <div className="border-t-2 border-gray-300 my-8"></div>
+
+          {/* Children Section Header */}
+          <div className="mb-6">
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Children Profiles</h2>
+            <p className="text-gray-600">Manage your children's profiles and track their growth</p>
+          </div>
 
           {/* Add Child Button */}
           {!showAddForm && (
@@ -456,26 +558,17 @@ export default function ProfilePage() {
                   </div>
 
                   {child.latestMeasurement && (
-                    <div className="bg-blue-50 rounded-lg p-4 mb-4">
-                      <h4 className="text-sm font-semibold text-gray-700 mb-2">
-                        Latest Measurement
-                      </h4>
-                      <div className="grid grid-cols-2 gap-4 text-sm">
-                        <div>
-                          <p className="text-gray-600">Height</p>
-                          <p className="font-semibold text-gray-900">
-                            {child.latestMeasurement.height_cm} cm
-                          </p>
-                        </div>
-                        <div>
-                          <p className="text-gray-600">Weight</p>
-                          <p className="font-semibold text-gray-900">
-                            {child.latestMeasurement.weight_kg} kg
-                          </p>
-                        </div>
-                      </div>
-                      <p className="text-xs text-gray-500 mt-2">
-                        Measured: {formatDate(child.latestMeasurement.measurement_date)}
+                    <div className="mb-4">
+                      <BMICard
+                        heightCm={child.latestMeasurement.height_cm}
+                        weightKg={child.latestMeasurement.weight_kg}
+                        ageYears={calculateAge(child.date_of_birth)}
+                        sex={child.sex as 'male' | 'female' | 'other'}
+                        name={child.name}
+                        isParent={false}
+                      />
+                      <p className="text-xs text-gray-500 mt-2 text-center">
+                        Last measured: {formatDate(child.latestMeasurement.measurement_date)}
                       </p>
                     </div>
                   )}

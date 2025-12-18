@@ -139,6 +139,45 @@ CREATE TRIGGER update_children_updated_at
   EXECUTE FUNCTION update_updated_at_column();
 ```
 
+### 5. Create parent_measurements table
+
+```sql
+-- Create parent_measurements table
+CREATE TABLE IF NOT EXISTS parent_measurements (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  height_cm DECIMAL(5,2) NOT NULL CHECK (height_cm > 0 AND height_cm <= 300),
+  weight_kg DECIMAL(5,2) NOT NULL CHECK (weight_kg > 0 AND weight_kg <= 500),
+  measurement_date DATE NOT NULL,
+  notes TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Create indexes for faster queries
+CREATE INDEX IF NOT EXISTS idx_parent_measurements_user_id ON parent_measurements(user_id);
+CREATE INDEX IF NOT EXISTS idx_parent_measurements_date ON parent_measurements(measurement_date DESC);
+
+-- Enable RLS
+ALTER TABLE parent_measurements ENABLE ROW LEVEL SECURITY;
+
+-- RLS Policies for parent_measurements
+CREATE POLICY "Users can view their own measurements"
+  ON parent_measurements FOR SELECT
+  USING (auth.uid() = user_id);
+
+CREATE POLICY "Users can insert their own measurements"
+  ON parent_measurements FOR INSERT
+  WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "Users can update their own measurements"
+  ON parent_measurements FOR UPDATE
+  USING (auth.uid() = user_id);
+
+CREATE POLICY "Users can delete their own measurements"
+  ON parent_measurements FOR DELETE
+  USING (auth.uid() = user_id);
+```
+
 ## Verification
 
 After running the migrations, verify the tables were created:
@@ -148,7 +187,7 @@ After running the migrations, verify the tables were created:
 SELECT table_name 
 FROM information_schema.tables 
 WHERE table_schema = 'public' 
-AND table_name IN ('children', 'child_measurements');
+AND table_name IN ('children', 'child_measurements', 'parent_measurements');
 
 -- Check if child_id column was added to food_entries
 SELECT column_name, data_type 
