@@ -87,6 +87,14 @@ export default function SummaryPage() {
                 </p>
               )}
             </div>
+
+            {/* Supplements Notice */}
+            <div className="bg-blue-50 border-l-4 border-blue-500 p-3 rounded text-sm">
+              <p className="text-blue-700">
+                <span className="font-semibold">Note:</span> Nutrition data shows food entries only. 
+                Supplements are not included.
+              </p>
+            </div>
             
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-3">
               <div className="flex gap-3">

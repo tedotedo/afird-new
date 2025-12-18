@@ -4,6 +4,24 @@
 
 The Health Trends feature provides visual analytics for tracking growth and nutrition patterns over time. This is particularly valuable for ARFID monitoring, allowing parents and healthcare providers to identify patterns, celebrate progress, and spot concerns early.
 
+## ⚠️ Important: Supplements Not Included
+
+**The nutrition trends show nutrients from food entries only.** 
+
+This app does **not include supplements** (vitamins, minerals, or other nutritional supplements) in the data. If your child takes supplements:
+
+- The trends will show **dietary intake only**
+- Total nutrient intake = Food (shown) + Supplements (not shown)
+- Discuss complete nutrition picture with your healthcare provider
+- Keep a separate record of supplements if needed
+- Consider this when interpreting deficiency indicators
+
+**Why this matters for ARFID:**
+- Many children with ARFID take supplements to fill nutritional gaps
+- Your doctor needs to know about BOTH food intake AND supplements
+- Don't stop supplements based on these trends alone
+- The app helps track progress in food variety/acceptance
+
 ## Features
 
 ### 📈 Growth Tracking
