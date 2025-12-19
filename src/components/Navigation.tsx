@@ -55,6 +55,7 @@ export default function Navigation() {
       { href: '/summary', label: 'Summary', icon: '📊' },
       { href: '/trends', label: 'Trends', icon: '📈' },
       { href: '/nutrition-info', label: 'Nutrition Info', icon: '🥗' },
+      { href: '/arfid-info', label: 'About ARFID', icon: '💙' },
     ],
     manage: [
       { href: '/profile', label: 'Children', icon: '👶' },

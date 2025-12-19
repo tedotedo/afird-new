@@ -133,7 +133,7 @@ export default function InteractiveTutorial({ children }: { children: React.Reac
                 <li><strong>History:</strong> View past entries</li>
                 <li><strong>Summary:</strong> Daily nutrition overview</li>
                 <li><strong>Trends:</strong> Track progress over time</li>
-                <li><strong>Profile:</strong> Manage children & BMI</li>
+                <li><strong>Profile:</strong> Manage children & your own BMI</li>
               </ul>
             </div>
             <button
@@ -194,7 +194,7 @@ export default function InteractiveTutorial({ children }: { children: React.Reac
               >
                 <div className="text-3xl mb-2">👤</div>
                 <h4 className="font-bold text-gray-900 mb-1">Profile</h4>
-                <p className="text-sm text-gray-600">Manage children profiles</p>
+                <p className="text-sm text-gray-600">Manage children & your own profiles</p>
               </button>
             </div>
             <button

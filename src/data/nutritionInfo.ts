@@ -370,6 +370,276 @@ export const NUTRITION_INFO_DATABASE: NutrientInfo[] = [
       }
     ]
   },
+  {
+    id: 'vitamin-b2',
+    name: 'Vitamin B2 (Riboflavin)',
+    category: 'vitamin',
+    unit: 'mg',
+    function: 'Essential for energy production, cell function, and metabolism of fats, drugs, and steroids.',
+    benefits: [
+      'Converts food into energy',
+      'Supports healthy skin and eyes',
+      'Maintains nervous system function',
+      'Promotes growth and development',
+      'Acts as an antioxidant',
+      'Supports red blood cell production'
+    ],
+    foodSources: [
+      'Milk and dairy products',
+      'Eggs',
+      'Lean meats',
+      'Green leafy vegetables',
+      'Fortified cereals',
+      'Almonds',
+      'Mushrooms'
+    ],
+    deficiencySymptoms: [
+      'Cracked lips and mouth corners',
+      'Sore throat',
+      'Red, swollen tongue',
+      'Skin rashes',
+      'Anemia',
+      'Light sensitivity'
+    ],
+    childrenInfo: 'Important for children\'s energy production, growth, and vision. Supports healthy skin and tissue repair.',
+    absorptionTips: [
+      'Better absorbed with food',
+      'Light destroys riboflavin, store foods in dark containers',
+      'Alcohol interferes with absorption'
+    ],
+    interactions: [
+      'Works with other B vitamins for energy',
+      'May be depleted by some medications',
+      'Supports iron utilization'
+    ],
+    links: [
+      {
+        label: 'Riboflavin Fact Sheet',
+        url: 'https://ods.od.nih.gov/factsheets/Riboflavin-Consumer/',
+        source: 'NIH'
+      }
+    ]
+  },
+  {
+    id: 'vitamin-b3',
+    name: 'Vitamin B3 (Niacin)',
+    category: 'vitamin',
+    unit: 'mg',
+    function: 'Converts food into energy and helps maintain healthy skin, nerves, and digestive system.',
+    benefits: [
+      'Converts food into energy',
+      'Supports nervous system health',
+      'Maintains healthy skin',
+      'Supports digestive system',
+      'May improve cholesterol levels',
+      'Supports DNA repair'
+    ],
+    foodSources: [
+      'Poultry and meat',
+      'Fish (tuna, salmon)',
+      'Whole grains',
+      'Fortified cereals',
+      'Peanuts',
+      'Mushrooms',
+      'Brown rice',
+      'Avocado'
+    ],
+    deficiencySymptoms: [
+      'Fatigue and weakness',
+      'Digestive issues',
+      'Skin problems',
+      'Headaches',
+      'Memory loss',
+      'Pellagra (severe deficiency)'
+    ],
+    excessSymptoms: [
+      'Skin flushing',
+      'Liver damage (high doses)',
+      'Stomach upset',
+      'Dizziness'
+    ],
+    childrenInfo: 'Essential for children\'s energy production, nervous system development, and digestive health.',
+    absorptionTips: [
+      'Can be made from tryptophan (amino acid)',
+      'Take with food to reduce flushing',
+      'Alcohol interferes with absorption'
+    ],
+    interactions: [
+      'May interact with diabetes medications',
+      'Can affect blood clotting medications',
+      'Works with other B vitamins'
+    ],
+    links: [
+      {
+        label: 'Niacin Fact Sheet',
+        url: 'https://ods.od.nih.gov/factsheets/Niacin-Consumer/',
+        source: 'NIH'
+      }
+    ]
+  },
+  {
+    id: 'vitamin-b6',
+    name: 'Vitamin B6 (Pyridoxine)',
+    category: 'vitamin',
+    unit: 'mg',
+    function: 'Essential for brain development, immune function, and protein metabolism.',
+    benefits: [
+      'Supports brain development and function',
+      'Helps make neurotransmitters',
+      'Boosts immune function',
+      'Metabolizes proteins',
+      'Forms red blood cells',
+      'Supports mood regulation'
+    ],
+    foodSources: [
+      'Chickpeas',
+      'Poultry and fish',
+      'Potatoes',
+      'Bananas',
+      'Fortified cereals',
+      'Beef liver',
+      'Spinach',
+      'Nuts'
+    ],
+    deficiencySymptoms: [
+      'Anemia',
+      'Weakened immune system',
+      'Confusion',
+      'Depression',
+      'Skin rashes',
+      'Cracked lips'
+    ],
+    excessSymptoms: [
+      'Nerve damage (very high doses)',
+      'Numbness',
+      'Loss of muscle control',
+      'Skin lesions'
+    ],
+    childrenInfo: 'Critical for children\'s brain development, immune function, and behavior. Supports learning and mood.',
+    absorptionTips: [
+      'Better absorbed from animal sources',
+      'Cooking can destroy B6',
+      'Take with other B vitamins'
+    ],
+    interactions: [
+      'May reduce effectiveness of some medications',
+      'Works with B12 and folate',
+      'Alcohol depletes B6'
+    ],
+    links: [
+      {
+        label: 'Vitamin B6 Fact Sheet',
+        url: 'https://ods.od.nih.gov/factsheets/VitaminB6-Consumer/',
+        source: 'NIH'
+      }
+    ]
+  },
+  {
+    id: 'vitamin-e',
+    name: 'Vitamin E',
+    category: 'vitamin',
+    unit: 'mg',
+    function: 'Powerful antioxidant that protects cells from damage and supports immune function.',
+    benefits: [
+      'Acts as powerful antioxidant',
+      'Protects cells from damage',
+      'Supports immune function',
+      'Promotes healthy skin',
+      'Supports eye health',
+      'May slow cognitive decline'
+    ],
+    foodSources: [
+      'Vegetable oils (sunflower, safflower)',
+      'Nuts and seeds',
+      'Spinach and broccoli',
+      'Fortified cereals',
+      'Avocado',
+      'Peanut butter',
+      'Kiwi',
+      'Mango'
+    ],
+    deficiencySymptoms: [
+      'Muscle weakness',
+      'Vision problems',
+      'Immune system problems',
+      'Numbness and tingling',
+      'Difficulty walking'
+    ],
+    excessSymptoms: [
+      'Increased bleeding risk',
+      'Nausea',
+      'Diarrhea',
+      'Fatigue'
+    ],
+    childrenInfo: 'Supports children\'s immune function and protects growing cells from damage. Important for nervous system development.',
+    absorptionTips: [
+      'Fat-soluble, absorb better with dietary fat',
+      'Take with meals containing fat',
+      'Vitamin C helps regenerate vitamin E'
+    ],
+    interactions: [
+      'May increase bleeding risk with blood thinners',
+      'Works with vitamin C and selenium',
+      'High doses may interfere with vitamin K'
+    ],
+    links: [
+      {
+        label: 'Vitamin E Fact Sheet',
+        url: 'https://ods.od.nih.gov/factsheets/VitaminE-Consumer/',
+        source: 'NIH'
+      }
+    ]
+  },
+  {
+    id: 'vitamin-k',
+    name: 'Vitamin K',
+    category: 'vitamin',
+    unit: 'mcg',
+    function: 'Essential for blood clotting and bone health. Helps wounds heal properly.',
+    benefits: [
+      'Essential for blood clotting',
+      'Supports bone health',
+      'Promotes wound healing',
+      'May support heart health',
+      'Helps prevent excessive bleeding',
+      'Supports calcium regulation'
+    ],
+    foodSources: [
+      'Leafy green vegetables (kale, spinach)',
+      'Broccoli',
+      'Brussels sprouts',
+      'Cabbage',
+      'Fish',
+      'Meat',
+      'Eggs',
+      'Fermented foods (natto)'
+    ],
+    deficiencySymptoms: [
+      'Easy bruising',
+      'Excessive bleeding',
+      'Heavy menstrual bleeding',
+      'Blood in urine or stool',
+      'Weak bones'
+    ],
+    childrenInfo: 'Important for children\'s bone development and blood clotting. Newborns typically receive vitamin K at birth.',
+    absorptionTips: [
+      'Fat-soluble, absorb better with dietary fat',
+      'Eat leafy greens with olive oil or butter',
+      'Gut bacteria produce some vitamin K'
+    ],
+    interactions: [
+      'May interfere with blood thinning medications',
+      'Works with vitamin D and calcium for bones',
+      'Antibiotics may reduce vitamin K production'
+    ],
+    links: [
+      {
+        label: 'Vitamin K Fact Sheet',
+        url: 'https://ods.od.nih.gov/factsheets/VitaminK-Consumer/',
+        source: 'NIH'
+      }
+    ]
+  },
 
   // MINERALS
   {
@@ -562,6 +832,252 @@ export const NUTRITION_INFO_DATABASE: NutrientInfo[] = [
       }
     ]
   },
+  {
+    id: 'magnesium',
+    name: 'Magnesium',
+    category: 'mineral',
+    unit: 'mg',
+    function: 'Essential for muscle and nerve function, blood sugar control, blood pressure regulation, and bone health.',
+    benefits: [
+      'Supports muscle and nerve function',
+      'Regulates blood pressure',
+      'Controls blood sugar levels',
+      'Maintains strong bones',
+      'Supports heart health',
+      'Promotes relaxation and sleep',
+      'Reduces anxiety and stress'
+    ],
+    foodSources: [
+      'Leafy green vegetables',
+      'Nuts and seeds',
+      'Whole grains',
+      'Legumes',
+      'Avocado',
+      'Dark chocolate',
+      'Bananas',
+      'Fatty fish'
+    ],
+    deficiencySymptoms: [
+      'Muscle cramps and spasms',
+      'Fatigue',
+      'Weakness',
+      'Anxiety',
+      'Irregular heartbeat',
+      'Numbness and tingling',
+      'Loss of appetite'
+    ],
+    excessSymptoms: [
+      'Diarrhea',
+      'Nausea',
+      'Stomach cramps',
+      'Low blood pressure (very high doses)'
+    ],
+    childrenInfo: 'Important for children\'s bone development, muscle function, and nervous system. Supports growth and healthy sleep patterns.',
+    absorptionTips: [
+      'Better absorbed from whole foods than supplements',
+      'Vitamin D enhances absorption',
+      'Spread intake throughout day',
+      'Avoid excessive calcium at same time'
+    ],
+    interactions: [
+      'Works with calcium for bone health',
+      'Vitamin D enhances absorption',
+      'May interfere with certain antibiotics',
+      'High calcium may reduce magnesium absorption'
+    ],
+    links: [
+      {
+        label: 'Magnesium Fact Sheet',
+        url: 'https://ods.od.nih.gov/factsheets/Magnesium-Consumer/',
+        source: 'NIH'
+      }
+    ]
+  },
+  {
+    id: 'potassium',
+    name: 'Potassium',
+    category: 'mineral',
+    unit: 'mg',
+    function: 'Essential for heart function, muscle contractions, nerve signals, and fluid balance.',
+    benefits: [
+      'Maintains healthy blood pressure',
+      'Supports heart function',
+      'Regulates fluid balance',
+      'Supports muscle contractions',
+      'Promotes nerve function',
+      'May reduce stroke risk',
+      'Helps prevent kidney stones'
+    ],
+    foodSources: [
+      'Bananas',
+      'Sweet potatoes',
+      'Spinach and leafy greens',
+      'Beans and lentils',
+      'Avocado',
+      'Yogurt',
+      'Salmon',
+      'Tomatoes',
+      'Oranges'
+    ],
+    deficiencySymptoms: [
+      'Muscle weakness and cramps',
+      'Fatigue',
+      'Constipation',
+      'Irregular heartbeat',
+      'Numbness or tingling',
+      'Difficulty breathing'
+    ],
+    excessSymptoms: [
+      'Nausea',
+      'Irregular heartbeat',
+      'Muscle weakness',
+      'Potentially dangerous for heart (severe excess)'
+    ],
+    childrenInfo: 'Critical for children\'s heart health, muscle function, and growth. Supports healthy blood pressure and nervous system.',
+    absorptionTips: [
+      'Best obtained from whole foods',
+      'Cooking can reduce potassium in vegetables',
+      'Maintain sodium-potassium balance',
+      'Stay hydrated'
+    ],
+    interactions: [
+      'Works with sodium for fluid balance',
+      'Some medications affect potassium levels',
+      'Kidney function affects potassium regulation'
+    ],
+    links: [
+      {
+        label: 'Potassium Fact Sheet',
+        url: 'https://ods.od.nih.gov/factsheets/Potassium-Consumer/',
+        source: 'NIH'
+      },
+      {
+        label: 'Potassium and Heart Health',
+        url: 'https://www.heart.org/en/health-topics/high-blood-pressure/changes-you-can-make-to-manage-high-blood-pressure/how-potassium-can-help-control-high-blood-pressure',
+        source: 'CDC'
+      }
+    ]
+  },
+  {
+    id: 'selenium',
+    name: 'Selenium',
+    category: 'mineral',
+    unit: 'mcg',
+    function: 'Essential for thyroid function, reproduction, and DNA synthesis. Acts as powerful antioxidant.',
+    benefits: [
+      'Supports thyroid function',
+      'Acts as antioxidant',
+      'Boosts immune system',
+      'Supports reproduction',
+      'May reduce cancer risk',
+      'Protects against cell damage'
+    ],
+    foodSources: [
+      'Brazil nuts (very high)',
+      'Seafood',
+      'Meat and poultry',
+      'Eggs',
+      'Whole grains',
+      'Dairy products',
+      'Sunflower seeds'
+    ],
+    deficiencySymptoms: [
+      'Weakened immune system',
+      'Fatigue',
+      'Mental fog',
+      'Hair loss',
+      'Muscle weakness',
+      'Thyroid problems'
+    ],
+    excessSymptoms: [
+      'Nausea',
+      'Hair loss',
+      'Brittle nails',
+      'Bad breath',
+      'Nerve damage (severe excess)'
+    ],
+    childrenInfo: 'Important for children\'s thyroid function, immune system, and growth. Supports brain development.',
+    absorptionTips: [
+      'Just 1-2 Brazil nuts provide daily needs',
+      'Better absorbed from animal sources',
+      'Vitamin C may enhance absorption'
+    ],
+    interactions: [
+      'Works with vitamin E as antioxidant',
+      'May interact with chemotherapy drugs',
+      'High doses of vitamin C may reduce absorption'
+    ],
+    links: [
+      {
+        label: 'Selenium Fact Sheet',
+        url: 'https://ods.od.nih.gov/factsheets/Selenium-Consumer/',
+        source: 'NIH'
+      }
+    ]
+  },
+  {
+    id: 'iodine',
+    name: 'Iodine',
+    category: 'mineral',
+    unit: 'mcg',
+    function: 'Essential for thyroid hormone production, which regulates metabolism, growth, and development.',
+    benefits: [
+      'Supports thyroid function',
+      'Regulates metabolism',
+      'Supports brain development',
+      'Promotes growth',
+      'Maintains healthy skin',
+      'Supports reproductive health'
+    ],
+    foodSources: [
+      'Iodized salt',
+      'Seafood and seaweed',
+      'Dairy products',
+      'Eggs',
+      'Fortified bread',
+      'Fish (cod, tuna)',
+      'Shrimp'
+    ],
+    deficiencySymptoms: [
+      'Goiter (enlarged thyroid)',
+      'Hypothyroidism',
+      'Fatigue',
+      'Weight gain',
+      'Dry skin',
+      'Impaired brain development in children',
+      'Mental slowness'
+    ],
+    excessSymptoms: [
+      'Thyroid problems',
+      'Nausea',
+      'Stomach pain',
+      'Metallic taste',
+      'Rash'
+    ],
+    childrenInfo: 'Critical for children\'s brain development, growth, and thyroid function. Deficiency can cause intellectual disabilities and developmental delays.',
+    absorptionTips: [
+      'Use iodized salt in cooking',
+      'Adequate but not excessive intake',
+      'Some foods (soy, cruciferous vegetables) may interfere'
+    ],
+    interactions: [
+      'Cruciferous vegetables may reduce iodine uptake',
+      'Soy may interfere with thyroid function',
+      'Iron deficiency may worsen iodine deficiency'
+    ],
+    links: [
+      {
+        label: 'Iodine Fact Sheet',
+        url: 'https://ods.od.nih.gov/factsheets/Iodine-Consumer/',
+        source: 'NIH'
+      },
+      {
+        label: 'Iodine Deficiency',
+        url: 'https://www.who.int/news-room/fact-sheets/detail/iodine-deficiency',
+        source: 'WHO'
+      }
+    ]
+  },
 
   // MACRONUTRIENTS
   {
@@ -680,6 +1196,121 @@ export const NUTRITION_INFO_DATABASE: NutrientInfo[] = [
         label: 'Fiber Benefits',
         url: 'https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/in-depth/fiber/art-20043983',
         source: 'Mayo Clinic'
+      }
+    ]
+  },
+  {
+    id: 'carbohydrates',
+    name: 'Carbohydrates',
+    category: 'macronutrient',
+    unit: 'g',
+    function: 'Primary energy source for the body and brain. Broken down into glucose for immediate energy or stored for later use.',
+    benefits: [
+      'Provides primary energy for body and brain',
+      'Fuels physical activity',
+      'Supports brain function',
+      'Spares protein for other uses',
+      'Provides fiber (from complex carbs)',
+      'Supports gut health'
+    ],
+    foodSources: [
+      'Whole grains (oats, brown rice, quinoa)',
+      'Fruits',
+      'Vegetables',
+      'Legumes',
+      'Potatoes and sweet potatoes',
+      'Bread and pasta',
+      'Milk products'
+    ],
+    deficiencySymptoms: [
+      'Fatigue and weakness',
+      'Difficulty concentrating',
+      'Headaches',
+      'Nausea',
+      'Dizziness',
+      'Irritability'
+    ],
+    childrenInfo: 'Essential for children\'s energy, growth, and brain function. Children need adequate carbs for active play and learning.',
+    absorptionTips: [
+      'Choose complex carbs over simple sugars',
+      'Combine with protein for sustained energy',
+      'Eat whole grains for additional nutrients',
+      'Spread intake throughout the day'
+    ],
+    interactions: [
+      'Works with B vitamins for energy production',
+      'Fiber slows sugar absorption',
+      'Protein and fat slow carb digestion'
+    ],
+    links: [
+      {
+        label: 'Carbohydrates',
+        url: 'https://www.hsph.harvard.edu/nutritionsource/carbohydrates/',
+        source: 'Harvard Health'
+      },
+      {
+        label: 'Carbohydrate Requirements',
+        url: 'https://www.cdc.gov/nutrition/infantandtoddlernutrition/foods-and-drinks/grains.html',
+        source: 'CDC'
+      }
+    ]
+  },
+  {
+    id: 'omega-3',
+    name: 'Omega-3 Fatty Acids',
+    category: 'macronutrient',
+    unit: 'g',
+    function: 'Essential fats that reduce inflammation, support brain function, and promote heart health.',
+    benefits: [
+      'Supports brain development and function',
+      'Reduces inflammation',
+      'Promotes heart health',
+      'Supports eye health',
+      'May reduce depression and anxiety',
+      'Supports healthy skin',
+      'Important for pregnancy and early development'
+    ],
+    foodSources: [
+      'Fatty fish (salmon, mackerel, sardines)',
+      'Walnuts',
+      'Flaxseeds and chia seeds',
+      'Fish oil supplements',
+      'Algae oil (vegan source)',
+      'Hemp seeds',
+      'Soybeans and tofu',
+      'Fortified eggs'
+    ],
+    deficiencySymptoms: [
+      'Dry, rough skin',
+      'Poor concentration',
+      'Fatigue',
+      'Poor memory',
+      'Heart problems',
+      'Mood swings',
+      'Poor circulation'
+    ],
+    childrenInfo: 'Critical for children\'s brain development, learning, behavior, and vision. Essential during pregnancy and early childhood.',
+    absorptionTips: [
+      'DHA and EPA from fish are most beneficial',
+      'Plant sources (ALA) need conversion to DHA/EPA',
+      'Take with meals containing fat',
+      'Keep fish oil supplements refrigerated'
+    ],
+    interactions: [
+      'May increase bleeding risk with blood thinners',
+      'Works with vitamin E to prevent oxidation',
+      'May enhance benefits of vitamin D'
+    ],
+    links: [
+      {
+        label: 'Omega-3 Fatty Acids Fact Sheet',
+        url: 'https://ods.od.nih.gov/factsheets/Omega3FattyAcids-Consumer/',
+        source: 'NIH'
+      },
+      {
+        label: 'Omega-3 and Brain Health',
+        url: 'https://www.hsph.harvard.edu/nutritionsource/what-should-you-eat/fats-and-cholesterol/types-of-fat/omega-3-fats/',
+        source: 'Harvard Health'
       }
     ]
   }

@@ -50,6 +50,10 @@ export default function MinimalOnboarding() {
           </div>
           <div className="flex items-center gap-3 text-gray-700">
             <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+            <p>Track your own nutrition and BMI too</p>
+          </div>
+          <div className="flex items-center gap-3 text-gray-700">
+            <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
             <p>Visualize progress over time</p>
           </div>
         </div>

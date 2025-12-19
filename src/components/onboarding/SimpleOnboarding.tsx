@@ -60,6 +60,18 @@ export default function SimpleOnboarding() {
               </div>
             </div>
 
+            <div className="flex items-start gap-4 p-4 rounded-lg bg-amber-50 hover:bg-amber-100 transition">
+              <div className="flex-shrink-0 w-12 h-12 bg-amber-600 rounded-full flex items-center justify-center">
+                <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-1">Track your own health too</h3>
+                <p className="text-gray-600">Parents can also track their nutritional intake and body mass index alongside their children</p>
+              </div>
+            </div>
+
             <div className="flex items-start gap-4 p-4 rounded-lg bg-purple-50 hover:bg-purple-100 transition">
               <div className="flex-shrink-0 w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center">
                 <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -165,7 +177,7 @@ export default function SimpleOnboarding() {
               </svg>
             </div>
             <h3 className="text-2xl font-bold text-gray-900 mb-2">Profile</h3>
-            <p className="text-gray-600">Manage children profiles and track growth measurements</p>
+            <p className="text-gray-600">Manage children profiles and track your own growth measurements too</p>
           </button>
         </div>
       </div>

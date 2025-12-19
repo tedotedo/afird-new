@@ -92,7 +92,7 @@ export default function WalkthroughOnboarding() {
               Track multiple children, monitor growth
             </p>
             <p className="text-base text-gray-500">
-              Create profiles for each child with height, weight, and BMI tracking using WHO standards. Perfect for families managing ARFID.
+              Create profiles for each child with height, weight, and BMI tracking using WHO standards. Parents can also track their own nutritional intake and body mass index. Perfect for families managing ARFID.
             </p>
           </div>
         );
