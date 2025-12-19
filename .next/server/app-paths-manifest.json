@@ -1,19 +1,6 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
-  "/admin/page": "app/admin/page.js",
-  "/api/admin/statistics/route": "app/api/admin/statistics/route.js",
-  "/api/auth/login/route": "app/api/auth/login/route.js",
-  "/api/auth/logout/route": "app/api/auth/logout/route.js",
-  "/api/auth/signup/route": "app/api/auth/signup/route.js",
-  "/api/food-entries/[id]/route": "app/api/food-entries/[id]/route.js",
-  "/api/daily-summary/route": "app/api/daily-summary/route.js",
-  "/api/user/export-data/route": "app/api/user/export-data/route.js",
-  "/api/auth/user/route": "app/api/auth/user/route.js",
-  "/api/food-entries/route": "app/api/food-entries/route.js",
   "/page": "app/page.js",
-  "/history/page": "app/history/page.js",
-  "/summary/page": "app/summary/page.js",
-  "/results/page": "app/results/page.js",
-  "/login/page": "app/login/page.js",
-  "/settings/page": "app/settings/page.js"
+  "/api/children/route": "app/api/children/route.js",
+  "/trends/page": "app/trends/page.js"
 }
