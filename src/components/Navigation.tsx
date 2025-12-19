@@ -5,6 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
 import { useEffect, useState } from 'react';
 import ChildSelector from '@/components/ChildSelector';
+import DropdownMenu from '@/components/DropdownMenu';
 
 export default function Navigation() {
   const { user, signOut } = useAuth();
@@ -25,6 +26,18 @@ export default function Navigation() {
     setMenuOpen(false);
   }, [pathname]);
 
+  // Close mobile menu on window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setMenuOpen(false);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   const isAdminUser = user?.email?.toLowerCase() === 'aszkenasy@gmail.com';
 
   // Don't show navigation on login page
@@ -32,20 +45,34 @@ export default function Navigation() {
     return null;
   }
 
-  const navLinks = [
-    { href: '/', label: 'Camera' },
-    { href: '/history', label: 'History' },
-    { href: '/summary', label: 'Summary' },
-    { href: '/trends', label: 'Trends' },
-    { href: '/profile', label: 'Children' },
-    { href: '/nutrition-info', label: 'Nutrition Info' },
-    { href: '/settings', label: 'Settings' },
-    ...(isAdminUser ? [{ href: '/admin', label: 'Admin' }] : []),
+  // Grouped navigation for desktop dropdowns
+  const navGroups = {
+    track: [
+      { href: '/', label: 'Camera', icon: '📸' },
+      { href: '/history', label: 'History', icon: '📜' },
+    ],
+    monitor: [
+      { href: '/summary', label: 'Summary', icon: '📊' },
+      { href: '/trends', label: 'Trends', icon: '📈' },
+      { href: '/nutrition-info', label: 'Nutrition Info', icon: '🥗' },
+    ],
+    manage: [
+      { href: '/profile', label: 'Children', icon: '👶' },
+      { href: '/settings', label: 'Settings', icon: '⚙️' },
+      ...(isAdminUser ? [{ href: '/admin', label: 'Admin', icon: '👤' }] : []),
+    ],
+  };
+
+  // Flat list for mobile menu
+  const allNavLinks = [
+    ...navGroups.track,
+    ...navGroups.monitor,
+    ...navGroups.manage,
   ];
 
   const NavLinks = ({ className = '', onClick }: { className?: string; onClick?: () => void }) => (
     <div className={className}>
-      {navLinks.map((link) => (
+      {allNavLinks.map((link) => (
         <Link
           key={link.href}
           href={link.href}
@@ -56,7 +83,10 @@ export default function Navigation() {
               : 'text-gray-700 hover:bg-gray-100'
           }`}
         >
-          {link.label}
+          <span className="inline-flex items-center gap-2">
+            <span>{link.icon}</span>
+            <span>{link.label}</span>
+          </span>
         </Link>
       ))}
     </div>
@@ -65,32 +95,50 @@ export default function Navigation() {
   return (
     <nav className="bg-white shadow-md border-b border-gray-200">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center space-x-4">
-            <Link href="/" className="text-xl font-bold text-blue-600">
+        <div className="flex items-center justify-between h-20">
+          <div className="flex items-center space-x-6">
+            <Link href="/" className="text-xl font-bold text-blue-600 hover:text-blue-700 transition">
               Food Tracker
             </Link>
-            <div className="hidden md:flex space-x-2">
-              <NavLinks />
+            
+            {/* Desktop: Grouped Dropdowns */}
+            <div className="hidden md:flex items-center space-x-1">
+              <DropdownMenu 
+                label="Track" 
+                items={navGroups.track} 
+                currentPath={pathname}
+              />
+              <DropdownMenu 
+                label="Monitor" 
+                items={navGroups.monitor} 
+                currentPath={pathname}
+              />
+              <DropdownMenu 
+                label="Manage" 
+                items={navGroups.manage} 
+                currentPath={pathname}
+              />
             </div>
           </div>
 
-          <div className="flex items-center space-x-3">
+          {/* Right side: User controls */}
+          <div className="flex items-center space-x-4">
             <ChildSelector />
             
             {user && (
-              <span className="text-sm text-gray-600 hidden sm:block truncate max-w-[180px]">
+              <span className="text-sm text-gray-600 hidden lg:block truncate max-w-[200px]">
                 {user.email}
               </span>
             )}
 
             <button
               onClick={handleLogout}
-              className="px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-md transition hidden sm:inline-flex"
+              className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-md transition hidden sm:inline-flex"
             >
               Logout
             </button>
 
+            {/* Mobile menu toggle */}
             <button
               onClick={() => setMenuOpen((open) => !open)}
               className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"

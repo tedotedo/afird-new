@@ -87,6 +87,22 @@ a {
   animation: christmas-twinkle 1.5s ease-in-out infinite;
 }
 
+/* Dropdown animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.15s ease-out;
+}
+
 /* Safe area support for mobile devices */
 .pb-safe {
   padding-bottom: max(6rem, calc(env(safe-area-inset-bottom) + 4rem));
