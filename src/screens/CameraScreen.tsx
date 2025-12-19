@@ -11,6 +11,8 @@ export default function CameraScreen() {
   const router = useRouter();
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
+  const galleryInputRef = useRef<HTMLInputElement>(null);
+  const topGalleryInputRef = useRef<HTMLInputElement>(null);
   const [analyzing, setAnalyzing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [facingMode, setFacingMode] = useState<'user' | 'environment'>('environment');
@@ -262,15 +264,19 @@ export default function CameraScreen() {
                 >
                   Start camera
                 </button>
-                <label className="w-full px-4 py-3 rounded-lg bg-white bg-opacity-10 text-white cursor-pointer hover:bg-opacity-20 transition backdrop-blur-sm border border-white/10">
+                <button
+                  onClick={() => topGalleryInputRef.current?.click()}
+                  className="w-full px-4 py-3 rounded-lg bg-white bg-opacity-10 text-white hover:bg-opacity-20 transition backdrop-blur-sm border border-white/10 cursor-pointer"
+                >
                   <span className="text-sm font-semibold">Or pick from gallery</span>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleFileSelect}
-                    className="hidden"
-                  />
-                </label>
+                </button>
+                <input
+                  ref={topGalleryInputRef}
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileSelect}
+                  className="hidden"
+                />
               </div>
               {showInstallPrompt && (
                 <div className="mt-2 w-full text-left bg-white/5 border border-white/10 rounded-lg p-3 text-sm text-slate-100">
@@ -310,15 +316,19 @@ export default function CameraScreen() {
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent px-2 pt-1 pb-[calc(env(safe-area-inset-bottom)+1.5rem)] pointer-events-auto">
             <div className="flex items-center gap-2">
               <div className="flex-1 flex justify-start">
-                <label className="px-3 py-2 sm:px-4 rounded-lg bg-white bg-opacity-20 text-white cursor-pointer hover:bg-opacity-30 transition backdrop-blur-sm">
+                <button
+                  onClick={() => galleryInputRef.current?.click()}
+                  className="px-3 py-2 sm:px-4 rounded-lg bg-white bg-opacity-20 text-white cursor-pointer hover:bg-opacity-30 transition backdrop-blur-sm"
+                >
                   <span className="text-xs sm:text-sm font-semibold">Gallery</span>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleFileSelect}
-                    className="hidden"
-                  />
-                </label>
+                </button>
+                <input
+                  ref={galleryInputRef}
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileSelect}
+                  className="hidden"
+                />
               </div>
 
               <button
