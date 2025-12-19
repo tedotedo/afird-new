@@ -31,7 +31,7 @@ export default function MinimalOnboarding() {
             </svg>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-            <span className="text-blue-600">AFIRD</span> Food Tracker
+            <span className="text-blue-600">ARFID</span> Wellness Tracker
           </h1>
           <p className="text-gray-600">
             Supporting families with Avoidant/Restrictive Food Intake Disorder

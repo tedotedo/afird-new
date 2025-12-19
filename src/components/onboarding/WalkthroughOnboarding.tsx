@@ -45,7 +45,7 @@ export default function WalkthroughOnboarding() {
               </svg>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Welcome to <span className="text-blue-600">AFIRD</span> Food Tracker
+              Welcome to <span className="text-blue-600">ARFID</span> Wellness Tracker
             </h2>
             <p className="text-lg text-gray-600 mb-2">
               Supporting families managing Avoidant/Restrictive Food Intake Disorder

@@ -248,7 +248,7 @@ export default function CameraScreen() {
         ) : (
           <div className="w-full h-full bg-gradient-to-b from-slate-900 to-black flex items-center justify-center px-6 text-center">
             <div className="space-y-4 max-w-md">
-              <h1 className="text-2xl font-bold text-white">Food Nutrition Analyzer</h1>
+              <h1 className="text-2xl font-bold text-white">ARFID Wellness Tracker</h1>
               <p className="text-sm text-slate-200">
                 We’ll ask for camera access when you tap Start. If prompted, choose “Always Allow” to skip repeated prompts.
               </p>
@@ -303,7 +303,7 @@ export default function CameraScreen() {
         <div className="absolute inset-0 pointer-events-none">
           {cameraStarted && (
             <div className="bg-gradient-to-b from-black/70 to-transparent p-6 pt-16 text-center">
-              <h1 className="text-2xl font-bold text-white drop-shadow">Food Nutrition Analyzer</h1>
+              <h1 className="text-2xl font-bold text-white drop-shadow">ARFID Wellness Tracker</h1>
             </div>
           )}
 

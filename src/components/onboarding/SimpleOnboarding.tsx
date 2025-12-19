@@ -26,7 +26,7 @@ export default function SimpleOnboarding() {
           {/* Welcome Header */}
           <div className="text-center mb-8">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Welcome to <span className="text-blue-600">AFIRD</span> Food Tracker
+              Welcome to <span className="text-blue-600">ARFID</span> Wellness Tracker
             </h1>
             <p className="text-lg text-gray-600">
               Supporting families managing Avoidant/Restrictive Food Intake Disorder

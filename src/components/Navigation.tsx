@@ -98,7 +98,7 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center space-x-6">
             <Link href="/" className="text-xl font-bold text-blue-600 hover:text-blue-700 transition">
-              Food Tracker
+              ARFID Wellness Tracker
             </Link>
             
             {/* Desktop: Grouped Dropdowns */}

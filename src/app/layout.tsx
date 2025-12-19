@@ -4,8 +4,8 @@ import Navigation from '@/components/Navigation';
 import { ChildProvider } from '@/contexts/ChildContext';
 
 export const metadata: Metadata = {
-  title: 'Food Nutrition Analyzer',
-  description: 'Analyze food photos for nutritional information using AI',
+  title: 'ARFID Wellness Tracker',
+  description: 'Supporting families managing Avoidant/Restrictive Food Intake Disorder',
 };
 
 export const viewport: Viewport = {
