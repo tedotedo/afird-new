@@ -1,9 +1,7 @@
 {
-  "/page": "app/page.js",
-  "/trends/page": "app/trends/page.js",
-  "/login/page": "app/login/page.js",
   "/nutrition-info/page": "app/nutrition-info/page.js",
-  "/arfid-info/page": "app/arfid-info/page.js",
   "/about/page": "app/about/page.js",
-  "/api/children/route": "app/api/children/route.js"
+  "/arfid-info/page": "app/arfid-info/page.js",
+  "/trends/page": "app/trends/page.js",
+  "/login/page": "app/login/page.js"
 }
