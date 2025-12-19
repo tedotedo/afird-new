@@ -3,6 +3,8 @@ import './globals.css';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { ChildProvider } from '@/contexts/ChildContext';
+import { ConsentProvider } from '@/contexts/ConsentContext';
+import ConsentManager from '@/components/ConsentManager';
 
 export const metadata: Metadata = {
   title: 'ARFID Wellness Tracker',
@@ -24,13 +26,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex flex-col min-h-screen">
-        <ChildProvider>
-          <Navigation />
-          <main className="flex-1">
-            {children}
-          </main>
-          <Footer />
-        </ChildProvider>
+        <ConsentProvider>
+          <ChildProvider>
+            <Navigation />
+            <main className="flex-1">
+              {children}
+            </main>
+            <Footer />
+            <ConsentManager />
+          </ChildProvider>
+        </ConsentProvider>
       </body>
     </html>
   );
