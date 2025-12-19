@@ -295,6 +295,15 @@ export default function CameraScreen() {
                 </ul>
               </div>
               
+              {/* Disclaimer */}
+              <div className="bg-yellow-900/30 border border-yellow-400/30 rounded-lg p-3 backdrop-blur-sm text-left">
+                <p className="text-xs text-yellow-100 leading-relaxed">
+                  <strong>Important:</strong> Nutritional analyses are estimates based on AI image recognition and food databases. 
+                  Accuracy can vary significantly. This tool is for tracking purposes only and is not medical advice. 
+                  Always consult a healthcare professional for dietary or medical concerns.
+                </p>
+              </div>
+              
               <div className="flex flex-col gap-3">
                 <button
                   onClick={() => {

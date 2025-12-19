@@ -150,128 +150,26 @@ export default function ResultsScreen() {
           </div>
         )}
 
-        {/* AI Confidence and Portion Notes */}
-        {(result.nutritionalData.confidence || result.nutritionalData.portion_notes) && (
-          <div className={`rounded-lg p-4 mb-6 ${
-            result.nutritionalData.confidence === 'high' ? 'bg-green-50 border border-green-200' :
-            result.nutritionalData.confidence === 'medium' ? 'bg-yellow-50 border border-yellow-200' :
-            result.nutritionalData.confidence === 'low' ? 'bg-orange-50 border border-orange-200' :
-            'bg-blue-50 border border-blue-200'
-          }`}>
-            {result.nutritionalData.confidence && (
-              <div className="flex items-center gap-2 mb-2">
-                <svg className="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span className="text-sm font-semibold text-gray-900">
-                  Estimate Confidence: {result.nutritionalData.confidence.charAt(0).toUpperCase() + result.nutritionalData.confidence.slice(1)}
-                </span>
-              </div>
-            )}
-            {result.nutritionalData.portion_notes && (
-              <p className="text-xs text-gray-700 mb-2">
-                <strong>Portion Details:</strong> {result.nutritionalData.portion_notes}
-              </p>
-            )}
-            {result.nutritionalData.suggested_adjustments && (
-              <p className="text-xs text-gray-700">
-                💡 <strong>Note:</strong> {result.nutritionalData.suggested_adjustments}
-              </p>
-            )}
-          </div>
-        )}
-
-        {/* Manual Notes Section */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-          <button
-            onClick={() => setShowNotesField(!showNotesField)}
-            className="flex items-center justify-between w-full text-left"
-          >
-            <div className="flex items-center gap-2">
-              <svg className="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-              </svg>
-              <h3 className="font-semibold text-gray-900">
-                Add Hidden Ingredients or Notes
-              </h3>
-            </div>
-            <svg 
-              className={`w-5 h-5 text-gray-500 transition-transform ${showNotesField ? 'rotate-180' : ''}`} 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-          
-          {showNotesField && (
-            <div className="mt-4 space-y-3">
-              <p className="text-sm text-gray-600">
-                The AI can't detect hidden ingredients like butter, oil, seasonings, or sauces. 
-                Add notes here to improve accuracy tracking over time.
-              </p>
-              
-              {/* Quick Add Buttons */}
-              <div className="flex flex-wrap gap-2">
-                <button
-                  onClick={() => setManualNotes(prev => prev + (prev ? ', ' : '') + 'butter')}
-                  className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm rounded-full transition"
-                  type="button"
-                >
-                  + Butter
-                </button>
-                <button
-                  onClick={() => setManualNotes(prev => prev + (prev ? ', ' : '') + 'olive oil')}
-                  className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm rounded-full transition"
-                  type="button"
-                >
-                  + Olive Oil
-                </button>
-                <button
-                  onClick={() => setManualNotes(prev => prev + (prev ? ', ' : '') + 'salt')}
-                  className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm rounded-full transition"
-                  type="button"
-                >
-                  + Salt
-                </button>
-                <button
-                  onClick={() => setManualNotes(prev => prev + (prev ? ', ' : '') + 'sauce')}
-                  className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm rounded-full transition"
-                  type="button"
-                >
-                  + Sauce
-                </button>
-                <button
-                  onClick={() => setManualNotes(prev => prev + (prev ? ', ' : '') + 'sugar')}
-                  className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm rounded-full transition"
-                  type="button"
-                >
-                  + Sugar
-                </button>
-              </div>
-              
-              <textarea
-                value={manualNotes}
-                onChange={(e) => setManualNotes(e.target.value)}
-                placeholder="E.g., cooked with 1 tbsp butter, added soy sauce, fried in vegetable oil..."
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                rows={3}
-              />
-              
-              {manualNotes && (
-                <div className="bg-blue-50 border border-blue-200 rounded p-3">
-                  <p className="text-xs text-blue-800">
-                    <strong>Note:</strong> These notes will be saved with your entry for reference. 
-                    They help you track complete nutritional intake over time.
-                  </p>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-
         <NutritionCard nutritionalData={result.nutritionalData} />
+
+        {/* Disclaimer */}
+        <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-6 mb-6 rounded">
+          <div className="flex">
+            <div className="flex-shrink-0">
+              <svg className="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div className="ml-3">
+              <p className="text-sm text-yellow-800">
+                <strong className="font-semibold">Medical Disclaimer:</strong> These nutritional values are estimates based on AI image recognition and food label databases. 
+                Accuracy can vary considerably depending on food preparation, portion sizes, and ingredients. 
+                This information is for tracking purposes only and should not be considered medical or dietary advice. 
+                Always consult with a qualified healthcare professional, dietitian, or physician regarding any nutritional or medical concerns.
+              </p>
+            </div>
+          </div>
+        </div>
 
         {saveSuccess && (
           <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mt-4">

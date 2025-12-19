@@ -95,6 +95,15 @@ export default function SummaryPage() {
                 Supplements are not included.
               </p>
             </div>
+
+            {/* Medical Disclaimer */}
+            <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 rounded text-sm">
+              <p className="text-yellow-800">
+                <span className="font-semibold">Disclaimer:</span> Nutritional analyses are estimates based on AI and food databases. 
+                Considerable inaccuracies may occur. This tool is for tracking purposes only. 
+                Always seek professional medical advice for any health or dietary concerns.
+              </p>
+            </div>
             
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-3">
               <div className="flex gap-3">
