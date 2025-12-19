@@ -19,6 +19,14 @@ export default function CameraScreen() {
   const [cameraStarted, setCameraStarted] = useState(false);
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
 
+  const handleGalleryClick = () => {
+    galleryInputRef.current?.click();
+  };
+
+  const handleTopGalleryClick = () => {
+    topGalleryInputRef.current?.click();
+  };
+
   const INSTALL_SNOOZE_KEY = 'pwaInstallDismissedUntil';
   const INSTALL_HIDE_KEY = 'pwaInstallHideForever';
   const PROMPT_COOLDOWN_DAYS = 7;
@@ -265,7 +273,8 @@ export default function CameraScreen() {
                   Start camera
                 </button>
                 <button
-                  onClick={() => topGalleryInputRef.current?.click()}
+                  onClick={handleTopGalleryClick}
+                  type="button"
                   className="w-full px-4 py-3 rounded-lg bg-white bg-opacity-10 text-white hover:bg-opacity-20 transition backdrop-blur-sm border border-white/10 cursor-pointer"
                 >
                   <span className="text-sm font-semibold">Or pick from gallery</span>
@@ -317,7 +326,8 @@ export default function CameraScreen() {
             <div className="flex items-center gap-2">
               <div className="flex-1 flex justify-start">
                 <button
-                  onClick={() => galleryInputRef.current?.click()}
+                  onClick={handleGalleryClick}
+                  type="button"
                   className="px-3 py-2 sm:px-4 rounded-lg bg-white bg-opacity-20 text-white cursor-pointer hover:bg-opacity-30 transition backdrop-blur-sm"
                 >
                   <span className="text-xs sm:text-sm font-semibold">Gallery</span>
