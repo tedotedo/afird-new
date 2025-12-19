@@ -60,6 +60,7 @@ export default function Navigation() {
     manage: [
       { href: '/profile', label: 'Children', icon: '👶' },
       { href: '/settings', label: 'Settings', icon: '⚙️' },
+      { href: '/about', label: 'About', icon: 'ℹ️' },
       ...(isAdminUser ? [{ href: '/admin', label: 'Admin', icon: '👤' }] : []),
     ],
   };
