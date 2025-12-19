@@ -16,8 +16,6 @@ export default function ResultsScreen() {
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [saveSuccess, setSaveSuccess] = useState(false);
-  const [manualNotes, setManualNotes] = useState('');
-  const [showNotesField, setShowNotesField] = useState(false);
   const { selectedChild, children } = useChildContext();
   const { saveEntry } = useFoodEntries({ autoFetch: false });
 
@@ -69,18 +67,9 @@ export default function ResultsScreen() {
     setSaveSuccess(false);
 
     try {
-      // Merge manual notes into nutritional data
-      const enrichedData = {
-        ...result.nutritionalData,
-        manual_notes: manualNotes || undefined,
-        description: manualNotes 
-          ? `${result.nutritionalData.description || ''} | Notes: ${manualNotes}`
-          : result.nutritionalData.description
-      };
-
       await saveEntry(
         imageFile,
-        enrichedData,
+        result.nutritionalData,
         result.nutritionalData.meal_type,
         result.dateTime,
         selectedChild?.id || undefined

@@ -1,8 +1,7 @@
 {
-  "/page": "app/page.js",
   "/home/page": "app/home/page.js",
   "/camera/page": "app/camera/page.js",
-  "/api/children/route": "app/api/children/route.js",
+  "/page": "app/page.js",
   "/history/page": "app/history/page.js",
   "/arfid-info/page": "app/arfid-info/page.js"
 }
