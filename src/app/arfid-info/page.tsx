@@ -24,10 +24,10 @@ export default function ARFIDInfoPage() {
       organization: 'GOSH'
     },
     {
-      name: 'Royal College of Psychiatrists - Eating Disorders',
-      url: 'https://www.rcpsych.ac.uk/mental-health/problems-disorders/eating-disorders',
-      description: 'Professional guidance and information about eating disorders including ARFID from leading psychiatrists.',
-      organization: 'RCPsych'
+      name: 'CNTW NHS - ARFID Support Resources',
+      url: 'https://www.cntw.nhs.uk/resource-library/support-for-avoidant-restrictive-food-intake-disorder-arfid/',
+      description: 'Comprehensive NHS resource co-produced with experts and lived experience. Includes self-help guides, carer support, and practical strategies.',
+      organization: 'CNTW NHS'
     },
     {
       name: 'ARFID Awareness UK',
