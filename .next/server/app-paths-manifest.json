@@ -1,7 +1,10 @@
 {
+  "/login/page": "app/login/page.js",
   "/nutrition-info/page": "app/nutrition-info/page.js",
   "/about/page": "app/about/page.js",
+  "/page": "app/page.js",
+  "/summary/page": "app/summary/page.js",
+  "/api/children/route": "app/api/children/route.js",
   "/arfid-info/page": "app/arfid-info/page.js",
-  "/trends/page": "app/trends/page.js",
-  "/login/page": "app/login/page.js"
+  "/api/daily-summary/route": "app/api/daily-summary/route.js"
 }

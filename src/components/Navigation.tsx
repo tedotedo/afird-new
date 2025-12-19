@@ -48,7 +48,7 @@ export default function Navigation() {
   // Grouped navigation for desktop dropdowns
   const navGroups = {
     track: [
-      { href: '/', label: 'Camera', icon: '📸' },
+      { href: '/camera', label: 'Camera', icon: '📸' },
       { href: '/history', label: 'History', icon: '📜' },
     ],
     monitor: [
