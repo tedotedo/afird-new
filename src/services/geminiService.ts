@@ -18,11 +18,22 @@ function getAIClient() {
 
 const NUTRITION_PROMPT = `Analyze this food image and provide detailed nutritional information including vitamins and minerals.
 
+IMPORTANT ESTIMATION GUIDELINES:
+- Carefully estimate portion sizes. Look for reference objects (utensils, coins, hands, plates) to assess scale
+- Note any visible cooking methods (fried, baked, grilled, raw, etc.) as these affect nutrition
+- Account for visible oils, butter, sauces, or seasonings
+- Consider standard serving sizes for identified foods
+- Provide your confidence level in these estimates (high/medium/low)
+- Suggest possible hidden ingredients that may not be visible but are commonly used
+
 Return ONLY a valid JSON object with this exact structure (no markdown, no code blocks, just the JSON):
 {
   "meal_type": "breakfast" | "lunch" | "dinner" | "snack",
   "food_items": ["item1", "item2", ...],
   "description": "brief description of the meal",
+  "portion_notes": "estimated portion sizes and visible preparation details (e.g., '1 cup rice, 4 oz chicken, appears fried')",
+  "confidence": "high" | "medium" | "low",
+  "suggested_adjustments": "suggestions for possible hidden ingredients (e.g., 'may contain butter, cooking oil, or salt not visible in image')",
   "calories": number,
   "protein": number,
   "carbohydrates": number,
@@ -58,7 +69,7 @@ Return ONLY a valid JSON object with this exact structure (no markdown, no code 
 
 Units: grams for macros, milligrams (mg) for most minerals and some vitamins, micrograms (mcg) for trace vitamins/minerals, kcal for calories.
 If you cannot determine a value, use null for that field. Only include vitamins and minerals that are present in significant amounts.
-Be as accurate as possible with your estimates.`;
+Be as accurate as possible with your estimates, considering visible portion sizes and preparation methods.`;
 
 export async function analyzeFoodImage(
   imageBase64: string,
@@ -122,6 +133,9 @@ export async function analyzeFoodImage(
       meal_type: nutritionalData.meal_type || undefined,
       food_items: nutritionalData.food_items || [],
       description: nutritionalData.description || undefined,
+      portion_notes: nutritionalData.portion_notes || undefined,
+      confidence: nutritionalData.confidence || undefined,
+      suggested_adjustments: nutritionalData.suggested_adjustments || undefined,
       calories: nutritionalData.calories ?? undefined,
       protein: nutritionalData.protein ?? undefined,
       carbohydrates: nutritionalData.carbohydrates ?? undefined,

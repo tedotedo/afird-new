@@ -1,10 +1,8 @@
 {
   "/page": "app/page.js",
-  "/camera/page": "app/camera/page.js",
-  "/history/page": "app/history/page.js",
   "/home/page": "app/home/page.js",
-  "/arfid-info/page": "app/arfid-info/page.js",
-  "/profile/page": "app/profile/page.js",
+  "/camera/page": "app/camera/page.js",
   "/api/children/route": "app/api/children/route.js",
-  "/api/parent-measurements/latest/route": "app/api/parent-measurements/latest/route.js"
+  "/history/page": "app/history/page.js",
+  "/arfid-info/page": "app/arfid-info/page.js"
 }

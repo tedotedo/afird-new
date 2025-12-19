@@ -37,6 +37,11 @@ export interface NutritionalData {
   description?: string;
   vitamins?: Vitamins;
   minerals?: Minerals;
+  // Enhanced fields for better accuracy tracking
+  portion_notes?: string; // AI estimation of portion sizes and visible details
+  confidence?: 'high' | 'medium' | 'low'; // AI confidence in estimates
+  suggested_adjustments?: string; // AI suggestions for hidden ingredients
+  manual_notes?: string; // User-added notes about hidden ingredients
 }
 
 export interface FoodAnalysisResult {
