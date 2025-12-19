@@ -6,24 +6,6 @@ import AuthGuard from '@/components/AuthGuard';
 export default function ARFIDInfoPage() {
   const ukResources = [
     {
-      name: 'NHS - ARFID Information',
-      url: 'https://www.nhs.uk/mental-health/feelings-symptoms-behaviours/behaviours/eating-disorders/types/',
-      description: 'Official NHS guidance on ARFID, including symptoms, causes, and when to seek help.',
-      organization: 'NHS'
-    },
-    {
-      name: 'Beat Eating Disorders',
-      url: 'https://www.beateatingdisorders.org.uk/types/arfid',
-      description: 'UK\'s leading eating disorder charity providing information, support, and helpline services for ARFID.',
-      organization: 'Beat'
-    },
-    {
-      name: 'Great Ormond Street Hospital - ARFID Service',
-      url: 'https://www.gosh.nhs.uk/conditions-and-treatments/conditions-we-treat/avoidant-restrictive-food-intake-disorder-arfid/',
-      description: 'Specialist children\'s hospital with dedicated ARFID treatment services and comprehensive information.',
-      organization: 'GOSH'
-    },
-    {
       name: 'CNTW NHS - ARFID Support Resources',
       url: 'https://www.cntw.nhs.uk/resource-library/support-for-avoidant-restrictive-food-intake-disorder-arfid/',
       description: 'Comprehensive NHS resource co-produced with experts and lived experience. Includes self-help guides, carer support, and practical strategies.',
@@ -34,6 +16,18 @@ export default function ARFIDInfoPage() {
       url: 'https://www.arfidawarenessuk.org/',
       description: 'Dedicated UK charity raising awareness and providing support specifically for ARFID.',
       organization: 'ARFID Awareness UK'
+    },
+    {
+      name: 'NHS Inform Scotland - ARFID',
+      url: 'https://www.nhsinform.scot/illnesses-and-conditions/mental-health/eating-disorders/avoidant-restrictive-food-intake-disorder-arfid/',
+      description: 'Scottish NHS comprehensive guide to ARFID, including symptoms, diagnosis, treatment options, and when to seek help.',
+      organization: 'NHS Inform Scotland'
+    },
+    {
+      name: 'Beat Eating Disorders',
+      url: 'https://www.beateatingdisorders.org.uk/types/arfid',
+      description: 'UK\'s leading eating disorder charity providing information, support, and helpline services for ARFID.',
+      organization: 'Beat'
     },
     {
       name: 'Triumph Over Phobia - Food Anxiety',
