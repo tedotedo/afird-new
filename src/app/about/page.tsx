@@ -24,12 +24,12 @@ export default function AboutPage() {
             {/* Author Photo */}
             <div className="flex justify-center mb-8">
               <div className="relative">
-                <div className="w-64 h-96 rounded-lg overflow-hidden border-4 border-indigo-200 shadow-lg">
+                <div className="w-64 h-80 rounded-lg overflow-hidden border-4 border-indigo-200 shadow-lg">
                   <Image
                     src="/author-photo.jpg"
                     alt="Dr. Odet Aszkenasy"
                     width={256}
-                    height={384}
+                    height={320}
                     className="object-cover"
                     priority
                   />
