@@ -16,7 +16,8 @@ export default function Footer() {
   }
 
   const footerLinks = {
-    track: [
+    quick: [
+      { href: '/home', label: 'Home', icon: '🏠' },
       { href: '/camera', label: 'Camera', icon: '📸' },
       { href: '/history', label: 'History', icon: '📜' },
     ],
@@ -41,13 +42,13 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-12">
         {/* Main Footer Content */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-          {/* Track Section */}
+          {/* Quick Links Section */}
           <div>
             <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
-              Track
+              Quick Links
             </h3>
             <ul className="space-y-3">
-              {footerLinks.track.map((link) => (
+              {footerLinks.quick.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}

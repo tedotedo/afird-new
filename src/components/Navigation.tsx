@@ -67,6 +67,7 @@ export default function Navigation() {
 
   // Flat list for mobile menu
   const allNavLinks = [
+    { href: '/home', label: 'Home', icon: '🏠' },
     ...navGroups.track,
     ...navGroups.monitor,
     ...navGroups.manage,
@@ -103,8 +104,18 @@ export default function Navigation() {
               ARFID Wellness Tracker
             </Link>
             
-            {/* Desktop: Grouped Dropdowns */}
+            {/* Desktop: Home + Grouped Dropdowns */}
             <div className="hidden md:flex items-center space-x-1">
+              <Link 
+                href="/home"
+                className={`px-4 py-2 rounded-md text-sm font-medium transition ${
+                  pathname === '/home'
+                    ? 'bg-blue-100 text-blue-700'
+                    : 'text-gray-700 hover:bg-gray-100'
+                }`}
+              >
+                🏠 Home
+              </Link>
               <DropdownMenu 
                 label="Track" 
                 items={navGroups.track} 
