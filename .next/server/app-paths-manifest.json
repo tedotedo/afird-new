@@ -1,8 +1,8 @@
 {
-  "/about/page": "app/about/page.js",
-  "/api/children/route": "app/api/children/route.js",
   "/page": "app/page.js",
-  "/camera/page": "app/camera/page.js",
+  "/nutrition-info/page": "app/nutrition-info/page.js",
+  "/api/children/route": "app/api/children/route.js",
   "/summary/page": "app/summary/page.js",
-  "/nutrition-info/page": "app/nutrition-info/page.js"
+  "/about/page": "app/about/page.js",
+  "/camera/page": "app/camera/page.js"
 }
