@@ -21,6 +21,22 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 max-w-4xl mt-8 space-y-8">
           {/* Main Bio Section */}
           <div className="bg-white rounded-xl shadow-lg p-8">
+            {/* Author Photo */}
+            <div className="flex justify-center mb-8">
+              <div className="relative">
+                <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-indigo-200 shadow-lg">
+                  <Image
+                    src="/author-photo.jpg"
+                    alt="Dr. Odet Aszkenasy"
+                    width={192}
+                    height={192}
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+              </div>
+            </div>
+
             <div className="prose max-w-none">
               <p className="text-lg text-gray-700 leading-relaxed mb-6">
                 I qualified in medicine in London in 1982 and my early career took me through various specialties, from general adult medicine, through to paediatrics, including working with the Royal Free Hospital team in the children's kidney transplantation unit. After gaining my Diploma of the Membership and subsequently the Fellowship of the Royal College of Physicians, as well as the Diploma in Child Health, in 1996 I entered neurodevelopmental paediatrics, initially with a particular interest in childhood epilepsy and subsequently specialising in autism.
