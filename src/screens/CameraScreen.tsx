@@ -20,11 +20,15 @@ export default function CameraScreen() {
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
 
   const handleGalleryClick = () => {
-    galleryInputRef.current?.click();
+    if (galleryInputRef.current) {
+      galleryInputRef.current.click();
+    }
   };
 
   const handleTopGalleryClick = () => {
-    topGalleryInputRef.current?.click();
+    if (topGalleryInputRef.current) {
+      topGalleryInputRef.current.click();
+    }
   };
 
   const INSTALL_SNOOZE_KEY = 'pwaInstallDismissedUntil';
