@@ -36,8 +36,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Insert feedback
-    const { data, error } = await supabase
+    // Insert feedback (no .select() to avoid permission issues with anonymous users)
+    const { error } = await supabase
       .from('user_feedback')
       .insert({
         user_id: user?.id || null,
@@ -47,9 +47,7 @@ export async function POST(request: NextRequest) {
         message: message.trim(),
         page_url: page_url || null,
         user_agent: request.headers.get('user-agent'),
-      })
-      .select()
-      .single();
+      });
 
     if (error) {
       console.error('Error saving feedback:', error);
@@ -60,7 +58,7 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json(
-      { message: 'Feedback submitted successfully', data },
+      { message: 'Feedback submitted successfully' },
       { status: 201 }
     );
   } catch (err: any) {
