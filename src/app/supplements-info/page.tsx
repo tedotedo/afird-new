@@ -195,13 +195,13 @@ export default function SupplementsInfoPage() {
         {/* Mobile Sticky Banner (Bottom) */}
         {!sidebarDismissed && (
           <div className="fixed bottom-4 left-4 right-4 z-40 md:hidden animate-slideUp">
-            <div className="bg-white border-2 border-orange-400 rounded-lg shadow-lg p-3">
+            <div className="bg-white border-2 border-orange-400 rounded-lg shadow-lg p-3 relative">
               <button
                 onClick={handleDismissSidebar}
-                className="absolute -top-2 -right-2 bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-orange-600 transition"
+                className="absolute -top-3 -right-3 bg-orange-500 text-white rounded-full w-11 h-11 flex items-center justify-center hover:bg-orange-600 transition z-50 shadow-lg"
                 aria-label="Dismiss"
               >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
               </button>
