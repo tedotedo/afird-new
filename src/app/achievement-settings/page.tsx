@@ -255,7 +255,8 @@ export default function AchievementSettingsPage() {
                                 }
                               }}
                               disabled={!isEnabled || saving}
-                              className="w-20 px-3 py-1 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
+                              inputMode="numeric"
+                              className="w-24 px-4 py-2 text-base border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
                             />
                             <span className="text-gray-600">foods</span>
                           </label>
