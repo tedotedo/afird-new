@@ -30,6 +30,7 @@ export default function AchievementSettingsPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+  const [editingThresholds, setEditingThresholds] = useState<Map<string, number>>(new Map());
 
   useEffect(() => {
     fetchPreferences();
@@ -80,6 +81,7 @@ export default function AchievementSettingsPage() {
       }
 
       await fetchPreferences();
+      setEditingThresholds(new Map()); // Clear editing state after successful save
       setMessage({ type: 'success', text: 'Achievement settings saved!' });
       setTimeout(() => setMessage(null), 3000);
     } catch (err: any) {
@@ -108,6 +110,7 @@ export default function AchievementSettingsPage() {
       }
 
       await fetchPreferences();
+      setEditingThresholds(new Map()); // Clear editing state after reset
       setMessage({ type: 'success', text: 'All achievements reset to defaults!' });
       setTimeout(() => setMessage(null), 3000);
     } catch (err: any) {
@@ -206,6 +209,8 @@ export default function AchievementSettingsPage() {
               const pref = getPreference(defaultAch.type);
               const currentThreshold = pref?.custom_threshold ?? defaultAch.threshold;
               const isEnabled = pref?.is_enabled !== false;
+              const editingValue = editingThresholds.get(defaultAch.type);
+              const displayValue = editingValue !== undefined ? editingValue : currentThreshold;
 
               return (
                 <div
@@ -229,10 +234,25 @@ export default function AchievementSettingsPage() {
                               type="number"
                               min="1"
                               max="100"
-                              value={currentThreshold}
+                              value={displayValue}
                               onChange={(e) => {
                                 const newValue = parseInt(e.target.value) || 1;
-                                handleSave(defaultAch.type, newValue, isEnabled);
+                                const newMap = new Map(editingThresholds);
+                                newMap.set(defaultAch.type, newValue);
+                                setEditingThresholds(newMap);
+                              }}
+                              onBlur={() => {
+                                if (editingValue !== undefined && editingValue !== currentThreshold) {
+                                  handleSave(defaultAch.type, editingValue, isEnabled);
+                                }
+                                const newMap = new Map(editingThresholds);
+                                newMap.delete(defaultAch.type);
+                                setEditingThresholds(newMap);
+                              }}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                  e.currentTarget.blur();
+                                }
                               }}
                               disabled={!isEnabled || saving}
                               className="w-20 px-3 py-1 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 disabled:bg-gray-100 disabled:cursor-not-allowed"

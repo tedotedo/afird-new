@@ -1,7 +1,8 @@
 {
   "/page": "app/page.js",
   "/supplements-info/page": "app/supplements-info/page.js",
+  "/api/consents/route": "app/api/consents/route.js",
+  "/summary/page": "app/summary/page.js",
   "/settings/page": "app/settings/page.js",
-  "/trends/page": "app/trends/page.js",
-  "/summary/page": "app/summary/page.js"
+  "/trends/page": "app/trends/page.js"
 }
