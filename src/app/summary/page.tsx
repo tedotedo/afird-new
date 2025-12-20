@@ -20,6 +20,7 @@ export default function SummaryPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [sidebarDismissed, setSidebarDismissed] = useState(false);
+  const [foodStats, setFoodStats] = useState<any>(null);
   const { selectedChild } = useChildContext();
 
   useEffect(() => {
@@ -85,8 +86,22 @@ export default function SummaryPage() {
     }
   };
 
+  const fetchFoodStats = async () => {
+    try {
+      const childParam = selectedChild ? `?childId=${selectedChild.id}` : '';
+      const statsResponse = await fetch(`/api/food-milestones/stats${childParam}`);
+      if (statsResponse.ok) {
+        const statsData = await statsResponse.json();
+        setFoodStats(statsData);
+      }
+    } catch (err) {
+      console.error('Failed to fetch food stats:', err);
+    }
+  };
+
   useEffect(() => {
     fetchSummary(selectedDate);
+    fetchFoodStats();
   }, [selectedDate, selectedChild]);
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -220,6 +235,30 @@ export default function SummaryPage() {
                 Always seek professional medical advice for any health or dietary concerns.
               </p>
             </div>
+
+            {/* New Foods Card */}
+            {foodStats && foodStats.newFoodsThisWeek > 0 && (
+              <Link href="/food-journey" legacyBehavior>
+                <a className="block bg-gradient-to-br from-purple-500 to-pink-500 text-white rounded-xl shadow-lg p-6 hover:shadow-xl transition transform hover:scale-[1.02]">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <div className="flex-shrink-0">
+                        <div className="text-5xl animate-bounce">🌟</div>
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold mb-2">Amazing Progress!</h3>
+                        <p className="text-lg text-purple-100">
+                          <strong className="text-white">{foodStats.newFoodsThisWeek}</strong> new food{foodStats.newFoodsThisWeek !== 1 ? 's' : ''} tried this week!
+                        </p>
+                        <p className="text-sm text-purple-200 mt-1">
+                          Tap to view your food journey →
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </Link>
+            )}
             
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-3">
               <div className="flex gap-3">

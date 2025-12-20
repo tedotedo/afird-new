@@ -50,10 +50,12 @@ export default function Navigation() {
     track: [
       { href: '/camera', label: 'Camera', icon: '📸' },
       { href: '/history', label: 'History', icon: '📜' },
+      { href: '/food-journey', label: 'Food Journey', icon: '🌟' },
     ],
     monitor: [
       { href: '/summary', label: 'Summary', icon: '📊' },
       { href: '/trends', label: 'Trends', icon: '📈' },
+      { href: '/goals', label: 'Goals', icon: '🎯' },
       { href: '/nutrition-info', label: 'Nutrition Info', icon: '🥗' },
       { href: '/supplements-info', label: 'Supplement Guidance', icon: '💊' },
       { href: '/arfid-info', label: 'About ARFID', icon: '💙' },
@@ -62,6 +64,8 @@ export default function Navigation() {
       { href: '/profile', label: 'Children', icon: '👶' },
       { href: '/settings', label: 'Settings', icon: '⚙️' },
       { href: '/about', label: 'About', icon: 'ℹ️' },
+      { href: '/help', label: 'Help', icon: '❓' },
+      { href: '/privacy', label: 'Privacy', icon: '🔒' },
       ...(isAdminUser ? [{ href: '/admin', label: 'Admin', icon: '👤' }] : []),
     ],
   };

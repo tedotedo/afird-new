@@ -20,20 +20,24 @@ export default function Footer() {
       { href: '/home', label: 'Home', icon: '🏠' },
       { href: '/camera', label: 'Camera', icon: '📸' },
       { href: '/history', label: 'History', icon: '📜' },
+      { href: '/food-journey', label: 'Food Journey', icon: '🌟' },
     ],
     monitor: [
       { href: '/summary', label: 'Summary', icon: '📊' },
       { href: '/trends', label: 'Trends', icon: '📈' },
+      { href: '/goals', label: 'Goals', icon: '🎯' },
       { href: '/nutrition-info', label: 'Nutrition Info', icon: '🥗' },
       { href: '/supplements-info', label: 'Supplement Guidance', icon: '💊' },
     ],
     learn: [
       { href: '/arfid-info', label: 'About ARFID', icon: '💙' },
       { href: '/about', label: 'About the Author', icon: 'ℹ️' },
+      { href: '/help', label: 'Help & FAQ', icon: '❓' },
     ],
     manage: [
       { href: '/profile', label: 'Children', icon: '👶' },
       { href: '/settings', label: 'Settings', icon: '⚙️' },
+      { href: '/privacy', label: 'Privacy & Terms', icon: '🔒' },
       ...(isAdminUser ? [{ href: '/admin', label: 'Admin', icon: '👤' }] : []),
     ],
   };

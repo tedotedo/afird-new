@@ -8,6 +8,7 @@ import DateTimeDisplay from '@/components/DateTimeDisplay';
 import NutritionCard from '@/components/NutritionCard';
 import { useFoodEntries } from '@/hooks/useFoodEntries';
 import { useChildContext } from '@/contexts/ChildContext';
+import Confetti from '@/components/Confetti';
 
 export default function ResultsScreen() {
   const router = useRouter();
@@ -18,6 +19,12 @@ export default function ResultsScreen() {
   const [saveSuccess, setSaveSuccess] = useState(false);
   const { selectedChild, children } = useChildContext();
   const { saveEntry } = useFoodEntries({ autoFetch: false });
+  
+  // New food tracking state
+  const [isNewFood, setIsNewFood] = useState(false);
+  const [successLevel, setSuccessLevel] = useState<string>('bite');
+  const [foodNotes, setFoodNotes] = useState('');
+  const [showConfetti, setShowConfetti] = useState(false);
 
   useEffect(() => {
     // Get result from sessionStorage
@@ -67,6 +74,7 @@ export default function ResultsScreen() {
     setSaveSuccess(false);
 
     try {
+      // Save the food entry first
       await saveEntry(
         imageFile,
         result.nutritionalData,
@@ -74,13 +82,43 @@ export default function ResultsScreen() {
         result.dateTime,
         selectedChild?.id || undefined
       );
+      
+      // If this is a new food, save the milestone
+      if (isNewFood) {
+        const foodName = result.nutritionalData.food_items?.[0] || result.nutritionalData.description || 'Unknown food';
+        
+        const milestoneResponse = await fetch('/api/food-milestones', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            child_id: selectedChild?.id || null,
+            food_name: foodName,
+            food_category: result.nutritionalData.meal_type || 'other',
+            date_tried: result.dateTime.toISOString().split('T')[0],
+            success_level: successLevel,
+            notes: foodNotes || null,
+            photo_url: result.imageUri,
+          }),
+        });
+
+        if (!milestoneResponse.ok) {
+          console.error('Failed to save food milestone, but entry was saved');
+        } else {
+          // Show confetti for new food achievement!
+          setShowConfetti(true);
+        }
+      }
+      
       setSaveSuccess(true);
+      
       // Clear session storage after successful save
       setTimeout(() => {
         sessionStorage.removeItem('analysisResult');
         sessionStorage.removeItem('analysisImageFile');
-        router.push('/history');
-      }, 1500);
+        router.push(isNewFood ? '/food-journey' : '/history');
+      }, isNewFood ? 3500 : 1500); // Extra time for confetti
     } catch (err: any) {
       setSaveError(err.message || 'Failed to save entry');
     } finally {
@@ -152,6 +190,61 @@ export default function ResultsScreen() {
 
         <NutritionCard nutritionalData={result.nutritionalData} />
 
+        {/* New Food Tracking */}
+        <div className="bg-purple-50 border-2 border-purple-400 rounded-xl p-6 mt-6">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="text-3xl">🌟</span>
+            <h3 className="text-xl font-bold text-purple-900">Is this a new food?</h3>
+          </div>
+          
+          <label className="flex items-center gap-3 mb-4 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={isNewFood}
+              onChange={(e) => setIsNewFood(e.target.checked)}
+              className="w-5 h-5 text-purple-600 rounded focus:ring-2 focus:ring-purple-500"
+            />
+            <span className="text-purple-900 font-medium">
+              Mark as new food attempt for {selectedChild?.name || 'me'}
+            </span>
+          </label>
+
+          {isNewFood && (
+            <div className="space-y-4 animate-fadeIn">
+              <div>
+                <label className="block text-sm font-medium text-purple-900 mb-2">
+                  How did it go?
+                </label>
+                <select
+                  value={successLevel}
+                  onChange={(e) => setSuccessLevel(e.target.value)}
+                  className="w-full px-4 py-2 border-2 border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                >
+                  <option value="refused">😟 Refused to try</option>
+                  <option value="touched">👆 Touched or explored</option>
+                  <option value="licked">👅 Licked or kissed</option>
+                  <option value="nibble">🤏 Small nibble</option>
+                  <option value="bite">😊 Took a bite</option>
+                  <option value="finished">🎉 Finished it!</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-purple-900 mb-2">
+                  Notes about this experience (optional)
+                </label>
+                <textarea
+                  value={foodNotes}
+                  onChange={(e) => setFoodNotes(e.target.value)}
+                  placeholder="E.g., 'Tried broccoli for the first time, didn't like the texture but willing to try again'"
+                  className="w-full px-4 py-2 border-2 border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  rows={3}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+
         {/* Disclaimer */}
         <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-6 mb-6 rounded">
           <div className="flex">
@@ -200,6 +293,13 @@ export default function ResultsScreen() {
           </button>
         </div>
       </div>
+      
+      {/* Confetti celebration for new foods */}
+      <Confetti
+        show={showConfetti}
+        onComplete={() => setShowConfetti(false)}
+        duration={3000}
+      />
     </div>
   );
 }

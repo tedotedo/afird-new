@@ -5,6 +5,7 @@ import AuthGuard from '@/components/AuthGuard';
 import { ChildWithLatestMeasurement } from '@/types/child';
 import { ParentMeasurement } from '@/types/parent';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { BMICard } from '@/components/BMICard';
 import { ParentMeasurementForm } from '@/components/ParentMeasurementForm';
 
@@ -573,22 +574,30 @@ export default function ProfilePage() {
                     </div>
                   )}
 
-                  <div className="flex gap-3">
-                    <button
-                      onClick={() => {
-                        setSelectedChild(child);
-                        setShowMeasurementForm(true);
-                      }}
-                      className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition text-sm"
-                    >
-                      Add Measurement
-                    </button>
-                    <button
-                      onClick={() => router.push(`/profile/${child.id}/measurements`)}
-                      className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg transition text-sm"
-                    >
-                      View History
-                    </button>
+                  <div className="space-y-3">
+                    <div className="flex gap-3">
+                      <button
+                        onClick={() => {
+                          setSelectedChild(child);
+                          setShowMeasurementForm(true);
+                        }}
+                        className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition text-sm"
+                      >
+                        Add Measurement
+                      </button>
+                      <button
+                        onClick={() => router.push(`/profile/${child.id}/measurements`)}
+                        className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg transition text-sm"
+                      >
+                        View History
+                      </button>
+                    </div>
+                    <Link href="/food-journey" legacyBehavior>
+                      <a className="block w-full bg-purple-100 hover:bg-purple-200 text-purple-800 font-semibold py-2 px-4 rounded-lg transition text-sm text-center border-2 border-purple-300">
+                        <span className="text-base mr-2">🌟</span>
+                        View Food Journey
+                      </a>
+                    </Link>
                   </div>
                 </div>
               ))}
