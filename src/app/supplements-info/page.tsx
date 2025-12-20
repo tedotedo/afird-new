@@ -7,6 +7,8 @@ export default function SupplementsInfoPage() {
   const [acknowledged, setAcknowledged] = useState(false);
   const [checkboxAccepted, setCheckboxAccepted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [sidebarDismissed, setSidebarDismissed] = useState(false);
+  const [activeTooltip, setActiveTooltip] = useState<string | null>(null);
 
   useEffect(() => {
     // Check if user has previously acknowledged
@@ -14,6 +16,11 @@ export default function SupplementsInfoPage() {
       const hasAcknowledged = localStorage.getItem('supplementsDisclaimerAccepted');
       if (hasAcknowledged === 'true') {
         setAcknowledged(true);
+      }
+      // Check session storage for sidebar dismissal
+      const sidebarDismissedSession = sessionStorage.getItem('sidebarDismissed');
+      if (sidebarDismissedSession === 'true') {
+        setSidebarDismissed(true);
       }
       setIsLoading(false);
     }
@@ -25,6 +32,56 @@ export default function SupplementsInfoPage() {
       setAcknowledged(true);
     }
   };
+
+  const handleDismissSidebar = () => {
+    sessionStorage.setItem('sidebarDismissed', 'true');
+    setSidebarDismissed(true);
+  };
+
+  const toggleTooltip = (id: string) => {
+    setActiveTooltip(activeTooltip === id ? null : id);
+  };
+
+  // Tooltip component
+  const Tooltip = ({ id, children }: { id: string; children: React.ReactNode }) => (
+    <div className="relative inline-block ml-2">
+      <button
+        onClick={() => toggleTooltip(id)}
+        className="text-blue-600 hover:text-blue-700 focus:outline-none"
+        aria-label="More information"
+      >
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+        </svg>
+      </button>
+      {activeTooltip === id && (
+        <div className="absolute z-10 w-64 p-3 mt-2 text-sm bg-white border-2 border-blue-200 rounded-lg shadow-lg left-0 animate-fadeIn">
+          <button
+            onClick={() => setActiveTooltip(null)}
+            className="absolute top-1 right-1 text-gray-400 hover:text-gray-600"
+            aria-label="Close"
+          >
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+            </svg>
+          </button>
+          <div className="text-gray-700">{children}</div>
+        </div>
+      )}
+    </div>
+  );
+
+  // Section reminder component
+  const SectionReminder = ({ text }: { text: string }) => (
+    <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 mb-6 rounded-r-lg">
+      <p className="text-sm text-yellow-800 flex items-center gap-2">
+        <svg className="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+        </svg>
+        <span className="font-medium">{text}</span>
+      </p>
+    </div>
+  );
 
   if (isLoading) {
     return (
@@ -104,6 +161,55 @@ export default function SupplementsInfoPage() {
   return (
     <AuthGuard>
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 pb-24">
+        {/* Sticky Sidebar Banner */}
+        {!sidebarDismissed && (
+          <div className="fixed right-4 top-24 z-40 hidden md:block animate-fadeIn">
+            <div className="bg-white border-2 border-orange-400 rounded-lg shadow-lg p-4 max-w-xs">
+              <button
+                onClick={handleDismissSidebar}
+                className="absolute -top-2 -right-2 bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-orange-600 transition"
+                aria-label="Dismiss"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
+              <div className="flex items-start gap-3">
+                <span className="text-3xl flex-shrink-0">👨‍⚕️</span>
+                <div>
+                  <p className="text-sm font-semibold text-gray-900 mb-1">Important Reminder</p>
+                  <p className="text-xs text-gray-700">
+                    Discuss all supplements with your clinician before starting
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Mobile Sticky Banner (Bottom) */}
+        {!sidebarDismissed && (
+          <div className="fixed bottom-4 left-4 right-4 z-40 md:hidden animate-slideUp">
+            <div className="bg-white border-2 border-orange-400 rounded-lg shadow-lg p-3">
+              <button
+                onClick={handleDismissSidebar}
+                className="absolute -top-2 -right-2 bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-orange-600 transition"
+                aria-label="Dismiss"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">👨‍⚕️</span>
+                <p className="text-xs font-semibold text-gray-900">
+                  Discuss all supplements with your clinician
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Hero Section */}
         <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white py-16">
           <div className="container mx-auto px-4 max-w-5xl">
@@ -195,6 +301,7 @@ export default function SupplementsInfoPage() {
 
           {/* ARFID-Friendly Supplement Formats */}
           <div className="bg-white rounded-xl shadow-lg p-8">
+            <SectionReminder text="Remember: All supplement decisions require individual medical guidance" />
             <h2 className="text-3xl font-bold text-gray-900 mb-4 flex items-center gap-3">
               <span className="text-3xl">🧪</span>
               ARFID-Friendly Supplement Formats
@@ -211,6 +318,10 @@ export default function SupplementsInfoPage() {
                 <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
                   <h3 className="font-semibold text-purple-900 mb-2 flex items-center gap-2">
                     <span>💧</span> Liquids and Syrups
+                    <Tooltip id="liquids">
+                      <p className="font-semibold mb-1">Individual medical advice is essential.</p>
+                      <p>Never start supplements without consulting your child's healthcare team.</p>
+                    </Tooltip>
                   </h3>
                   <div className="text-sm text-purple-800 space-y-2">
                     <p><strong>Pros:</strong></p>
@@ -233,6 +344,10 @@ export default function SupplementsInfoPage() {
                 <div className="bg-green-50 border border-green-200 rounded-lg p-4">
                   <h3 className="font-semibold text-green-900 mb-2 flex items-center gap-2">
                     <span>🥄</span> Powders
+                    <Tooltip id="powders">
+                      <p className="font-semibold mb-1">Individual medical advice is essential.</p>
+                      <p>Never start supplements without consulting your child's healthcare team.</p>
+                    </Tooltip>
                   </h3>
                   <div className="text-sm text-green-800 space-y-2">
                     <p><strong>Pros:</strong></p>
@@ -255,6 +370,10 @@ export default function SupplementsInfoPage() {
                 <div className="bg-pink-50 border border-pink-200 rounded-lg p-4">
                   <h3 className="font-semibold text-pink-900 mb-2 flex items-center gap-2">
                     <span>🍬</span> Chewables and Gummies
+                    <Tooltip id="chewables">
+                      <p className="font-semibold mb-1">Individual medical advice is essential.</p>
+                      <p>Never start supplements without consulting your child's healthcare team.</p>
+                    </Tooltip>
                   </h3>
                   <div className="text-sm text-pink-800 space-y-2">
                     <p><strong>Pros:</strong></p>
@@ -277,6 +396,10 @@ export default function SupplementsInfoPage() {
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                   <h3 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
                     <span>💨</span> Sprays, Drops & Dispersible Tablets
+                    <Tooltip id="sprays">
+                      <p className="font-semibold mb-1">Individual medical advice is essential.</p>
+                      <p>Never start supplements without consulting your child's healthcare team.</p>
+                    </Tooltip>
                   </h3>
                   <div className="text-sm text-blue-800 space-y-2">
                     <p><strong>Pros:</strong></p>
@@ -312,6 +435,7 @@ export default function SupplementsInfoPage() {
 
           {/* Which Nutrients Are Often Considered */}
           <div className="bg-white rounded-xl shadow-lg p-8">
+            <SectionReminder text="Individual testing and medical guidance required for all supplement decisions" />
             <h2 className="text-3xl font-bold text-gray-900 mb-4 flex items-center gap-3">
               <span className="text-3xl">📋</span>
               Which Nutrients Are Often Considered
@@ -339,7 +463,13 @@ export default function SupplementsInfoPage() {
 
               {/* Iron */}
               <div className="border-l-4 border-red-400 bg-red-50 p-4 rounded-r-lg">
-                <h3 className="font-semibold text-red-900 mb-2">Iron</h3>
+                <h3 className="font-semibold text-red-900 mb-2 flex items-center">
+                  Iron
+                  <Tooltip id="iron">
+                    <p className="font-semibold mb-1">Blood tests required before starting iron.</p>
+                    <p>Always consult your clinician before giving iron supplements to children.</p>
+                  </Tooltip>
+                </h3>
                 <p className="text-sm text-red-800 leading-relaxed mb-2">
                   Often considered where there is iron-deficiency anaemia or very low iron intake (common in children who avoid meat, 
                   fortified cereals, and green vegetables).
@@ -352,7 +482,13 @@ export default function SupplementsInfoPage() {
 
               {/* Vitamin D and Calcium */}
               <div className="border-l-4 border-yellow-400 bg-yellow-50 p-4 rounded-r-lg">
-                <h3 className="font-semibold text-yellow-900 mb-2">Vitamin D and Calcium</h3>
+                <h3 className="font-semibold text-yellow-900 mb-2 flex items-center">
+                  Vitamin D and Calcium
+                  <Tooltip id="vitamin-d">
+                    <p className="font-semibold mb-1">Discuss appropriate dosing with your clinician.</p>
+                    <p>Individual needs vary based on age, diet, and sun exposure.</p>
+                  </Tooltip>
+                </h3>
                 <p className="text-sm text-yellow-800 leading-relaxed mb-2">
                   Important for bone health, muscle function, and immune system. Children with ARFID are at higher risk of low vitamin D 
                   and calcium levels due to:
@@ -370,7 +506,13 @@ export default function SupplementsInfoPage() {
 
               {/* B Vitamins */}
               <div className="border-l-4 border-green-400 bg-green-50 p-4 rounded-r-lg">
-                <h3 className="font-semibold text-green-900 mb-2">B-Vitamins (B12, Thiamin, Folate, Riboflavin)</h3>
+                <h3 className="font-semibold text-green-900 mb-2 flex items-center">
+                  B-Vitamins (B12, Thiamin, Folate, Riboflavin)
+                  <Tooltip id="b-vitamins">
+                    <p className="font-semibold mb-1">Blood tests help identify specific deficiencies.</p>
+                    <p>Consult your healthcare team about appropriate B-vitamin supplementation.</p>
+                  </Tooltip>
+                </h3>
                 <p className="text-sm text-green-800 leading-relaxed mb-2">
                   May be low in children who exclude most meat, fish, dairy, eggs, fortified cereals, or whole food groups. B-vitamins 
                   are essential for:
@@ -412,6 +554,7 @@ export default function SupplementsInfoPage() {
 
           {/* Monitoring and Follow-Up */}
           <div className="bg-white rounded-xl shadow-lg p-8">
+            <SectionReminder text="Regular monitoring with your healthcare team ensures safe and effective supplementation" />
             <h2 className="text-3xl font-bold text-gray-900 mb-4 flex items-center gap-3">
               <span className="text-3xl">📊</span>
               Monitoring and Follow-Up
@@ -515,6 +658,55 @@ export default function SupplementsInfoPage() {
               <p className="text-sm text-blue-100">
                 For more information about ARFID and support resources, visit our{' '}
                 <a href="/arfid-info" className="underline font-semibold hover:text-white">ARFID Information page</a>.
+              </p>
+            </div>
+          </div>
+
+          {/* Footer Closer - Action Box */}
+          <div className="bg-white rounded-xl shadow-lg p-8 border-2 border-orange-400">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-4xl">🔄</span>
+              <h2 className="text-2xl font-bold text-gray-900">Ready to discuss with your clinician?</h2>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+              {/* Share this page */}
+              <div className="bg-blue-50 rounded-lg p-4 flex flex-col items-center text-center">
+                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mb-3">
+                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2">Share this page</h3>
+                <p className="text-sm text-gray-600">Email or print this guide to discuss with your healthcare provider</p>
+              </div>
+
+              {/* Book appointment */}
+              <div className="bg-green-50 rounded-lg p-4 flex flex-col items-center text-center">
+                <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mb-3">
+                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2">Book appointment</h3>
+                <p className="text-sm text-gray-600">Contact your GP, paediatrician, or registered dietitian to discuss supplements</p>
+              </div>
+
+              {/* Track in app */}
+              <div className="bg-purple-50 rounded-lg p-4 flex flex-col items-center text-center">
+                <div className="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mb-3">
+                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2">Track symptoms & weight</h3>
+                <p className="text-sm text-gray-600">Use the app to monitor nutrition, growth, and energy levels meanwhile</p>
+              </div>
+            </div>
+
+            <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+              <p className="text-sm text-yellow-800 font-semibold text-center">
+                This app supports tracking, not treatment decisions. Always consult your healthcare team before starting any supplements.
               </p>
             </div>
           </div>
