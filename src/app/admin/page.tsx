@@ -26,12 +26,26 @@ interface AdminStats {
   };
 }
 
+interface UserFeedback {
+  id: string;
+  user_email: string | null;
+  feedback_type: string;
+  rating: number | null;
+  message: string;
+  page_url: string | null;
+  user_agent: string | null;
+  created_at: string;
+}
+
 export default function AdminPage() {
   const [adminKey, setAdminKey] = useState<string>('');
   const [stats, setStats] = useState<AdminStats | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [keyInput, setKeyInput] = useState('');
+  const [feedback, setFeedback] = useState<UserFeedback[]>([]);
+  const [feedbackLoading, setFeedbackLoading] = useState(false);
+  const [feedbackFilter, setFeedbackFilter] = useState<string>('all');
 
   // Try to get key from env or localStorage on mount
   useEffect(() => {
@@ -76,6 +90,24 @@ export default function AdminPage() {
     }
   };
 
+  const fetchFeedback = async () => {
+    try {
+      setFeedbackLoading(true);
+      const response = await fetch('/api/feedback?limit=100');
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch feedback');
+      }
+
+      const data = await response.json();
+      setFeedback(data.feedback || []);
+    } catch (err: any) {
+      console.error('Error fetching feedback:', err);
+    } finally {
+      setFeedbackLoading(false);
+    }
+  };
+
   const handleSubmitKey = (e: React.FormEvent) => {
     e.preventDefault();
     if (keyInput.trim()) {
@@ -87,6 +119,7 @@ export default function AdminPage() {
   useEffect(() => {
     if (adminKey) {
       fetchStats(adminKey);
+      fetchFeedback();
     }
   }, [adminKey]);
 
@@ -261,6 +294,122 @@ export default function AdminPage() {
                   <p className="text-center text-gray-500 py-8">No daily statistics available</p>
                 )}
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* User Feedback Section */}
+        {adminKey && (
+          <div className="mt-8">
+            <div className="bg-white rounded-xl shadow-lg p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-semibold text-gray-800 flex items-center gap-2">
+                  <span>💬</span>
+                  User Feedback
+                  <span className="text-sm font-normal text-gray-500">({feedback.length} total)</span>
+                </h2>
+                <button
+                  onClick={fetchFeedback}
+                  className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition text-sm"
+                  disabled={feedbackLoading}
+                >
+                  {feedbackLoading ? 'Loading...' : 'Refresh'}
+                </button>
+              </div>
+
+              {/* Filter Buttons */}
+              <div className="flex gap-2 mb-6 flex-wrap">
+                {['all', 'bug', 'feature', 'improvement', 'praise', 'other'].map((type) => (
+                  <button
+                    key={type}
+                    onClick={() => setFeedbackFilter(type)}
+                    className={`px-4 py-2 rounded-lg font-medium transition ${
+                      feedbackFilter === type
+                        ? 'bg-blue-500 text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    {type.charAt(0).toUpperCase() + type.slice(1)}
+                    {type !== 'all' && (
+                      <span className="ml-2 text-xs">
+                        ({feedback.filter(f => f.feedback_type === type).length})
+                      </span>
+                    )}
+                  </button>
+                ))}
+              </div>
+
+              {/* Feedback List */}
+              {feedbackLoading ? (
+                <div className="flex items-center justify-center py-12">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {feedback
+                    .filter(f => feedbackFilter === 'all' || f.feedback_type === feedbackFilter)
+                    .map((item) => (
+                      <div
+                        key={item.id}
+                        className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition"
+                      >
+                        <div className="flex items-start justify-between mb-2">
+                          <div className="flex items-center gap-3">
+                            <span className="text-2xl">
+                              {item.feedback_type === 'bug' && '🐛'}
+                              {item.feedback_type === 'feature' && '💡'}
+                              {item.feedback_type === 'improvement' && '✨'}
+                              {item.feedback_type === 'praise' && '🎉'}
+                              {item.feedback_type === 'other' && '💬'}
+                            </span>
+                            <div>
+                              <span className="font-semibold text-gray-800 capitalize">
+                                {item.feedback_type}
+                              </span>
+                              {item.rating && (
+                                <span className="ml-3 text-yellow-500">
+                                  {'⭐'.repeat(item.rating)}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                          <span className="text-xs text-gray-500">
+                            {new Date(item.created_at).toLocaleString()}
+                          </span>
+                        </div>
+
+                        <p className="text-gray-700 mb-3 whitespace-pre-wrap">{item.message}</p>
+
+                        <div className="flex flex-wrap gap-4 text-xs text-gray-500">
+                          {item.user_email && (
+                            <span className="flex items-center gap-1">
+                              <span>👤</span>
+                              {item.user_email}
+                            </span>
+                          )}
+                          {!item.user_email && (
+                            <span className="flex items-center gap-1">
+                              <span>👤</span>
+                              Anonymous
+                            </span>
+                          )}
+                          {item.page_url && (
+                            <span className="flex items-center gap-1 truncate max-w-xs">
+                              <span>📄</span>
+                              {item.page_url.replace('https://arfid-new.netlify.app', '')}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+
+                  {feedback.filter(f => feedbackFilter === 'all' || f.feedback_type === feedbackFilter).length === 0 && (
+                    <p className="text-center text-gray-500 py-12">
+                      No {feedbackFilter !== 'all' ? feedbackFilter : ''} feedback yet
+                    </p>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         )}
