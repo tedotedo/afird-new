@@ -1,7 +1,7 @@
 {
-  "/settings/page": "app/settings/page.js",
-  "/trends/page": "app/trends/page.js",
   "/page": "app/page.js",
+  "/supplements-info/page": "app/supplements-info/page.js",
+  "/settings/page": "app/settings/page.js",
   "/summary/page": "app/summary/page.js",
-  "/supplements-info/page": "app/supplements-info/page.js"
+  "/trends/page": "app/trends/page.js"
 }

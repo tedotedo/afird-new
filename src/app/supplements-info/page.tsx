@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import AuthGuard from '@/components/AuthGuard';
+import Link from 'next/link';
 
 export default function SupplementsInfoPage() {
   const [acknowledged, setAcknowledged] = useState(false);
@@ -31,6 +32,10 @@ export default function SupplementsInfoPage() {
       localStorage.setItem('supplementsDisclaimerAccepted', 'true');
       setAcknowledged(true);
     }
+  };
+
+  const handlePrint = () => {
+    window.print();
   };
 
   const handleDismissSidebar = () => {
@@ -670,20 +675,23 @@ export default function SupplementsInfoPage() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              {/* Share this page */}
-              <div className="bg-blue-50 rounded-lg p-4 flex flex-col items-center text-center">
+              {/* Share this page - Clickable with print function */}
+              <button
+                onClick={handlePrint}
+                className="bg-blue-50 rounded-lg p-4 flex flex-col items-center text-center hover:bg-blue-100 hover:shadow-lg transition-all cursor-pointer transform hover:scale-105"
+              >
                 <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mb-3">
                   <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
                   </svg>
                 </div>
                 <h3 className="font-semibold text-gray-900 mb-2">Share this page</h3>
-                <p className="text-sm text-gray-600">Email or print this guide to discuss with your healthcare provider</p>
-              </div>
+                <p className="text-sm text-gray-600">Print this guide to discuss with your healthcare provider</p>
+              </button>
 
-              {/* Book appointment */}
-              <div className="bg-green-50 rounded-lg p-4 flex flex-col items-center text-center">
-                <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mb-3">
+              {/* Book appointment - Informational only */}
+              <div className="bg-green-50 bg-opacity-60 rounded-lg p-4 flex flex-col items-center text-center opacity-75">
+                <div className="w-12 h-12 bg-green-600 bg-opacity-60 rounded-full flex items-center justify-center mb-3">
                   <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
@@ -692,16 +700,18 @@ export default function SupplementsInfoPage() {
                 <p className="text-sm text-gray-600">Contact your GP, paediatrician, or registered dietitian to discuss supplements</p>
               </div>
 
-              {/* Track in app */}
-              <div className="bg-purple-50 rounded-lg p-4 flex flex-col items-center text-center">
-                <div className="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mb-3">
-                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Track symptoms & weight</h3>
-                <p className="text-sm text-gray-600">Use the app to monitor nutrition, growth, and energy levels meanwhile</p>
-              </div>
+              {/* Track in app - Clickable link */}
+              <Link href="/summary" legacyBehavior>
+                <a className="bg-purple-50 rounded-lg p-4 flex flex-col items-center text-center hover:bg-purple-100 hover:shadow-lg transition-all cursor-pointer transform hover:scale-105">
+                  <div className="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mb-3">
+                    <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                  </div>
+                  <h3 className="font-semibold text-gray-900 mb-2">Track symptoms & weight</h3>
+                  <p className="text-sm text-gray-600">Use the app to monitor nutrition, growth, and energy levels meanwhile</p>
+                </a>
+              </Link>
             </div>
 
             <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
