@@ -38,8 +38,12 @@ export default function FeedbackWidget() {
 
       if (!response.ok) {
         const data = await response.json();
+        console.error('Feedback submission failed:', data);
         throw new Error(data.error || 'Failed to submit feedback');
       }
+
+      const result = await response.json();
+      console.log('Feedback submitted successfully:', result);
 
       setSubmitted(true);
       
