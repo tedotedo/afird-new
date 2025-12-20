@@ -5,6 +5,7 @@ import { useChildContext } from '@/contexts/ChildContext';
 import AuthGuard from '@/components/AuthGuard';
 import { GrowthTrendChart } from '@/components/GrowthTrendChart';
 import { format, subDays, subWeeks, subMonths, startOfWeek, endOfWeek } from 'date-fns';
+import Link from 'next/link';
 
 type TimeRange = '1week' | '2weeks' | '1month' | '3months' | '6months' | 'custom';
 
@@ -19,6 +20,47 @@ export default function TrendsPage() {
   const [nutritionData, setNutritionData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [sidebarDismissed, setSidebarDismissed] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const dismissed = sessionStorage.getItem('trendsReminderDismissed');
+      if (dismissed === 'true') {
+        setSidebarDismissed(true);
+      }
+    }
+  }, []);
+
+  const handleDismissSidebar = () => {
+    sessionStorage.setItem('trendsReminderDismissed', 'true');
+    setSidebarDismissed(true);
+  };
+
+  const handleDownload = () => {
+    const { startDate, endDate } = getDateRange();
+    const data = {
+      dateRange: { startDate, endDate },
+      child: selectedChild ? selectedChild.name : 'Parent',
+      growthData,
+      nutritionData,
+      groupBy,
+      generatedAt: new Date().toISOString()
+    };
+
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `trends-${startDate}-to-${endDate}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const handlePrint = () => {
+    window.print();
+  };
 
   // Calculate date range based on selection
   const getDateRange = () => {
@@ -133,14 +175,89 @@ export default function TrendsPage() {
   return (
     <AuthGuard>
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6 pb-24">
+        {/* Sticky Sidebar Banner */}
+        {!sidebarDismissed && (
+          <div className="fixed right-4 top-24 z-40 hidden md:block animate-fadeIn">
+            <div className="bg-white border-2 border-green-400 rounded-lg shadow-lg p-4 max-w-xs">
+              <button
+                onClick={handleDismissSidebar}
+                className="absolute -top-2 -right-2 bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-green-600 transition"
+                aria-label="Dismiss"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
+              <div className="flex items-start gap-3">
+                <span className="text-3xl flex-shrink-0">📊</span>
+                <div>
+                  <p className="text-sm font-semibold text-gray-900 mb-1">Share growth trends</p>
+                  <p className="text-xs text-gray-700">
+                    Print or download charts to share with your healthcare team
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Mobile Sticky Banner (Bottom) */}
+        {!sidebarDismissed && (
+          <div className="fixed bottom-4 left-4 right-4 z-40 md:hidden animate-slideUp">
+            <div className="bg-white border-2 border-green-400 rounded-lg shadow-lg p-3">
+              <button
+                onClick={handleDismissSidebar}
+                className="absolute -top-2 -right-2 bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-green-600 transition"
+                aria-label="Dismiss"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">📊</span>
+                <p className="text-xs font-semibold text-gray-900">
+                  Share growth trends
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
         <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <div className="mb-6">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Health Trends</h1>
-            <p className="text-gray-600">
-              Track growth and nutrition patterns over time
-              {selectedChild && ' for the selected child'}
-            </p>
+          <div className="mb-6 flex items-start justify-between">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">Health Trends</h1>
+              <p className="text-gray-600">
+                Track growth and nutrition patterns over time
+                {selectedChild && ' for the selected child'}
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={handlePrint}
+                disabled={loading}
+                className="px-4 py-2 bg-white border-2 border-green-500 text-green-600 rounded-lg hover:bg-green-50 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                title="Print Trends"
+              >
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                </svg>
+                <span className="hidden sm:inline">Print</span>
+              </button>
+              <button
+                onClick={handleDownload}
+                disabled={loading}
+                className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                title="Download Trends"
+              >
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                <span className="hidden sm:inline">Download</span>
+              </button>
+            </div>
           </div>
 
           {/* Important Notice */}
@@ -348,6 +465,75 @@ export default function TrendsPage() {
               <p className="text-gray-500 text-sm">
                 Try selecting a different time range or add some measurements and food entries
               </p>
+            </div>
+          )}
+
+          {/* Footer Action Box */}
+          {!loading && (growthData.length > 0 || nutritionData.length > 0) && (
+            <div className="mt-12 bg-white rounded-xl shadow-lg p-8 border-2 border-green-400">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="text-4xl">📈</span>
+                <h2 className="text-2xl font-bold text-gray-900">Discuss trends with your healthcare team</h2>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                {/* Print charts */}
+                <div className="bg-green-50 rounded-lg p-4 flex flex-col items-center text-center">
+                  <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mb-3">
+                    <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                    </svg>
+                  </div>
+                  <h3 className="font-semibold text-gray-900 mb-2">Print charts</h3>
+                  <p className="text-sm text-gray-600 mb-3">Bring growth and nutrition trends to your next appointment</p>
+                  <button
+                    onClick={handlePrint}
+                    className="text-sm text-green-600 hover:text-green-700 font-semibold"
+                  >
+                    Print now →
+                  </button>
+                </div>
+
+                {/* Download data */}
+                <div className="bg-blue-50 rounded-lg p-4 flex flex-col items-center text-center">
+                  <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mb-3">
+                    <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                  </div>
+                  <h3 className="font-semibold text-gray-900 mb-2">Download data</h3>
+                  <p className="text-sm text-gray-600 mb-3">Save trend data to share via email with your healthcare provider</p>
+                  <button
+                    onClick={handleDownload}
+                    className="text-sm text-blue-600 hover:text-blue-700 font-semibold"
+                  >
+                    Download JSON →
+                  </button>
+                </div>
+
+                {/* View daily details */}
+                <div className="bg-purple-50 rounded-lg p-4 flex flex-col items-center text-center">
+                  <div className="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mb-3">
+                    <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <h3 className="font-semibold text-gray-900 mb-2">View daily details</h3>
+                  <p className="text-sm text-gray-600 mb-3">Check detailed nutrition for specific dates</p>
+                  <Link
+                    href="/summary"
+                    className="text-sm text-purple-600 hover:text-purple-700 font-semibold"
+                  >
+                    Daily summary →
+                  </Link>
+                </div>
+              </div>
+
+              <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+                <p className="text-sm text-yellow-800 font-semibold text-center">
+                  Growth and nutrition trends are for tracking only, not medical diagnosis. Share these charts with your GP, paediatrician, or registered dietitian to discuss any concerns or changes.
+                </p>
+              </div>
             </div>
           )}
         </div>
