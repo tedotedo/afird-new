@@ -46,8 +46,8 @@ export default function AchievementSettingsPage() {
       }
 
       const data = await response.json();
-      const prefsMap = new Map(
-        data.map((pref: any) => [pref.achievement_type, pref])
+      const prefsMap = new Map<string, AchievementPreference>(
+        data.map((pref: AchievementPreference) => [pref.achievement_type, pref] as const)
       );
       setPreferences(prefsMap);
     } catch (err: any) {
