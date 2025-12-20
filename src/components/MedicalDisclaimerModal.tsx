@@ -61,6 +61,15 @@ export default function MedicalDisclaimerModal({ onAccept }: MedicalDisclaimerMo
             </div>
 
             <div>
+              <h3 className="font-semibold text-gray-900 mb-2">💊 Supplements and Diet Decisions</h3>
+              <p className="text-sm leading-relaxed">
+                <strong>Parents should not make any decisions about supplements and diet based on the information provided by this app</strong>, 
+                which is for indicative tracking only. Always check with their paediatrician, GP, or registered dietitian before starting, 
+                stopping, or changing any supplement, especially higher-dose single-nutrient products.
+              </p>
+            </div>
+
+            <div>
               <h3 className="font-semibold text-gray-900 mb-2">📋 No Physician-Patient Relationship</h3>
               <p className="text-sm leading-relaxed">
                 Use of this application does not create a physician-patient relationship. If you have any medical concerns 
