@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import { ChildProvider } from '@/contexts/ChildContext';
 import { ConsentProvider } from '@/contexts/ConsentContext';
 import ConsentManager from '@/components/ConsentManager';
+import FeedbackWidget from '@/components/FeedbackWidget';
 
 export const metadata: Metadata = {
   title: 'ARFID Wellness Tracker',
@@ -34,6 +35,7 @@ export default function RootLayout({
             </main>
             <Footer />
             <ConsentManager />
+            <FeedbackWidget />
           </ChildProvider>
         </ConsentProvider>
       </body>
