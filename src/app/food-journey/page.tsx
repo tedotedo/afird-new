@@ -51,7 +51,7 @@ const SUCCESS_LEVEL_ICONS: Record<string, string> = {
 const SUCCESS_LEVEL_NAMES: Record<string, string> = {
   refused: 'Refused',
   touched: 'Touched/Explored',
-  licked: 'Licked/Kissed',
+  licked: 'Licked',
   nibble: 'Small Nibble',
   bite: 'Took a Bite',
   finished: 'Finished It!',
