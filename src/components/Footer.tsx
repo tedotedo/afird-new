@@ -25,6 +25,7 @@ export default function Footer() {
       { href: '/summary', label: 'Summary', icon: '📊' },
       { href: '/trends', label: 'Trends', icon: '📈' },
       { href: '/nutrition-info', label: 'Nutrition Info', icon: '🥗' },
+      { href: '/supplements-info', label: 'Supplement Guidance', icon: '💊' },
     ],
     learn: [
       { href: '/arfid-info', label: 'About ARFID', icon: '💙' },

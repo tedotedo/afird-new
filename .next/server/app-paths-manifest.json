@@ -1,7 +1,7 @@
 {
   "/camera/page": "app/camera/page.js",
-  "/page": "app/page.js",
-  "/arfid-info/page": "app/arfid-info/page.js",
   "/home/page": "app/home/page.js",
-  "/settings/page": "app/settings/page.js"
+  "/arfid-info/page": "app/arfid-info/page.js",
+  "/settings/page": "app/settings/page.js",
+  "/page": "app/page.js"
 }
