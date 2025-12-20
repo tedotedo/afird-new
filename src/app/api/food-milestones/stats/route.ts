@@ -81,16 +81,88 @@ export async function GET(request: NextRequest) {
   );
   const hasRainbowFoods = colorFoods.length >= 5; // Simplified check
 
-  // Achievement calculation
+  // Fetch custom achievement preferences
+  let prefsQuery = supabase
+    .from('achievement_preferences')
+    .select('*')
+    .eq('user_id', user.id);
+
+  if (childId) {
+    prefsQuery = prefsQuery.eq('child_id', childId);
+  }
+
+  const { data: customPrefs } = await prefsQuery;
+
+  // Create a map of custom preferences
+  const prefsMap = new Map(
+    (customPrefs || []).map(pref => [pref.achievement_type, pref])
+  );
+
+  // Default achievement definitions
+  const defaultAchievements = [
+    { type: 'first_food', threshold: 1, name: 'First Step', icon: '🌱' },
+    { type: 'brave_five', threshold: 5, name: 'Brave Taster', icon: '⭐' },
+    { type: 'explorer_ten', threshold: 10, name: 'Food Explorer', icon: '🗺️' },
+    { type: 'adventurer_twenty', threshold: 20, name: 'Taste Adventurer', icon: '🎒' },
+    { type: 'champion_fifty', threshold: 50, name: 'Food Champion', icon: '🏆' },
+  ];
+
+  // Achievement calculation with custom preferences
   const achievements = [];
   
-  if (totalFoodsTried >= 1) achievements.push({ id: 'first_food', name: 'First Step', icon: '🌱', unlocked: true });
-  if (totalFoodsTried >= 5) achievements.push({ id: 'brave_five', name: 'Brave Taster', icon: '⭐', unlocked: true });
-  if (totalFoodsTried >= 10) achievements.push({ id: 'explorer_ten', name: 'Food Explorer', icon: '🗺️', unlocked: true });
-  if (totalFoodsTried >= 20) achievements.push({ id: 'adventurer_twenty', name: 'Taste Adventurer', icon: '🎒', unlocked: true });
-  if (totalFoodsTried >= 50) achievements.push({ id: 'champion_fifty', name: 'Food Champion', icon: '🏆', unlocked: true });
-  if (hasRainbowFoods) achievements.push({ id: 'rainbow_eater', name: 'Rainbow Eater', icon: '🌈', unlocked: true });
-  if (uniqueTextures >= 5) achievements.push({ id: 'texture_master', name: 'Texture Master', icon: '🎨', unlocked: true });
+  for (const defaultAch of defaultAchievements) {
+    const pref = prefsMap.get(defaultAch.type);
+    
+    // Skip if explicitly disabled
+    if (pref && pref.is_enabled === false) continue;
+    
+    const threshold = pref?.custom_threshold ?? defaultAch.threshold;
+    const name = pref?.custom_name ?? defaultAch.name;
+    const icon = pref?.custom_icon ?? defaultAch.icon;
+    
+    if (totalFoodsTried >= threshold) {
+      achievements.push({ 
+        id: defaultAch.type, 
+        name, 
+        icon, 
+        unlocked: true,
+        threshold,
+        isCustom: !!pref
+      });
+    }
+  }
+
+  // Rainbow Eater (special achievement)
+  const rainbowPref = prefsMap.get('rainbow_eater');
+  if (!rainbowPref || rainbowPref.is_enabled !== false) {
+    const rainbowThreshold = rainbowPref?.custom_threshold ?? 5;
+    if (colorFoods.length >= rainbowThreshold) {
+      achievements.push({ 
+        id: 'rainbow_eater', 
+        name: rainbowPref?.custom_name ?? 'Rainbow Eater', 
+        icon: rainbowPref?.custom_icon ?? '🌈', 
+        unlocked: true,
+        threshold: rainbowThreshold,
+        isCustom: !!rainbowPref
+      });
+    }
+  }
+
+  // Texture Master (special achievement)
+  const texturePref = prefsMap.get('texture_master');
+  if (!texturePref || texturePref.is_enabled !== false) {
+    const textureThreshold = texturePref?.custom_threshold ?? 5;
+    if (uniqueTextures >= textureThreshold) {
+      achievements.push({ 
+        id: 'texture_master', 
+        name: texturePref?.custom_name ?? 'Texture Master', 
+        icon: texturePref?.custom_icon ?? '🎨', 
+        unlocked: true,
+        threshold: textureThreshold,
+        isCustom: !!texturePref
+      });
+    }
+  }
 
   // Recent milestones (last 5)
   const recentMilestones = milestones
