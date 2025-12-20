@@ -93,7 +93,7 @@ export default function FeedbackWidget() {
 
       {/* Feedback Modal */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-full max-w-md mx-4 sm:mx-0 animate-slideUp">
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 sm:left-auto sm:right-6 sm:translate-x-0 z-50 w-full max-w-md px-4 sm:px-0 animate-slideUp">
           <div className="bg-white rounded-xl shadow-2xl border-2 border-purple-400 overflow-hidden">
             {/* Header */}
             <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-4 flex items-center justify-between">
