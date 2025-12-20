@@ -169,7 +169,7 @@ export default function FoodJourneyPage() {
         <div className="container mx-auto px-4 max-w-6xl mt-8 space-y-8">
           {/* Statistics Dashboard */}
           {stats && (
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-white rounded-xl shadow-lg p-6 text-center">
                 <div className="text-4xl font-bold text-purple-600 mb-2">{stats.totalFoodsTried}</div>
                 <div className="text-sm text-gray-600">Foods Tried</div>
@@ -177,10 +177,6 @@ export default function FoodJourneyPage() {
               <div className="bg-white rounded-xl shadow-lg p-6 text-center">
                 <div className="text-4xl font-bold text-pink-600 mb-2">{stats.newFoodsThisWeek}</div>
                 <div className="text-sm text-gray-600">This Week</div>
-              </div>
-              <div className="bg-white rounded-xl shadow-lg p-6 text-center">
-                <div className="text-4xl font-bold text-green-600 mb-2">{stats.successRate}%</div>
-                <div className="text-sm text-gray-600">Success Rate</div>
               </div>
               <div className="bg-white rounded-xl shadow-lg p-6 text-center">
                 <div className="text-4xl font-bold text-blue-600 mb-2">{stats.achievements.length}</div>

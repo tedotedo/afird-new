@@ -41,10 +41,6 @@ export async function GET(request: NextRequest) {
 
   const totalFoodsTried = new Set(milestones.map(m => m.food_name.toLowerCase())).size;
   const totalAttempts = milestones.length;
-  
-  const successfulAttempts = milestones.filter(m => 
-    ['bite', 'finished'].includes(m.success_level)
-  ).length;
 
   const thisWeek = milestones.filter(m => 
     new Date(m.date_tried) >= oneWeekAgo
@@ -104,8 +100,6 @@ export async function GET(request: NextRequest) {
   return NextResponse.json({
     totalFoodsTried,
     totalAttempts,
-    successfulAttempts,
-    successRate: totalAttempts > 0 ? Math.round((successfulAttempts / totalAttempts) * 100) : 0,
     newFoodsThisWeek,
     newFoodsThisMonth,
     newFoodsThisYear,
