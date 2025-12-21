@@ -4,6 +4,9 @@ export interface Child {
   name: string;
   date_of_birth: string;
   sex: 'male' | 'female' | 'other';
+  parental_consent_given?: boolean;
+  parental_consent_timestamp?: string;
+  parental_consent_ip?: string;
   created_at: string;
   updated_at: string;
 }
@@ -24,6 +27,8 @@ export interface CreateChildInput {
   sex: 'male' | 'female' | 'other';
   initialHeight?: number;
   initialWeight?: number;
+  parentalConsentGiven?: boolean;
+  parentalConsentIp?: string;
 }
 
 export interface UpdateChildInput {

@@ -50,11 +50,18 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { name, dateOfBirth, sex, initialHeight, initialWeight } = body;
+    const { name, dateOfBirth, sex, initialHeight, initialWeight, parentalConsent } = body;
 
     if (!name || !dateOfBirth || !sex) {
       return NextResponse.json(
         { error: 'Name, date of birth, and sex are required' },
+        { status: 400 }
+      );
+    }
+
+    if (!parentalConsent) {
+      return NextResponse.json(
+        { error: 'Parental consent is required for creating a child profile' },
         { status: 400 }
       );
     }
@@ -66,12 +73,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Get IP address for consent audit trail
+    const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
+
     const child = await createChild({
       name,
       dateOfBirth: new Date(dateOfBirth),
       sex,
       initialHeight: initialHeight ? parseFloat(initialHeight) : undefined,
       initialWeight: initialWeight ? parseFloat(initialWeight) : undefined,
+      parentalConsentGiven: true,
+      parentalConsentIp: ip,
     });
 
     return NextResponse.json({ child }, { status: 201 });

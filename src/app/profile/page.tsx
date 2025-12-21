@@ -26,6 +26,7 @@ export default function ProfilePage() {
   const [sex, setSex] = useState<'male' | 'female' | 'other'>('male');
   const [initialHeight, setInitialHeight] = useState('');
   const [initialWeight, setInitialWeight] = useState('');
+  const [parentalConsent, setParentalConsent] = useState(false);
 
   // Measurement form states
   const [heightCm, setHeightCm] = useState('');
@@ -79,6 +80,11 @@ export default function ProfilePage() {
     e.preventDefault();
     setError(null);
 
+    if (!parentalConsent) {
+      setError('You must confirm parental consent to add a child profile');
+      return;
+    }
+
     try {
       const response = await fetch('/api/children', {
         method: 'POST',
@@ -89,6 +95,7 @@ export default function ProfilePage() {
           sex,
           initialHeight: initialHeight ? parseFloat(initialHeight) : undefined,
           initialWeight: initialWeight ? parseFloat(initialWeight) : undefined,
+          parentalConsent: true,
         }),
       });
 
@@ -104,6 +111,7 @@ export default function ProfilePage() {
       setSex('male');
       setInitialHeight('');
       setInitialWeight('');
+      setParentalConsent(false);
       setShowAddForm(false);
 
       // Refresh list
@@ -405,10 +413,31 @@ export default function ProfilePage() {
                   </div>
                 </div>
 
+                {/* Parental Consent - GDPR Required */}
+                <div className="bg-blue-50 border-2 border-blue-400 rounded-lg p-4">
+                  <label className="flex items-start gap-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={parentalConsent}
+                      onChange={(e) => setParentalConsent(e.target.checked)}
+                      required
+                      className="w-5 h-5 text-blue-600 rounded mt-0.5 flex-shrink-0"
+                    />
+                    <span className="text-sm text-gray-900">
+                      <strong className="font-semibold">I confirm that I am the parent or legal guardian</strong> of this child and I consent to the processing of their personal data (including health data) for the purposes of nutrition tracking and growth monitoring, as described in our{' '}
+                      <a href="/privacy" target="_blank" className="text-blue-600 underline hover:text-blue-800">
+                        Privacy Policy
+                      </a>
+                      . I understand I can withdraw this consent at any time by deleting the child's profile. *
+                    </span>
+                  </label>
+                </div>
+
                 <div className="flex gap-3">
                   <button
                     type="submit"
-                    className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition"
+                    disabled={!parentalConsent}
+                    className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Add Child
                   </button>
@@ -421,6 +450,8 @@ export default function ProfilePage() {
                       setSex('male');
                       setInitialHeight('');
                       setInitialWeight('');
+                      setParentalConsent(false);
+                      setError(null);
                     }}
                     className="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-lg transition"
                   >

@@ -38,7 +38,14 @@ export default function PrivacyPolicyPage() {
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="font-semibold">Dr. Odet Aszkenasy</p>
               <p className="text-sm text-gray-600 mt-2">
-                For privacy-related inquiries, please contact us through the support section.
+                <strong>Email:</strong> aszkenasy@gmail.com
+              </p>
+              <p className="text-sm text-gray-600 mt-4">
+                For privacy-related inquiries, data subject access requests, or to exercise your GDPR rights,
+                please email us at the address above with the subject line "Privacy Request" or "Data Protection".
+              </p>
+              <p className="text-sm text-gray-600 mt-2">
+                We aim to respond to all privacy requests within 30 days as required by GDPR.
               </p>
             </div>
           </div>
@@ -227,18 +234,45 @@ export default function PrivacyPolicyPage() {
           <div className="bg-white rounded-xl shadow-lg p-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">6. Data Retention</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              We retain your data for as long as your account is active. If you delete your account:
+              We retain your data according to the following schedule:
             </p>
             <ul className="list-disc list-inside text-gray-700 space-y-2 ml-4">
-              <li>All personal data is permanently deleted within 30 days</li>
-              <li>Backups containing your data are automatically purged within 90 days</li>
-              <li>Anonymized statistical data (no personally identifiable information) may be retained for service improvement</li>
+              <li><strong>Active accounts:</strong> Data is retained for as long as your account is active</li>
+              <li><strong>Inactive accounts:</strong> If you do not log in for 7 consecutive years, we may contact you before deleting your account</li>
+              <li><strong>Account deletion:</strong> When you request account deletion, all personal data is permanently deleted within 30 days</li>
+              <li><strong>Backups:</strong> Backups containing your data are automatically purged within 90 days of account deletion</li>
+              <li><strong>Consent records:</strong> Records of your consent (for GDPR compliance) are retained for 7 years after account deletion as required by law</li>
+              <li><strong>Statistical data:</strong> Anonymized statistical data (with no personally identifiable information) may be retained indefinitely for service improvement</li>
             </ul>
+            <p className="text-gray-700 leading-relaxed mt-4">
+              <strong>Right to erasure:</strong> You can request immediate deletion of all your data at any time using the "Delete Account" feature in your{' '}
+              <Link href="/settings" className="text-blue-600 hover:underline">Settings</Link>.
+            </p>
+          </div>
+
+          {/* Data Breach Notification */}
+          <div className="bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">7. Data Breach Notification</h2>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              We take data security seriously and have implemented robust measures to protect your information.
+              However, in the unlikely event of a data breach that poses a risk to your rights and freedoms:
+            </p>
+            <ul className="list-disc list-inside text-gray-700 space-y-2 ml-4">
+              <li><strong>Regulatory notification:</strong> We will notify the relevant data protection authority (ICO in the UK) within 72 hours of becoming aware of the breach</li>
+              <li><strong>User notification:</strong> If the breach is likely to result in a high risk to you, we will notify you without undue delay via email</li>
+              <li><strong>Information provided:</strong> We will explain the nature of the breach, the likely consequences, and the measures we have taken or propose to take</li>
+              <li><strong>Support:</strong> We will provide guidance on steps you can take to protect yourself (e.g., changing passwords)</li>
+            </ul>
+            <p className="text-gray-700 leading-relaxed mt-4">
+              <strong>Our security measures:</strong> We use industry-standard encryption, secure authentication (Supabase Auth),
+              Row Level Security (RLS) policies to ensure users can only access their own data, and regular security updates.
+              Your password is never stored in plain text.
+            </p>
           </div>
 
           {/* Cookies */}
           <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">7. Cookies & Tracking</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">8. Cookies & Tracking</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
               We use only <strong>essential cookies</strong> required for the application to function:
             </p>
@@ -259,17 +293,59 @@ export default function PrivacyPolicyPage() {
 
           {/* Children's Privacy */}
           <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">8. Children's Privacy</h2>
-            <p className="text-gray-700 leading-relaxed">
-              This application is designed for use by parents and caregivers. Users must be 18 years or older to create
-              an account. While the application allows tracking of children's nutritional data, all accounts are managed
-              by adult users who are responsible for the data they input.
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">9. Children's Privacy & Parental Consent</h2>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              <strong>This application is designed for use by parents and caregivers.</strong> Users must be 18 years or older to create an account.
             </p>
+            
+            <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+              <h3 className="text-lg font-semibold text-blue-900 mb-2">Parental Consent Required (GDPR Compliance)</h3>
+              <p className="text-sm text-blue-800 leading-relaxed">
+                When you create a child profile, you must explicitly consent to the processing of your child's personal data,
+                including health-related information (special category data under GDPR Article 9). This consent is:
+              </p>
+              <ul className="list-disc list-inside text-sm text-blue-800 mt-2 ml-4 space-y-1">
+                <li><strong>Specific:</strong> You understand exactly what data is collected and how it's used</li>
+                <li><strong>Informed:</strong> You have read and understand this privacy policy</li>
+                <li><strong>Freely given:</strong> You can choose not to create a child profile</li>
+                <li><strong>Unambiguous:</strong> You must actively check a consent box to proceed</li>
+                <li><strong>Withdrawable:</strong> You can withdraw consent at any time by deleting the child's profile</li>
+              </ul>
+            </div>
+
+            <div className="space-y-3">
+              <p className="text-gray-700 leading-relaxed">
+                <strong>What data we collect about children:</strong>
+              </p>
+              <ul className="list-disc list-inside text-gray-700 space-y-1 ml-4">
+                <li>Name (first name only, no surname required)</li>
+                <li>Date of birth (for age-appropriate recommendations)</li>
+                <li>Sex (for growth chart calculations)</li>
+                <li>Height and weight measurements</li>
+                <li>Food intake records and nutritional data</li>
+                <li>Food milestone achievements</li>
+              </ul>
+
+              <p className="text-gray-700 leading-relaxed mt-4">
+                <strong>Your responsibilities as a parent/guardian:</strong>
+              </p>
+              <ul className="list-disc list-inside text-gray-700 space-y-1 ml-4">
+                <li>You confirm you are the legal parent or guardian of any child whose data you input</li>
+                <li>You are responsible for keeping your account secure (as it contains your children's data)</li>
+                <li>You should not share your account credentials with anyone</li>
+                <li>You can delete a child's profile at any time, which permanently removes all their data</li>
+              </ul>
+
+              <p className="text-gray-700 leading-relaxed mt-4">
+                <strong>Record keeping:</strong> We keep a secure record of your parental consent (including timestamp and IP address)
+                for legal compliance and audit purposes. This consent record is retained for 7 years as required by GDPR.
+              </p>
+            </div>
           </div>
 
           {/* Terms of Service */}
           <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">9. Terms of Service</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">10. Terms of Service</h2>
             <div className="space-y-4">
               <div>
                 <h3 className="text-xl font-semibold text-gray-800 mb-2">Acceptable Use</h3>

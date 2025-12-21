@@ -20,13 +20,16 @@ export async function createChild(input: CreateChildInput): Promise<Child> {
   }
 
   // Insert child
-  const { data: child, error: childError } = await supabase
+  const { data: child, error: childError} = await supabase
     .from('children')
     .insert({
       user_id: user.id,
       name: input.name,
       date_of_birth: input.dateOfBirth.toISOString().split('T')[0],
       sex: input.sex,
+      parental_consent_given: input.parentalConsentGiven || false,
+      parental_consent_timestamp: input.parentalConsentGiven ? new Date().toISOString() : null,
+      parental_consent_ip: input.parentalConsentIp || null,
     })
     .select()
     .single();
