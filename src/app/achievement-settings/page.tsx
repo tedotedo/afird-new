@@ -30,7 +30,7 @@ export default function AchievementSettingsPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
-  const [editingThresholds, setEditingThresholds] = useState<Map<string, number>>(new Map());
+  const [editingThresholds, setEditingThresholds] = useState<Map<string, number | string>>(new Map());
 
   useEffect(() => {
     fetchPreferences();
@@ -236,14 +236,21 @@ export default function AchievementSettingsPage() {
                               max="100"
                               value={displayValue}
                               onChange={(e) => {
-                                const newValue = parseInt(e.target.value) || 1;
+                                const value = e.target.value;
+                                // Allow empty string while typing
+                                const newValue = value === '' ? '' : parseInt(value);
                                 const newMap = new Map(editingThresholds);
-                                newMap.set(defaultAch.type, newValue);
+                                newMap.set(defaultAch.type, newValue as any);
                                 setEditingThresholds(newMap);
                               }}
                               onBlur={() => {
-                                if (editingValue !== undefined && editingValue !== currentThreshold) {
-                                  handleSave(defaultAch.type, editingValue, isEnabled);
+                                // Apply minimum value of 1 on blur if empty or less than 1
+                                let finalValue = editingValue;
+                                if (editingValue === '' || editingValue === undefined || editingValue < 1) {
+                                  finalValue = 1;
+                                }
+                                if (finalValue !== currentThreshold) {
+                                  handleSave(defaultAch.type, finalValue as number, isEnabled);
                                 }
                                 const newMap = new Map(editingThresholds);
                                 newMap.delete(defaultAch.type);
