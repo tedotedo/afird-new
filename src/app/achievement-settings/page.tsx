@@ -245,12 +245,17 @@ export default function AchievementSettingsPage() {
                               }}
                               onBlur={() => {
                                 // Apply minimum value of 1 on blur if empty or less than 1
-                                let finalValue = editingValue;
-                                if (editingValue === '' || editingValue === undefined || editingValue < 1) {
+                                const numericValue = typeof editingValue === 'number' ? editingValue : Number(editingValue);
+                                let finalValue: number;
+                                
+                                if (editingValue === '' || editingValue === undefined || Number.isNaN(numericValue) || numericValue < 1) {
                                   finalValue = 1;
+                                } else {
+                                  finalValue = numericValue;
                                 }
+                                
                                 if (finalValue !== currentThreshold) {
-                                  handleSave(defaultAch.type, finalValue as number, isEnabled);
+                                  handleSave(defaultAch.type, finalValue, isEnabled);
                                 }
                                 const newMap = new Map(editingThresholds);
                                 newMap.delete(defaultAch.type);
