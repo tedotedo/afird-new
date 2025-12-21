@@ -82,7 +82,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Check if user is admin
-    const adminEmails = ['aszkenasy@gmail.com', 'odetayinde@gmail.com'];
+    const adminEmails = ['aszkenasy@gmail.com'];
     if (!adminEmails.includes(user.email || '')) {
       return NextResponse.json({ error: 'Forbidden - Admin access required' }, { status: 403 });
     }

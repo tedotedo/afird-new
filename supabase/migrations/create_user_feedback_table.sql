@@ -22,7 +22,7 @@ CREATE POLICY "Users can submit feedback"
   TO authenticated, anon
   WITH CHECK (true);
 
--- Policy: Only admins can read feedback (update with your admin email)
+-- Policy: Only admins can read feedback
 CREATE POLICY "Admins can read all feedback"
   ON user_feedback
   FOR SELECT
@@ -32,7 +32,7 @@ CREATE POLICY "Admins can read all feedback"
       SELECT 1 FROM auth.users
       WHERE auth.users.id = auth.uid()
       AND (
-        auth.users.email = 'odetayinde@gmail.com' 
+        auth.users.email = 'aszkenasy@gmail.com' 
         OR auth.users.raw_user_meta_data->>'role' = 'admin'
       )
     )
