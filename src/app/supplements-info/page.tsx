@@ -110,21 +110,21 @@ export default function SupplementsInfoPage() {
 
             <div className="mb-6">
               <p className="text-sm font-semibold text-gray-700 mb-4">Please acknowledge before viewing supplement guidance:</p>
-              
+
               <div className="space-y-4 text-gray-700 bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-r-lg">
                 <p className="text-sm leading-relaxed">
-                  <strong>Parents should not make any decisions about supplements and diet based on the information provided by this app</strong>, 
-                  which is for indicative tracking only. Always check with their paediatrician, GP, or registered dietitian before starting, 
+                  <strong>Parents should not make any decisions about supplements and diet based on the information provided by this app</strong>,
+                  which is for indicative tracking only. Always check with their paediatrician, GP, or registered dietitian before starting,
                   stopping, or changing any supplement, especially higher‑dose single‑nutrient products.
                 </p>
-                
+
                 <p className="text-sm leading-relaxed">
-                  Doses, blood tests, and monitoring plans must be individualised, particularly in children with complex medical conditions 
+                  Doses, blood tests, and monitoring plans must be individualised, particularly in children with complex medical conditions
                   or on multiple medications.
                 </p>
-                
+
                 <p className="text-sm leading-relaxed">
-                  This page is general information only and is not a substitute for medical advice or diagnosis. The inclusion of any 
+                  This page is general information only and is not a substitute for medical advice or diagnosis. The inclusion of any
                   supplement types, examples or product formats does not imply endorsement by the clinician, service, app, or any partner organisation.
                 </p>
               </div>
@@ -139,7 +139,7 @@ export default function SupplementsInfoPage() {
                   className="mt-1 w-5 h-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500 cursor-pointer"
                 />
                 <span className="text-sm text-gray-700 select-none group-hover:text-gray-900">
-                  I have read and understood this disclaimer and acknowledge that this information is for educational purposes only 
+                  I have read and understood this disclaimer and acknowledge that this information is for educational purposes only
                   and does not replace professional medical advice
                 </span>
               </label>
@@ -150,8 +150,8 @@ export default function SupplementsInfoPage() {
                 onClick={handleAccept}
                 disabled={!checkboxAccepted}
                 className={`px-8 py-3 rounded-lg font-semibold text-lg shadow-md transition-colors
-                  ${checkboxAccepted 
-                    ? 'bg-blue-600 hover:bg-blue-700 text-white cursor-pointer' 
+                  ${checkboxAccepted
+                    ? 'bg-blue-600 hover:bg-blue-700 text-white cursor-pointer'
                     : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}
               >
                 I Acknowledge - View Supplement Guidance
@@ -229,7 +229,7 @@ export default function SupplementsInfoPage() {
         </div>
 
         <div className="container mx-auto px-4 max-w-5xl mt-8 space-y-8">
-          
+
           {/* Why Supplements Are Sometimes Needed */}
           <div className="bg-white rounded-xl shadow-lg p-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-4 flex items-center gap-3">
@@ -238,11 +238,11 @@ export default function SupplementsInfoPage() {
             </h2>
             <div className="prose max-w-none text-gray-700 space-y-4">
               <p className="leading-relaxed">
-                Children with ARFID often eat a very limited range of foods, which can mean low intakes of several vitamins and minerals, 
-                even if total calories or growth charts look "ok". The restrictive nature of ARFID means that whole food groups may be 
+                Children with ARFID often eat a very limited range of foods, which can mean low intakes of several vitamins and minerals,
+                even if total calories or growth charts look "ok". The restrictive nature of ARFID means that whole food groups may be
                 avoided, leading to gaps in essential nutrients.
               </p>
-              
+
               <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
                 <h3 className="font-semibold text-blue-900 mb-2">Common Nutrient Deficiencies in ARFID</h3>
                 <p className="text-sm text-blue-800 mb-2">
@@ -277,28 +277,28 @@ export default function SupplementsInfoPage() {
             </h2>
             <div className="prose max-w-none text-gray-700 space-y-4">
               <p className="leading-relaxed">
-                Some children have apparently adequate intake on food diaries or tracking apps but still develop deficiency. 
+                Some children have apparently adequate intake on food diaries or tracking apps but still develop deficiency.
                 This is a critical point that parents and clinicians need to understand.
               </p>
-              
+
               <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
                 <h3 className="font-semibold text-yellow-900 mb-2">Why This Happens:</h3>
                 <ul className="text-sm text-yellow-800 space-y-3">
                   <li>
-                    <strong>Malabsorption problems:</strong> Conditions such as untreated or partially treated coeliac disease, 
-                    inflammatory bowel disease (IBD), or other gastrointestinal conditions can prevent proper absorption of nutrients, 
+                    <strong>Malabsorption problems:</strong> Conditions such as untreated or partially treated coeliac disease,
+                    inflammatory bowel disease (IBD), or other gastrointestinal conditions can prevent proper absorption of nutrients,
                     even when intake appears adequate.
                   </li>
                   <li>
-                    <strong>Utilization difficulties:</strong> Some children have underlying metabolic, genetic, or chronic medical 
-                    conditions that affect how their body processes and uses vitamins and minerals, requiring higher intakes or 
+                    <strong>Utilization difficulties:</strong> Some children have underlying metabolic, genetic, or chronic medical
+                    conditions that affect how their body processes and uses vitamins and minerals, requiring higher intakes or
                     different forms of supplementation.
                   </li>
                 </ul>
               </div>
 
               <p className="leading-relaxed">
-                In these situations, clinicians may use blood tests, growth monitoring, and symptom review to decide whether targeted 
+                In these situations, clinicians may use blood tests, growth monitoring, and symptom review to decide whether targeted
                 supplementation is needed and how long to continue it. This is why tracking apps alone cannot replace medical assessment.
               </p>
             </div>
@@ -313,8 +313,8 @@ export default function SupplementsInfoPage() {
             </h2>
             <div className="prose max-w-none text-gray-700 space-y-6">
               <p className="leading-relaxed">
-                For children with ARFID, the format of a supplement can be just as important as its nutritional content. 
-                Sensory sensitivities, swallowing difficulties, and food aversions mean that traditional tablets or capsules 
+                For children with ARFID, the format of a supplement can be just as important as its nutritional content.
+                Sensory sensitivities, swallowing difficulties, and food aversions mean that traditional tablets or capsules
                 may not be acceptable.
               </p>
 
@@ -425,7 +425,7 @@ export default function SupplementsInfoPage() {
                 </div>
               </div>
 
-                <div className="bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+              <div className="bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
                 <h3 className="font-semibold text-orange-900 mb-2">Important Reminders:</h3>
                 <ul className="text-sm text-orange-800 list-disc list-inside space-y-1">
                   <li>Always check labels for age-appropriateness and maximum safe daily doses</li>
@@ -437,15 +437,40 @@ export default function SupplementsInfoPage() {
               </div>
 
               {/* Safe Food Protection Tip */}
-              <div className="bg-rose-50 border-l-4 border-rose-400 p-4 rounded-r-lg mt-4">
-                <h3 className="font-semibold text-rose-900 mb-2 flex items-center gap-2">
-                  <span>🛡️</span> Protecting Safe Foods
-                </h3>
-                <p className="text-sm text-rose-800 leading-relaxed">
-                  If vitamin supplements are being added to food or drinks, <strong>splitting them into divided doses</strong> can help 
-                  reduce the chances of the taste of the supplement "spoiling" a safe food for your child. Some children can be 
-                  put off from a safe food or drink permanently after experiencing an unpleasant taste change.
-                </p>
+              {/* Safe Food Protection & Hacks */}
+              <div className="space-y-4 mt-6">
+                <div className="bg-rose-50 border-l-4 border-rose-400 p-4 rounded-r-lg">
+                  <h3 className="font-semibold text-rose-900 mb-2 flex items-center gap-2">
+                    <span>🛡️</span> Protecting Safe Foods
+                  </h3>
+                  <p className="text-sm text-rose-800 leading-relaxed">
+                    If vitamin supplements are being added to food or drinks, <strong>splitting them into divided doses</strong> can help
+                    reduce the chances of the taste of the supplement "spoiling" a safe food for your child. Some children can be
+                    put off from a safe food or drink permanently after experiencing an unpleasant taste change.
+                  </p>
+                </div>
+
+                <div className="bg-emerald-50 border-l-4 border-emerald-400 p-4 rounded-r-lg">
+                  <h3 className="font-semibold text-emerald-900 mb-2 flex items-center gap-2">
+                    <span>💡</span> Parent Hacks for Success
+                  </h3>
+                  <div className="text-sm text-emerald-800 space-y-3">
+                    <div>
+                      <strong>The "Micro-Dose" Method:</strong>
+                      <p className="mt-1">
+                        Start with a tiny "micro-speck" of the supplement and very slowly increase the amount over several days or weeks.
+                        This allows your child to get used to any subtle sensory changes without triggering a flat-out rejection.
+                      </p>
+                    </div>
+                    <div>
+                      <strong>Flavor Masking:</strong>
+                      <p className="mt-1">
+                        Mixing supplements with foods that have naturally strong or sour profiles (like lemonade, orange juice, or
+                        flavoured yogurt) helps mask any faint underlying vitamin taste better than mild foods like water or milk.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -459,8 +484,8 @@ export default function SupplementsInfoPage() {
             </h2>
             <div className="prose max-w-none text-gray-700 space-y-6">
               <p className="leading-relaxed">
-                The following is a neutral, high-level overview of nutrients that clinicians may consider for supplementation in children 
-                with ARFID. This is <strong>not dosing advice</strong> – all decisions about which supplements to use and at what dose 
+                The following is a neutral, high-level overview of nutrients that clinicians may consider for supplementation in children
+                with ARFID. This is <strong>not dosing advice</strong> – all decisions about which supplements to use and at what dose
                 must be made by your child's healthcare team.
               </p>
 
@@ -468,12 +493,12 @@ export default function SupplementsInfoPage() {
               <div className="border-l-4 border-indigo-400 bg-indigo-50 p-4 rounded-r-lg">
                 <h3 className="font-semibold text-indigo-900 mb-2">Multivitamin and Mineral Supplements</h3>
                 <p className="text-sm text-indigo-800 leading-relaxed mb-2">
-                  Sometimes used when overall dietary variety is very limited. These contain small amounts of many different vitamins 
+                  Sometimes used when overall dietary variety is very limited. These contain small amounts of many different vitamins
                   and minerals.
                 </p>
                 <p className="text-sm text-indigo-800 leading-relaxed">
-                  <strong>Important:</strong> While multivitamins can provide a "safety net" for general nutrition, they may not correct 
-                  specific, severe deficiencies (e.g., significant iron-deficiency anaemia or very low vitamin D). Blood tests help 
+                  <strong>Important:</strong> While multivitamins can provide a "safety net" for general nutrition, they may not correct
+                  specific, severe deficiencies (e.g., significant iron-deficiency anaemia or very low vitamin D). Blood tests help
                   determine if additional targeted supplementation is needed.
                 </p>
               </div>
@@ -488,11 +513,11 @@ export default function SupplementsInfoPage() {
                   </Tooltip>
                 </h3>
                 <p className="text-sm text-red-800 leading-relaxed mb-2">
-                  Often considered where there is iron-deficiency anaemia or very low iron intake (common in children who avoid meat, 
+                  Often considered where there is iron-deficiency anaemia or very low iron intake (common in children who avoid meat,
                   fortified cereals, and green vegetables).
                 </p>
                 <p className="text-sm text-red-800 leading-relaxed font-semibold">
-                  ⚠️ CRITICAL: Over-the-counter iron should NEVER be started without blood tests and medical advice. Iron overdose can 
+                  ⚠️ CRITICAL: Over-the-counter iron should NEVER be started without blood tests and medical advice. Iron overdose can
                   be dangerous, and unnecessary iron supplementation can cause side effects and mask other conditions.
                 </p>
               </div>
@@ -507,7 +532,7 @@ export default function SupplementsInfoPage() {
                   </Tooltip>
                 </h3>
                 <p className="text-sm text-yellow-800 leading-relaxed mb-2">
-                  Important for bone health, muscle function, and immune system. Children with ARFID are at higher risk of low vitamin D 
+                  Important for bone health, muscle function, and immune system. Children with ARFID are at higher risk of low vitamin D
                   and calcium levels due to:
                 </p>
                 <ul className="text-sm text-yellow-800 list-disc list-inside ml-2 space-y-1">
@@ -516,7 +541,7 @@ export default function SupplementsInfoPage() {
                   <li>Malabsorption conditions (e.g., coeliac disease, IBD)</li>
                 </ul>
                 <p className="text-sm text-yellow-800 leading-relaxed mt-2">
-                  UK government guidance recommends vitamin D supplements for all children aged 1-4 years, and many clinicians recommend 
+                  UK government guidance recommends vitamin D supplements for all children aged 1-4 years, and many clinicians recommend
                   them for older children with restricted diets.
                 </p>
               </div>
@@ -531,7 +556,7 @@ export default function SupplementsInfoPage() {
                   </Tooltip>
                 </h3>
                 <p className="text-sm text-green-800 leading-relaxed mb-2">
-                  May be low in children who exclude most meat, fish, dairy, eggs, fortified cereals, or whole food groups. B-vitamins 
+                  May be low in children who exclude most meat, fish, dairy, eggs, fortified cereals, or whole food groups. B-vitamins
                   are essential for:
                 </p>
                 <ul className="text-sm text-green-800 list-disc list-inside ml-2 space-y-1">
@@ -541,7 +566,7 @@ export default function SupplementsInfoPage() {
                   <li>Brain development and function</li>
                 </ul>
                 <p className="text-sm text-green-800 leading-relaxed mt-2">
-                  Vitamin B12 deficiency in particular can cause serious neurological problems if left untreated, so blood tests are 
+                  Vitamin B12 deficiency in particular can cause serious neurological problems if left untreated, so blood tests are
                   important if there's concern.
                 </p>
               </div>
@@ -550,8 +575,8 @@ export default function SupplementsInfoPage() {
               <div className="border-l-4 border-purple-400 bg-purple-50 p-4 rounded-r-lg">
                 <h3 className="font-semibold text-purple-900 mb-2">Other Nutrients (Zinc, Iodine, Essential Fatty Acids)</h3>
                 <p className="text-sm text-purple-800 leading-relaxed">
-                  These nutrients may also need review depending on the child's specific dietary pattern and symptoms. Testing and 
-                  supplementation should be guided by a clinician or registered dietitian who understands your child's full medical 
+                  These nutrients may also need review depending on the child's specific dietary pattern and symptoms. Testing and
+                  supplementation should be guided by a clinician or registered dietitian who understands your child's full medical
                   history and current diet.
                 </p>
               </div>
@@ -562,7 +587,7 @@ export default function SupplementsInfoPage() {
                   No vitamin or mineral should be started at high doses "just in case"
                 </p>
                 <p className="text-sm text-red-800 mt-2">
-                  Testing, diagnosis, and treatment plans should always be coordinated with your child's usual medical team. 
+                  Testing, diagnosis, and treatment plans should always be coordinated with your child's usual medical team.
                   High-dose single-nutrient supplements can be harmful and may interact with medications or mask underlying conditions.
                 </p>
               </div>
@@ -578,7 +603,7 @@ export default function SupplementsInfoPage() {
             </h2>
             <div className="prose max-w-none text-gray-700 space-y-4">
               <p className="leading-relaxed">
-                Regular monitoring is essential to ensure that supplements are working, that deficiencies are being corrected, and that 
+                Regular monitoring is essential to ensure that supplements are working, that deficiencies are being corrected, and that
                 your child is not receiving excessive amounts of any nutrient.
               </p>
 
@@ -611,10 +636,10 @@ export default function SupplementsInfoPage() {
               <div className="bg-green-50 border-l-4 border-green-400 p-4 rounded-r-lg">
                 <h3 className="font-semibold text-green-900 mb-2">Time-Limited Supplementation</h3>
                 <p className="text-sm text-green-800 leading-relaxed">
-                  Most supplements are time-limited and re-checked rather than continued "forever", unless there is a chronic 
-                  malabsorption condition (such as coeliac disease or inflammatory bowel disease) or an underlying metabolic condition. 
-                  The goal is usually to correct any deficiency, support the child while they work on expanding their diet, and then 
-                  reassess whether ongoing supplementation is needed. Regular reviews with your child's dietitian or doctor will help 
+                  Most supplements are time-limited and re-checked rather than continued "forever", unless there is a chronic
+                  malabsorption condition (such as coeliac disease or inflammatory bowel disease) or an underlying metabolic condition.
+                  The goal is usually to correct any deficiency, support the child while they work on expanding their diet, and then
+                  reassess whether ongoing supplementation is needed. Regular reviews with your child's dietitian or doctor will help
                   determine the right approach.
                 </p>
               </div>
@@ -644,7 +669,7 @@ export default function SupplementsInfoPage() {
                 <li>Accidental overdose or ingestion of excessive supplement amounts</li>
               </ul>
               <p className="mt-4 font-semibold">
-                If you have any concerns about your child's health or nutrition, contact your GP, paediatrician, or registered dietitian 
+                If you have any concerns about your child's health or nutrition, contact your GP, paediatrician, or registered dietitian
                 for advice. Don't wait for symptoms to become severe.
               </p>
             </div>
@@ -658,16 +683,16 @@ export default function SupplementsInfoPage() {
             </h2>
             <div className="space-y-4 text-blue-100">
               <p className="leading-relaxed">
-                Managing nutrition in a child with ARFID can be challenging, but you're not alone. With the right support from your 
-                medical team, appropriate testing and monitoring, and careful use of supplements when needed, most children can maintain 
+                Managing nutrition in a child with ARFID can be challenging, but you're not alone. With the right support from your
+                medical team, appropriate testing and monitoring, and careful use of supplements when needed, most children can maintain
                 good nutritional health while working on expanding their diet.
               </p>
               <p className="leading-relaxed">
-                Remember: this page provides general educational information only. Every child is unique, and supplementation decisions 
+                Remember: this page provides general educational information only. Every child is unique, and supplementation decisions
                 must be tailored to your child's specific needs, medical history, current diet, and blood test results.
               </p>
               <p className="leading-relaxed font-semibold">
-                Always work closely with your child's paediatrician, GP, or registered dietitian to develop a safe and effective 
+                Always work closely with your child's paediatrician, GP, or registered dietitian to develop a safe and effective
                 supplementation plan.
               </p>
             </div>
@@ -685,7 +710,7 @@ export default function SupplementsInfoPage() {
               <span className="text-4xl">🔄</span>
               <h2 className="text-2xl font-bold text-gray-900">Ready to discuss with your clinician?</h2>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
               {/* Share this page - Clickable with print function */}
               <button
@@ -735,57 +760,93 @@ export default function SupplementsInfoPage() {
 
         </div>
 
-          {/* Supplements Parents Find Helpful */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
-             <SectionReminder text="Mention of these products does not imply endorsement. Checking with your child's doctor or registered dietician is recommended." />
-            <h2 className="text-3xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-              <span className="text-3xl">🌟</span>
-              Supplements Parents Find Helpful
-            </h2>
-            <div className="prose max-w-none text-gray-700 space-y-4">
-              <p className="leading-relaxed">
-                Parents in the ARFID community often share what works for them. While every child is different, here are some 
-                categories of supplements that are frequently mentioned as being helpful.
-              </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                  <h3 className="font-semibold text-gray-900 mb-2">Unflavoured Multivitamin Powders</h3>
-                  <p className="text-sm text-gray-600">
-                    Designed to be mixed into foods like yogurt, purees, or drinks without changing the taste or texture significantly.
-                  </p>
-                </div>
+        {/* Supplements Parents Find Helpful */}
+        <div className="bg-white rounded-xl shadow-lg p-8">
+          <SectionReminder text="Mention of these products does not imply endorsement. Checking with your child's doctor or registered dietician is recommended." />
+          <h2 className="text-3xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+            <span className="text-3xl">🌟</span>
+            Supplements Parents Find Helpful
+          </h2>
+          <div className="prose max-w-none text-gray-700 space-y-4">
+            <p className="leading-relaxed">
+              Parents in the ARFID community often share what works for them. While every child is different, here are some
+              categories of supplements that are frequently mentioned as being helpful.
+            </p>
 
-                 <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                  <h3 className="font-semibold text-gray-900 mb-2">Liquid Drops</h3>
-                  <p className="text-sm text-gray-600">
-                    Concentrated drops (often for Vitamin D or Iron) that require very small volumes, making them easier to hide or administer quickly.
-                  </p>
-                </div>
-
-                <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                  <h3 className="font-semibold text-gray-900 mb-2">Fortified Nutritional Shakes</h3>
-                  <p className="text-sm text-gray-600">
-                    Complete nutrition drinks that can replace a meal or snack, providing calories alongside vitamins and minerals.
-                  </p>
-                </div>
-
-                <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                  <h3 className="font-semibold text-gray-900 mb-2">Dispersible Tablets</h3>
-                  <p className="text-sm text-gray-600">
-                    Tablets that dissolve instantly on the tongue or in a tiny amount of water, helpful for children who cannot swallow pills.
-                  </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                  <span>🥦</span> Truly Tasteless Powders
+                </h3>
+                <p className="text-sm text-gray-600 mb-3">
+                  Highly concentrated powders designed to be invisible in food.
+                </p>
+                <div className="bg-white p-3 rounded border border-gray-100 text-sm">
+                  <p className="font-semibold text-indigo-600 mb-1">Community Favorites:</p>
+                  <ul className="list-disc list-inside space-y-1 text-gray-700">
+                    <li><strong>ENOF:</strong> Made from organic veggies. Tiny serving size (1/12th tsp) makes it exceptionally easy to hide.</li>
+                    <li><strong>EllaOla / nutrient blends:</strong> Often noted for being truly unflavoured and texture-free in soft foods.</li>
+                  </ul>
                 </div>
               </div>
 
-              <div className="bg-gray-100 p-4 rounded-lg mt-4 text-xs text-gray-500 italic">
-                <strong>Disclaimer:</strong> The mention of these product categories does not imply endorsement by this app or its creators. 
-                Product formulations change, and what works for one child may not be suitable for another. 
-                <strong>Always check with your child's doctor or registered dietician is recommended</strong> before trying new products.
+              <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                  <span>🩸</span> Palatable Iron Options
+                </h3>
+                <p className="text-sm text-gray-600 mb-3">
+                  Iron is notoriously hard to hide, but some brands have solved the "metallic" taste.
+                </p>
+                <div className="bg-white p-3 rounded border border-gray-100 text-sm">
+                  <p className="font-semibold text-indigo-600 mb-1">Community Favorites:</p>
+                  <ul className="list-disc list-inside space-y-1 text-gray-700">
+                    <li><strong>Renzo's "Iron Strong":</strong> Melty tabs with orange flavor that dissolve quickly.</li>
+                    <li><strong>NovaFerrum:</strong> Liquid iron often accepted by kids who reject standard drops; comes in raspberry/grape.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                  <span>🔋</span> Liquid Multivitamins
+                </h3>
+                <p className="text-sm text-gray-600 mb-3">
+                  Easier to swallow than pills and can be mixed into drinks.
+                </p>
+                <div className="bg-white p-3 rounded border border-gray-100 text-sm">
+                  <p className="font-semibold text-indigo-600 mb-1">Community Favorites:</p>
+                  <ul className="list-disc list-inside space-y-1 text-gray-700">
+                    <li><strong>Mary Ruth's (Liquid Morning):</strong> Popular for taste, though check volume needed.</li>
+                    <li><strong>Detailed labelling:</strong> Parents look for "sugar-free" or "dye-free" if those are triggers.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                  <span>🍫</span> Texture-Friendly Options
+                </h3>
+                <p className="text-sm text-gray-600 mb-3">
+                  For children who can't do liquids or powders.
+                </p>
+                <div className="bg-white p-3 rounded border border-gray-100 text-sm">
+                  <p className="font-semibold text-indigo-600 mb-1">Community Favorites:</p>
+                  <ul className="list-disc list-inside space-y-1 text-gray-700">
+                    <li><strong>Dispersible Tablets:</strong> Dissolve instantly (e.g., tiny Vitamin D tablets).</li>
+                    <li><strong>Soft Chews:</strong> Sometimes preferred over gummy bears if texture is an issue.</li>
+                  </ul>
+                </div>
               </div>
             </div>
+
+            <div className="bg-gray-100 p-4 rounded-lg mt-4 text-xs text-gray-500 italic">
+              <strong>Disclaimer:</strong> The mention of these product categories does not imply endorsement by this app or its creators.
+              Product formulations change, and what works for one child may not be suitable for another.
+              <strong>Always check with your child's doctor or registered dietician is recommended</strong> before trying new products.
+            </div>
           </div>
-          
+        </div>
+
       </div>
     </AuthGuard>
   );
