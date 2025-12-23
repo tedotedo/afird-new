@@ -1342,3 +1342,4 @@ export function searchNutrients(query: string): NutrientInfo[] {
   );
 }
 
+

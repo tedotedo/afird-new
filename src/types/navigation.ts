@@ -5,3 +5,4 @@ export type RootStackParamList = {
   Results: { result: FoodAnalysisResult };
 };
 
+

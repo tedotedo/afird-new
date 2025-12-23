@@ -241,3 +241,4 @@ export default function NutrientDetailCard({ nutrient, onClose }: NutrientDetail
   );
 }
 
+

@@ -425,7 +425,7 @@ export default function SupplementsInfoPage() {
                 </div>
               </div>
 
-              <div className="bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+                <div className="bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
                 <h3 className="font-semibold text-orange-900 mb-2">Important Reminders:</h3>
                 <ul className="text-sm text-orange-800 list-disc list-inside space-y-1">
                   <li>Always check labels for age-appropriateness and maximum safe daily doses</li>
@@ -434,6 +434,18 @@ export default function SupplementsInfoPage() {
                   <li>Be aware of choking risks with chewables for younger children</li>
                   <li>Store all supplements safely out of children's reach</li>
                 </ul>
+              </div>
+
+              {/* Safe Food Protection Tip */}
+              <div className="bg-rose-50 border-l-4 border-rose-400 p-4 rounded-r-lg mt-4">
+                <h3 className="font-semibold text-rose-900 mb-2 flex items-center gap-2">
+                  <span>🛡️</span> Protecting Safe Foods
+                </h3>
+                <p className="text-sm text-rose-800 leading-relaxed">
+                  If vitamin supplements are being added to food or drinks, <strong>splitting them into divided doses</strong> can help 
+                  reduce the chances of the taste of the supplement "spoiling" a safe food for your child. Some children can be 
+                  put off from a safe food or drink permanently after experiencing an unpleasant taste change.
+                </p>
               </div>
             </div>
           </div>
@@ -722,8 +734,61 @@ export default function SupplementsInfoPage() {
           </div>
 
         </div>
+
+          {/* Supplements Parents Find Helpful */}
+          <div className="bg-white rounded-xl shadow-lg p-8">
+             <SectionReminder text="Mention of these products does not imply endorsement. Checking with your child's doctor or registered dietician is recommended." />
+            <h2 className="text-3xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+              <span className="text-3xl">🌟</span>
+              Supplements Parents Find Helpful
+            </h2>
+            <div className="prose max-w-none text-gray-700 space-y-4">
+              <p className="leading-relaxed">
+                Parents in the ARFID community often share what works for them. While every child is different, here are some 
+                categories of supplements that are frequently mentioned as being helpful.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                  <h3 className="font-semibold text-gray-900 mb-2">Unflavoured Multivitamin Powders</h3>
+                  <p className="text-sm text-gray-600">
+                    Designed to be mixed into foods like yogurt, purees, or drinks without changing the taste or texture significantly.
+                  </p>
+                </div>
+
+                 <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                  <h3 className="font-semibold text-gray-900 mb-2">Liquid Drops</h3>
+                  <p className="text-sm text-gray-600">
+                    Concentrated drops (often for Vitamin D or Iron) that require very small volumes, making them easier to hide or administer quickly.
+                  </p>
+                </div>
+
+                <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                  <h3 className="font-semibold text-gray-900 mb-2">Fortified Nutritional Shakes</h3>
+                  <p className="text-sm text-gray-600">
+                    Complete nutrition drinks that can replace a meal or snack, providing calories alongside vitamins and minerals.
+                  </p>
+                </div>
+
+                <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                  <h3 className="font-semibold text-gray-900 mb-2">Dispersible Tablets</h3>
+                  <p className="text-sm text-gray-600">
+                    Tablets that dissolve instantly on the tongue or in a tiny amount of water, helpful for children who cannot swallow pills.
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-gray-100 p-4 rounded-lg mt-4 text-xs text-gray-500 italic">
+                <strong>Disclaimer:</strong> The mention of these product categories does not imply endorsement by this app or its creators. 
+                Product formulations change, and what works for one child may not be suitable for another. 
+                <strong>Always check with your child's doctor or registered dietician is recommended</strong> before trying new products.
+              </div>
+            </div>
+          </div>
+          
       </div>
     </AuthGuard>
   );
 }
+
 
