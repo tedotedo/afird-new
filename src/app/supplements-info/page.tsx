@@ -463,7 +463,7 @@ export default function SupplementsInfoPage() {
                       </p>
                     </div>
                     <div>
-                      <strong>Flavor Masking:</strong>
+                      <strong>Flavour Masking:</strong>
                       <p className="mt-1">
                         Mixing supplements with foods that have naturally strong or sour profiles (like lemonade, orange juice, or
                         flavoured yogurt) helps mask any faint underlying vitamin taste better than mild foods like water or milk.
@@ -762,7 +762,7 @@ export default function SupplementsInfoPage() {
 
         {/* Supplements Parents Find Helpful */}
         <div className="bg-white rounded-xl shadow-lg p-8">
-          <SectionReminder text="Mention of these products does not imply endorsement. Checking with your child's doctor or registered dietician is recommended." />
+          <SectionReminder text="Mention of these products does not imply endorsement. Checking with your child's doctor or registered dietitian is recommended." />
           <h2 className="text-3xl font-bold text-gray-900 mb-4 flex items-center gap-3">
             <span className="text-3xl">🌟</span>
             Supplements Parents Find Helpful
@@ -782,10 +782,10 @@ export default function SupplementsInfoPage() {
                   Highly concentrated powders designed to be invisible in food.
                 </p>
                 <div className="bg-white p-3 rounded border border-gray-100 text-sm">
-                  <p className="font-semibold text-indigo-600 mb-1">Community Favorites:</p>
+                  <p className="font-semibold text-indigo-600 mb-1">Community Favourites:</p>
                   <ul className="list-disc list-inside space-y-1 text-gray-700">
-                    <li><strong>ENOF:</strong> Made from organic veggies. Tiny serving size (1/12th tsp) makes it exceptionally easy to hide.</li>
-                    <li><strong>EllaOla / nutrient blends:</strong> Often noted for being truly unflavoured and texture-free in soft foods.</li>
+                    <li><strong>ENOF:</strong> Made from organic veggies. Tiny serving size (1/12th tsp) makes it exceptionally easy to hide. <span className="text-gray-500 text-xs">(Available in UK via online retailers like NineLife)</span></li>
+                    <li><strong>EllaOla / nutrient blends:</strong> Often noted for being truly unflavoured and texture-free in soft foods. <span className="text-gray-500 text-xs">(International shipping to UK available)</span></li>
                   </ul>
                 </div>
               </div>
@@ -798,10 +798,10 @@ export default function SupplementsInfoPage() {
                   Iron is notoriously hard to hide, but some brands have solved the "metallic" taste.
                 </p>
                 <div className="bg-white p-3 rounded border border-gray-100 text-sm">
-                  <p className="font-semibold text-indigo-600 mb-1">Community Favorites:</p>
+                  <p className="font-semibold text-indigo-600 mb-1">Community Favourites:</p>
                   <ul className="list-disc list-inside space-y-1 text-gray-700">
-                    <li><strong>Renzo's "Iron Strong":</strong> Melty tabs with orange flavor that dissolve quickly.</li>
-                    <li><strong>NovaFerrum:</strong> Liquid iron often accepted by kids who reject standard drops; comes in raspberry/grape.</li>
+                    <li><strong>Renzo's "Iron Strong":</strong> Melty tabs with orange flavour that dissolve quickly. <span className="text-gray-500 text-xs">(Available via UK online speciality stores)</span></li>
+                    <li><strong>NovaFerrum:</strong> Liquid iron often accepted by kids who reject standard drops; comes in raspberry/grape. <span className="text-gray-500 text-xs">(Available via UK online retailers)</span></li>
                   </ul>
                 </div>
               </div>
@@ -814,9 +814,9 @@ export default function SupplementsInfoPage() {
                   Easier to swallow than pills and can be mixed into drinks.
                 </p>
                 <div className="bg-white p-3 rounded border border-gray-100 text-sm">
-                  <p className="font-semibold text-indigo-600 mb-1">Community Favorites:</p>
+                  <p className="font-semibold text-indigo-600 mb-1">Community Favourites:</p>
                   <ul className="list-disc list-inside space-y-1 text-gray-700">
-                    <li><strong>Mary Ruth's (Liquid Morning):</strong> Popular for taste, though check volume needed.</li>
+                    <li><strong>Mary Ruth's (Liquid Morning):</strong> Popular for taste, though check volume needed. <span className="text-gray-500 text-xs">(Widely available in UK via Healf, Planet Organic, etc.)</span></li>
                     <li><strong>Detailed labelling:</strong> Parents look for "sugar-free" or "dye-free" if those are triggers.</li>
                   </ul>
                 </div>
@@ -830,7 +830,7 @@ export default function SupplementsInfoPage() {
                   For children who can't do liquids or powders.
                 </p>
                 <div className="bg-white p-3 rounded border border-gray-100 text-sm">
-                  <p className="font-semibold text-indigo-600 mb-1">Community Favorites:</p>
+                  <p className="font-semibold text-indigo-600 mb-1">Community Favourites:</p>
                   <ul className="list-disc list-inside space-y-1 text-gray-700">
                     <li><strong>Dispersible Tablets:</strong> Dissolve instantly (e.g., tiny Vitamin D tablets).</li>
                     <li><strong>Soft Chews:</strong> Sometimes preferred over gummy bears if texture is an issue.</li>
@@ -842,7 +842,7 @@ export default function SupplementsInfoPage() {
             <div className="bg-gray-100 p-4 rounded-lg mt-4 text-xs text-gray-500 italic">
               <strong>Disclaimer:</strong> The mention of these product categories does not imply endorsement by this app or its creators.
               Product formulations change, and what works for one child may not be suitable for another.
-              <strong>Always check with your child's doctor or registered dietician is recommended</strong> before trying new products.
+              <strong>Always check with your child's doctor or registered dietitian is recommended</strong> before trying new products.
             </div>
           </div>
         </div>
