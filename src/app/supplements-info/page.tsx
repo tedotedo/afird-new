@@ -786,6 +786,7 @@ export default function SupplementsInfoPage() {
                   <ul className="list-disc list-inside space-y-1 text-gray-700">
                     <li><strong>ENOF:</strong> Made from organic veggies. Tiny serving size (1/12th tsp) makes it exceptionally easy to hide. <span className="text-gray-500 text-xs">(Available in UK via online retailers like NineLife)</span></li>
                     <li><strong>EllaOla / nutrient blends:</strong> Often noted for being truly unflavoured and texture-free in soft foods. <span className="text-gray-500 text-xs">(International shipping to UK available)</span></li>
+                    <li><strong>Nutrigen Vitamixin Sprinkles:</strong> Tasteless powder sachets designed to be mixed into semi-solid food. <span className="text-gray-500 text-xs">(Available in UK via Holland & Barrett and online pharmacies)</span></li>
                   </ul>
                 </div>
               </div>
@@ -802,6 +803,7 @@ export default function SupplementsInfoPage() {
                   <ul className="list-disc list-inside space-y-1 text-gray-700">
                     <li><strong>Renzo's "Iron Strong":</strong> Melty tabs with orange flavour that dissolve quickly. <span className="text-gray-500 text-xs">(Available via UK online speciality stores)</span></li>
                     <li><strong>NovaFerrum:</strong> Liquid iron often accepted by kids who reject standard drops; comes in raspberry/grape. <span className="text-gray-500 text-xs">(Available via UK online retailers)</span></li>
+                    <li><strong>Spatone:</strong> Natural liquid iron sachets (apple flavour or original). Can be mixed into juice. <span className="text-gray-500 text-xs">(Widely available in UK supermarkets and pharmacies)</span></li>
                   </ul>
                 </div>
               </div>
