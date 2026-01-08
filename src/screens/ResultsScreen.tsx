@@ -188,7 +188,6 @@ export default function ResultsScreen() {
           </div>
         )}
 
-        <NutritionCard nutritionalData={result.nutritionalData} />
 
         {/* New Food Tracking */}
         <div className="bg-purple-50 border-2 border-purple-400 rounded-xl p-6 mt-6">

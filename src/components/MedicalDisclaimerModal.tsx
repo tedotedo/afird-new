@@ -43,6 +43,11 @@ export default function MedicalDisclaimerModal({ onAccept }: MedicalDisclaimerMo
                 for professional medical, dietary, or nutritional advice, diagnosis, or treatment. The information provided through 
                 this app is for informational purposes only.
               </p>
+              <p className="text-sm leading-relaxed mt-2">
+                Nutritional analyses are estimates generated from AI image recognition and food composition databases. Actual nutritional
+                content may differ and results should be used for general awareness only, not for medical or therapeutic decisions.
+                Always consult a healthcare professional, dietitian, or feeding therapist for dietary concerns, especially when managing ARFID.
+              </p>
             </div>
 
             <div>
