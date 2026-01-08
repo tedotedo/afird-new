@@ -6,6 +6,7 @@ import AuthGuard from '@/components/AuthGuard';
 import { GrowthTrendChart } from '@/components/GrowthTrendChart';
 import { format, subDays, subWeeks, subMonths, startOfWeek, endOfWeek } from 'date-fns';
 import Link from 'next/link';
+import jsPDF from 'jspdf';
 
 type TimeRange = '1week' | '2weeks' | '1month' | '3months' | '6months' | 'custom';
 
@@ -38,24 +39,77 @@ export default function TrendsPage() {
 
   const handleDownload = () => {
     const { startDate, endDate } = getDateRange();
-    const data = {
-      dateRange: { startDate, endDate },
-      child: selectedChild ? selectedChild.name : 'Parent',
-      growthData,
-      nutritionData,
-      groupBy,
-      generatedAt: new Date().toISOString()
-    };
 
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `trends-${startDate}-to-${endDate}.json`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    const doc = new jsPDF();
+    let y = 18;
+
+    // Header
+    doc.setFontSize(18);
+    doc.text('Health Trends Summary', 10, y);
+    y += 10;
+
+    doc.setFontSize(11);
+    doc.text(`Date range: ${startDate} to ${endDate}`, 10, y);
+    y += 6;
+    doc.text(`Person: ${selectedChild ? selectedChild.name : 'Parent'}`, 10, y);
+    y += 10;
+
+    // Growth overview
+    doc.setFontSize(13);
+    doc.text('Growth overview', 10, y);
+    y += 6;
+    doc.setFontSize(11);
+
+    if (growthData && growthData.length > 0) {
+      const first = growthData[0];
+      const last = growthData[growthData.length - 1];
+      doc.text(`Measurements in range: ${growthData.length}`, 10, y); y += 6;
+      if (last.height_cm) {
+        doc.text(`Latest height: ${last.height_cm} cm`, 10, y); y += 6;
+      }
+      if (last.weight_kg) {
+        doc.text(`Latest weight: ${last.weight_kg} kg`, 10, y); y += 6;
+      }
+      if (last.bmi) {
+        doc.text(`Latest BMI: ${last.bmi}`, 10, y); y += 6;
+      }
+    } else {
+      doc.text('No growth measurements for this period.', 10, y);
+      y += 6;
+    }
+
+    y += 4;
+
+    // Nutrition overview
+    doc.setFontSize(13);
+    doc.text('Nutrition overview', 10, y);
+    y += 6;
+    doc.setFontSize(11);
+
+    if (nutritionData && nutritionData.length > 0) {
+      doc.text(`Days with nutrition data: ${nutritionData.length}`, 10, y);
+      y += 6;
+      const latest = nutritionData[nutritionData.length - 1];
+      const lines = doc.splitTextToSize(
+        'This summary reflects nutrients from logged meals only. Supplements are not included and values are approximate.',
+        180
+      );
+      doc.text(lines, 10, y);
+      y += lines.length * 6;
+    } else {
+      doc.text('No nutrition entries for this period.', 10, y);
+      y += 6;
+    }
+
+    y += 4;
+    doc.setFontSize(10);
+    const disclaimerLines = doc.splitTextToSize(
+      'This PDF is for tracking purposes only and is not medical advice. Nutritional analyses are estimates based on AI image recognition and food databases and may not reflect actual nutritional content. Do not rely on this information for medical or therapeutic decisions. Always consult a healthcare professional, dietitian, or feeding therapist, especially when managing ARFID.',
+      180
+    );
+    doc.text(disclaimerLines, 10, y);
+
+    doc.save(`trends-${startDate}-to-${endDate}.pdf`);
   };
 
   const handlePrint = () => {
@@ -506,13 +560,13 @@ export default function TrendsPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                     </svg>
                   </div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Download data</h3>
-                  <p className="text-sm text-gray-600 mb-3">Save trend data to share via email with your healthcare provider</p>
+                  <h3 className="font-semibold text-gray-900 mb-2">Download summary</h3>
+                  <p className="text-sm text-gray-600 mb-3">Save a PDF trends summary to share via email with your healthcare provider</p>
                   <button
                     onClick={handleDownload}
                     className="text-sm text-blue-600 hover:text-blue-700 font-semibold"
                   >
-                    Download JSON →
+                    Download PDF →
                   </button>
                 </div>
 
