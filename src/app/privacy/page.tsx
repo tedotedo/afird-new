@@ -362,6 +362,9 @@ export default function PrivacyPolicyPage() {
                   <strong> NOT</strong> provide medical advice, diagnosis, or treatment. Always consult with qualified
                   healthcare professionals for medical concerns.
                 </p>
+                <p className="text-gray-700 leading-relaxed mt-2">
+                  This tool is for tracking purposes only and is not medical advice. Nutritional analyses are estimates based on AI image recognition and food databases. Results may not reflect actual nutritional content and should be used for general awareness only. Do not rely on this information for medical or therapeutic decisions. Always consult a healthcare professional, dietitian, or feeding therapist for dietary concerns, especially regarding ARFID management.
+                </p>
               </div>
 
               <div>
