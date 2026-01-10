@@ -194,6 +194,11 @@ NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_api_key
 RESEND_API_KEY=your_resend_api_key
 RESEND_FEEDBACK_TO=you@yourdomain.com
 RESEND_FEEDBACK_FROM=ARFID Wellness Tracker <no-reply@yourdomain.com>
+
+# Notes:
+# - In Netlify, set these under Site settings → Build & deploy → Environment.
+# - RESEND_FEEDBACK_FROM must be a verified sender/domain in Resend or emails may fail.
+# - If only some RESEND_* variables are set, /api/feedback will return an error to highlight the misconfiguration.
 ```
 
 ## Next Steps

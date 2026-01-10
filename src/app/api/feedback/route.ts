@@ -12,7 +12,14 @@ function getResendConfig() {
   const apiKey = process.env.RESEND_API_KEY || '';
   const to = process.env.RESEND_FEEDBACK_TO || process.env.RESEND_TO || '';
   const from = process.env.RESEND_FEEDBACK_FROM || process.env.RESEND_FROM || 'onboarding@resend.dev';
-  return { apiKey, to, from };
+
+  const explicitlyConfigured = Boolean(apiKey || to || process.env.RESEND_FEEDBACK_FROM || process.env.RESEND_FROM);
+  const enabled = Boolean(apiKey && to);
+  const missing: string[] = [];
+  if (!apiKey) missing.push('RESEND_API_KEY');
+  if (!to) missing.push('RESEND_FEEDBACK_TO');
+
+  return { apiKey, to, from, enabled, explicitlyConfigured, missing };
 }
 
 async function sendFeedbackEmail(params: {
@@ -24,11 +31,10 @@ async function sendFeedbackEmail(params: {
   userId: string | null;
   userAgent: string | null;
 }) {
-  const { apiKey, to, from } = getResendConfig();
+  const { apiKey, to, from, enabled } = getResendConfig();
 
-  // If not configured, silently skip email sending.
-  if (!apiKey || !to) {
-    return { skipped: true as const };
+  if (!enabled) {
+    return { skipped: true as const, reason: 'not_configured' as const };
   }
 
   const subjectParts = ['ARFID Feedback'];
@@ -78,7 +84,18 @@ async function sendFeedbackEmail(params: {
     throw new Error(`Resend send failed (${res.status}): ${errorText}`);
   }
 
-  return { skipped: false as const };
+  const responseText = await res.text();
+  let resendId: string | undefined;
+  if (responseText) {
+    try {
+      const parsed = JSON.parse(responseText) as { id?: string };
+      resendId = parsed?.id;
+    } catch {
+      // ignore non-JSON bodies
+    }
+  }
+
+  return { skipped: false as const, resendId };
 }
 
 function escapeHtml(input: string) {
@@ -146,9 +163,23 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // If Resend env vars are partially configured, surface it (otherwise email can be silently skipped).
+    const resendConfig = getResendConfig();
+    if (resendConfig.explicitlyConfigured && !resendConfig.enabled) {
+      return NextResponse.json(
+        {
+          error: 'Resend is partially configured for feedback emails',
+          details: `Missing environment variables: ${resendConfig.missing.join(', ')}`,
+        },
+        { status: 500 }
+      );
+    }
+
     // If Resend is configured, also email the feedback.
+    let emailStatus: 'skipped' | 'sent' | 'failed' = 'skipped';
+    let resendId: string | undefined;
     try {
-      await sendFeedbackEmail({
+      const emailResult = await sendFeedbackEmail({
         feedbackType: feedback_type || 'other',
         rating: rating ?? null,
         message: message.trim(),
@@ -157,11 +188,19 @@ export async function POST(request: NextRequest) {
         userId: user?.id || null,
         userAgent: request.headers.get('user-agent'),
       });
+
+      if (emailResult.skipped) {
+        emailStatus = 'skipped';
+      } else {
+        emailStatus = 'sent';
+        resendId = emailResult.resendId;
+      }
     } catch (emailErr: any) {
       console.error('Failed sending feedback email via Resend:', emailErr);
+      emailStatus = 'failed';
+
       // If Resend is configured, surface the failure so it's not silently "lost".
-      const { apiKey, to } = getResendConfig();
-      if (apiKey && to) {
+      if (resendConfig.enabled) {
         return NextResponse.json(
           { error: 'Feedback saved, but failed to email via Resend', details: emailErr?.message || String(emailErr) },
           { status: 502 }
@@ -169,7 +208,16 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    return NextResponse.json({ message: 'Feedback submitted successfully' }, { status: 201 });
+    return NextResponse.json(
+      {
+        message: 'Feedback submitted successfully',
+        email: {
+          status: emailStatus,
+          ...(resendId ? { resendId } : {}),
+        },
+      },
+      { status: 201 }
+    );
   } catch (err: any) {
     console.error('Unexpected error submitting feedback:', err);
     return NextResponse.json(
