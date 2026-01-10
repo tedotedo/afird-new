@@ -7,6 +7,7 @@ import { ConsentProvider } from '@/contexts/ConsentContext';
 import ConsentManager from '@/components/ConsentManager';
 import FeedbackWidget from '@/components/FeedbackWidget';
 import ScrollButton from '@/components/ScrollButton';
+import ChunkReloadOnFailure from '@/components/ChunkReloadOnFailure';
 
 export const metadata: Metadata = {
   title: 'ARFID Wellness Tracker',
@@ -38,6 +39,7 @@ export default function RootLayout({
             <ConsentManager />
             <FeedbackWidget />
             <ScrollButton />
+            <ChunkReloadOnFailure />
           </ChildProvider>
         </ConsentProvider>
       </body>

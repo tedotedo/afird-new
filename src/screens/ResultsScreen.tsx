@@ -151,6 +151,11 @@ export default function ResultsScreen() {
 
         <DateTimeDisplay dateTime={result.dateTime} />
 
+        <div className="mt-6">
+          <h2 className="text-xl font-bold text-gray-800 mb-4">Food Analysis</h2>
+          <NutritionCard nutritionalData={result.nutritionalData} />
+        </div>
+
         {/* Selected Child Indicator */}
         {selectedChild && (
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">

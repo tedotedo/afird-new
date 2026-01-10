@@ -37,13 +37,25 @@ export default function FeedbackWidget() {
       });
 
       if (!response.ok) {
-        const data = await response.json();
-        console.error('Feedback submission failed:', data);
-        throw new Error(data.error || 'Failed to submit feedback');
+        const text = await response.text();
+        try {
+          const data = JSON.parse(text);
+          throw new Error(data.error || 'Failed to submit feedback');
+        } catch {
+          throw new Error(text || 'Failed to submit feedback');
+        }
       }
 
-      const result = await response.json();
-      console.log('Feedback submitted successfully:', result);
+      // Some deployments/proxies may return an empty body; treat 2xx as success.
+      // (No UI changes; this just avoids JSON parse failures.)
+      const bodyText = await response.text();
+      if (bodyText) {
+        try {
+          JSON.parse(bodyText);
+        } catch {
+          // ignore non-JSON success bodies
+        }
+      }
 
       setSubmitted(true);
       

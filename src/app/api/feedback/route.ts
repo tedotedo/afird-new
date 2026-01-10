@@ -1,6 +1,95 @@
 import { createClient } from '@/lib/supabase/server';
 import { NextRequest, NextResponse } from 'next/server';
 
+type FeedbackBody = {
+  feedback_type?: string;
+  rating?: number | null;
+  message?: string;
+  page_url?: string | null;
+};
+
+function getResendConfig() {
+  const apiKey = process.env.RESEND_API_KEY || '';
+  const to = process.env.RESEND_FEEDBACK_TO || process.env.RESEND_TO || '';
+  const from = process.env.RESEND_FEEDBACK_FROM || process.env.RESEND_FROM || 'onboarding@resend.dev';
+  return { apiKey, to, from };
+}
+
+async function sendFeedbackEmail(params: {
+  feedbackType: string;
+  rating: number | null;
+  message: string;
+  pageUrl: string | null;
+  userEmail: string | null;
+  userId: string | null;
+  userAgent: string | null;
+}) {
+  const { apiKey, to, from } = getResendConfig();
+
+  // If not configured, silently skip email sending.
+  if (!apiKey || !to) {
+    return { skipped: true as const };
+  }
+
+  const subjectParts = ['ARFID Feedback'];
+  if (params.feedbackType) subjectParts.push(`[${params.feedbackType}]`);
+  if (params.rating) subjectParts.push(`(${params.rating}/5)`);
+  const subject = subjectParts.join(' ');
+
+  const text = [
+    `Type: ${params.feedbackType || 'other'}`,
+    `Rating: ${params.rating ?? 'N/A'}`,
+    `User: ${params.userEmail ?? 'anonymous'}${params.userId ? ` (${params.userId})` : ''}`,
+    `Page: ${params.pageUrl ?? 'N/A'}`,
+    `User-Agent: ${params.userAgent ?? 'N/A'}`,
+    '',
+    params.message,
+  ].join('\n');
+
+  const html = `
+    <h2>New Feedback</h2>
+    <ul>
+      <li><strong>Type:</strong> ${escapeHtml(params.feedbackType || 'other')}</li>
+      <li><strong>Rating:</strong> ${params.rating ?? 'N/A'}</li>
+      <li><strong>User:</strong> ${escapeHtml(params.userEmail ?? 'anonymous')}${params.userId ? ` (${escapeHtml(params.userId)})` : ''}</li>
+      <li><strong>Page:</strong> ${params.pageUrl ? `<a href="${escapeHtml(params.pageUrl)}">${escapeHtml(params.pageUrl)}</a>` : 'N/A'}</li>
+      <li><strong>User-Agent:</strong> ${escapeHtml(params.userAgent ?? 'N/A')}</li>
+    </ul>
+    <pre style="white-space:pre-wrap;word-break:break-word">${escapeHtml(params.message)}</pre>
+  `.trim();
+
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from,
+      to,
+      subject,
+      text,
+      html,
+    }),
+  });
+
+  if (!res.ok) {
+    const errorText = await res.text();
+    throw new Error(`Resend send failed (${res.status}): ${errorText}`);
+  }
+
+  return { skipped: false as const };
+}
+
+function escapeHtml(input: string) {
+  return input
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
+
 // POST - Submit feedback
 export async function POST(request: NextRequest) {
   const supabase = await createClient();
@@ -8,7 +97,7 @@ export async function POST(request: NextRequest) {
   try {
     const { data: { user } } = await supabase.auth.getUser();
     
-    const body = await request.json();
+    const body = (await request.json()) as FeedbackBody;
     const { feedback_type, rating, message, page_url } = body;
 
     // Validate message
@@ -57,10 +146,30 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    return NextResponse.json(
-      { message: 'Feedback submitted successfully' },
-      { status: 201 }
-    );
+    // If Resend is configured, also email the feedback.
+    try {
+      await sendFeedbackEmail({
+        feedbackType: feedback_type || 'other',
+        rating: rating ?? null,
+        message: message.trim(),
+        pageUrl: page_url || null,
+        userEmail: user?.email || null,
+        userId: user?.id || null,
+        userAgent: request.headers.get('user-agent'),
+      });
+    } catch (emailErr: any) {
+      console.error('Failed sending feedback email via Resend:', emailErr);
+      // If Resend is configured, surface the failure so it's not silently "lost".
+      const { apiKey, to } = getResendConfig();
+      if (apiKey && to) {
+        return NextResponse.json(
+          { error: 'Feedback saved, but failed to email via Resend', details: emailErr?.message || String(emailErr) },
+          { status: 502 }
+        );
+      }
+    }
+
+    return NextResponse.json({ message: 'Feedback submitted successfully' }, { status: 201 });
   } catch (err: any) {
     console.error('Unexpected error submitting feedback:', err);
     return NextResponse.json(
