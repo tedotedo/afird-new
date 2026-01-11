@@ -7,6 +7,13 @@ import { analyzeFoodImage } from '@/services/geminiService';
 import { FoodAnalysisResult } from '@/types/nutrition';
 import ChristmasLoading from '@/components/ChristmasLoading';
 
+const INSTALL_SNOOZE_KEY = 'pwaInstallDismissedUntil';
+const INSTALL_HIDE_KEY = 'pwaInstallHideForever';
+const PROMPT_COOLDOWN_DAYS = 7;
+
+const DISCLAIMER_LAST_SHOWN_KEY = 'medicalDisclaimerLastShown';
+const DISCLAIMER_INTERVAL_DAYS = 7;
+
 export default function CameraScreen() {
   const router = useRouter();
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -18,6 +25,7 @@ export default function CameraScreen() {
   const [facingMode, setFacingMode] = useState<'user' | 'environment'>('environment');
   const [cameraStarted, setCameraStarted] = useState(false);
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
+  const [showDisclaimer, setShowDisclaimer] = useState(false);
 
   const handleGalleryClick = () => {
     if (galleryInputRef.current) {
@@ -31,34 +39,39 @@ export default function CameraScreen() {
     }
   };
 
-  const INSTALL_SNOOZE_KEY = 'pwaInstallDismissedUntil';
-  const INSTALL_HIDE_KEY = 'pwaInstallHideForever';
-  const PROMPT_COOLDOWN_DAYS = 7;
-
   useEffect(() => {
-    // Detect if app is already installed / standalone; show prompt otherwise (respect snooze/forever hide)
     if (typeof window !== 'undefined') {
+      // Detect if app is already installed / standalone; show prompt otherwise (respect snooze/forever hide)
       const isStandalone = window.matchMedia?.('(display-mode: standalone)').matches || (window.navigator as any).standalone;
-      if (isStandalone) {
-        setShowInstallPrompt(false);
-        return;
-      }
-      try {
-        const hideForever = localStorage.getItem(INSTALL_HIDE_KEY) === 'true';
-        if (hideForever) {
-          setShowInstallPrompt(false);
-          return;
+      if (!isStandalone) {
+        try {
+          const hideForever = localStorage.getItem(INSTALL_HIDE_KEY) === 'true';
+          if (!hideForever) {
+            const dismissedUntil = parseInt(localStorage.getItem(INSTALL_SNOOZE_KEY) || '0', 10);
+            const now = Date.now();
+            if (!dismissedUntil || dismissedUntil <= now) {
+              setShowInstallPrompt(true);
+            }
+          }
+        } catch (e) {
+          // If storage unavailable, fall back to showing prompt
+          setShowInstallPrompt(true);
         }
-        const dismissedUntil = parseInt(localStorage.getItem(INSTALL_SNOOZE_KEY) || '0', 10);
+      }
+
+      // Decide whether to show the medical disclaimer banner (first time, then once a week)
+      try {
+        const lastShownRaw = localStorage.getItem(DISCLAIMER_LAST_SHOWN_KEY);
+        const lastShown = lastShownRaw ? parseInt(lastShownRaw, 10) : 0;
         const now = Date.now();
-        if (dismissedUntil && dismissedUntil > now) {
-          setShowInstallPrompt(false);
-          return;
+        const intervalMs = DISCLAIMER_INTERVAL_DAYS * 24 * 60 * 60 * 1000;
+        if (!lastShown || now - lastShown >= intervalMs) {
+          setShowDisclaimer(true);
         }
       } catch (e) {
-        // If storage unavailable, fall back to showing prompt
+        // If storage unavailable, still show the disclaimer
+        setShowDisclaimer(true);
       }
-      setShowInstallPrompt(true);
     }
   }, []);
 
@@ -295,14 +308,32 @@ export default function CameraScreen() {
                 </ul>
               </div>
               
-              {/* Disclaimer */}
-              <div className="bg-yellow-900/30 border border-yellow-400/30 rounded-lg p-3 backdrop-blur-sm text-left">
-                <p className="text-xs text-yellow-100 leading-relaxed">
-                  <strong>Important:</strong> Nutritional analyses are estimates based on AI image recognition and food databases. 
-                  Accuracy can vary significantly. This tool is for tracking purposes only and is not medical advice. 
-                  Always consult a healthcare professional for dietary or medical concerns.
-                </p>
-              </div>
+              {/* Disclaimer - first time, then once a week */}
+              {showDisclaimer && (
+                <div className="bg-yellow-900/30 border border-yellow-400/30 rounded-lg p-3 backdrop-blur-sm text-left">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                    <p className="text-xs text-yellow-100 leading-relaxed sm:pr-4">
+                      <strong>Important:</strong> Nutritional analyses are estimates based on AI image recognition and food databases. 
+                      Accuracy can vary significantly. This tool is for tracking purposes only and is not medical advice. 
+                      Always consult a healthcare professional for dietary or medical concerns.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setShowDisclaimer(false);
+                        try {
+                          localStorage.setItem(DISCLAIMER_LAST_SHOWN_KEY, Date.now().toString());
+                        } catch (e) {
+                          // Ignore storage issues
+                        }
+                      }}
+                      className="mt-2 inline-flex items-center justify-center rounded-md border border-yellow-300/60 bg-yellow-800/40 px-3 py-1 text-[11px] font-semibold text-yellow-50 hover:bg-yellow-700/60 sm:mt-0 flex-shrink-0"
+                    >
+                      Got it
+                    </button>
+                  </div>
+                </div>
+              )}
               
               <div className="flex flex-col gap-3">
                 <button
