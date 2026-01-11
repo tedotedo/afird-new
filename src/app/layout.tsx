@@ -12,6 +12,10 @@ import ChunkReloadOnFailure from '@/components/ChunkReloadOnFailure';
 export const metadata: Metadata = {
   title: 'ARFID Wellness Tracker',
   description: 'Supporting families managing Avoidant/Restrictive Food Intake Disorder',
+  applicationName: 'ArfidWellness',
+  appleWebApp: {
+    title: 'ArfidWellness',
+  },
   icons: {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
