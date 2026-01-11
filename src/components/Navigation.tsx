@@ -55,6 +55,7 @@ export default function Navigation() {
     monitor: [
       { href: '/summary', label: 'Summary', icon: '📊' },
       { href: '/trends', label: 'Trends', icon: '📈' },
+      { href: '/bmi-trends', label: 'BMI Trends', icon: '⚖️' },
       { href: '/goals', label: 'Goals', icon: '🎯' },
       { href: '/nutrition-info', label: 'Nutrition Info', icon: '🥗' },
       { href: '/supplements-info', label: 'Supplement Guidance', icon: '💊' },

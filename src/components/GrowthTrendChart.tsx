@@ -14,6 +14,10 @@ interface GrowthTrendChartProps {
   title: string;
   color?: string;
   unit: string;
+  /** Optional date format for X-axis labels (default: 'MMM d') */
+  dateFormat?: string;
+  /** Optional date format for tooltip/full date (default: 'PPP') */
+  fullDateFormat?: string;
 }
 
 export function GrowthTrendChart({
@@ -22,12 +26,14 @@ export function GrowthTrendChart({
   title,
   color = '#3b82f6',
   unit,
+  dateFormat = 'MMM d',
+  fullDateFormat = 'PPP',
 }: GrowthTrendChartProps) {
   // Format data for chart
   const chartData = data.map((point) => ({
     ...point,
-    displayDate: format(new Date(point.date), 'MMM d'),
-    fullDate: format(new Date(point.date), 'PPP'),
+    displayDate: format(new Date(point.date), dateFormat),
+    fullDate: format(new Date(point.date), fullDateFormat),
   }));
 
   // Custom tooltip
