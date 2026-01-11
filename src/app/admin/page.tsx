@@ -72,7 +72,7 @@ export default function AdminPage() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to fetch statistics');
+        throw new Error(errorData.error || "We couldn't load admin statistics.");
       }
 
       const data = await response.json();
@@ -83,7 +83,8 @@ export default function AdminPage() {
         localStorage.setItem('admin_api_key', key);
       }
     } catch (err: any) {
-      setError(err.message || 'Failed to fetch statistics');
+      console.error('Error fetching admin statistics:', err);
+      setError("We couldn't load admin statistics. Please check the API key and try again.");
       setStats(null);
     } finally {
       setLoading(false);

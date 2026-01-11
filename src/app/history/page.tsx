@@ -31,7 +31,8 @@ export default function HistoryPage() {
       try {
         await deleteEntry(entryId);
       } catch (err) {
-        alert('Failed to delete entry');
+        console.error('Error deleting entry from history page:', err);
+        // Error banner from useFoodEntries will show a message; no extra alert needed.
       }
     }
   };

@@ -67,12 +67,16 @@ export default function GoalsPage() {
       setLoading(true);
       setError(null);
 
-      const childParam = selectedChild ? `?childId=${selectedChild.id}` : '';
+      const params = new URLSearchParams();
+      if (selectedChild) {
+        params.append('childId', selectedChild.id);
+      }
+      params.append('isActive', 'true');
       
       // Fetch goals
-      const goalsResponse = await fetch(`/api/nutrition-goals${childParam}&isActive=true`);
+      const goalsResponse = await fetch(`/api/nutrition-goals?${params.toString()}`);
       if (!goalsResponse.ok) {
-        throw new Error('Failed to fetch goals');
+        throw new Error("Sorry, we couldn't load your goals. Please try again.");
       }
       const goalsData = await goalsResponse.json();
       setGoals(goalsData);
@@ -90,7 +94,8 @@ export default function GoalsPage() {
       }
 
     } catch (err: any) {
-      setError(err.message || 'Failed to load goals');
+      console.error('Error loading goals', err);
+      setError("We couldn't load your goals right now. Please check your connection and try again.");
     } finally {
       setLoading(false);
     }

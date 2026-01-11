@@ -74,13 +74,14 @@ export default function SummaryPage() {
       
       const response = await fetch(url);
       if (!response.ok) {
-        throw new Error('Failed to fetch summary');
+        throw new Error('SUMMARY_FETCH_FAILED');
       }
 
       const data = await response.json();
       setSummary(data);
     } catch (err: any) {
-      setError(err.message || 'Failed to fetch daily summary');
+      console.error('Error fetching daily summary:', err);
+      setError("We couldn't load this day's summary. Please try again.");
     } finally {
       setLoading(false);
     }

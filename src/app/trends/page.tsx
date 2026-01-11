@@ -205,7 +205,7 @@ export default function TrendsPage() {
       setNutritionData(nutritionResult.trends || []);
     } catch (err: any) {
       console.error('Error fetching trends:', err);
-      setError(err.message);
+      setError("We couldn't load your trends right now. Please try again.");
     } finally {
       setLoading(false);
     }

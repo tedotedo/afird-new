@@ -49,14 +49,14 @@ export default function ProfilePage() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to fetch children');
+        throw new Error(data.error || 'CHILDREN_FETCH_FAILED');
       }
 
       setChildren(data.children);
       setError(null);
     } catch (err: any) {
       console.error('Error fetching children:', err);
-      setError(err.message);
+      setError("We couldn't load your family profiles right now. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -102,7 +102,7 @@ export default function ProfilePage() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to add child');
+        throw new Error(data.error || "We couldn't add this child profile. Please try again.");
       }
 
       // Reset form
@@ -118,7 +118,7 @@ export default function ProfilePage() {
       await fetchChildren();
     } catch (err: any) {
       console.error('Error adding child:', err);
-      setError(err.message);
+      setError("We couldn't add this child profile. Please try again.");
     }
   };
 
@@ -134,13 +134,13 @@ export default function ProfilePage() {
 
       if (!response.ok) {
         const data = await response.json();
-        throw new Error(data.error || 'Failed to delete child');
+        throw new Error(data.error || "We couldn't delete this child profile. Please try again.");
       }
 
       await fetchChildren();
     } catch (err: any) {
       console.error('Error deleting child:', err);
-      setError(err.message);
+      setError("We couldn't delete this child profile. Please try again.");
     }
   };
 
@@ -165,7 +165,7 @@ export default function ProfilePage() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to add measurement');
+        throw new Error(data.error || "We couldn't save this measurement. Please try again.");
       }
 
       // Reset form
@@ -180,7 +180,7 @@ export default function ProfilePage() {
       await fetchChildren();
     } catch (err: any) {
       console.error('Error adding measurement:', err);
-      setError(err.message);
+      setError("We couldn't save this measurement. Please try again.");
     }
   };
 

@@ -44,13 +44,14 @@ export function useFoodEntries(options: UseFoodEntriesOptions = {}) {
 
       const response = await fetch(`/api/food-entries?${params.toString()}`);
       if (!response.ok) {
-        throw new Error('Failed to fetch entries');
+        throw new Error('ENTRIES_FETCH_FAILED');
       }
 
       const data = await response.json();
       setEntries(data.entries || []);
     } catch (err: any) {
-      setError(err.message || 'Failed to fetch entries');
+      console.error('Error fetching food entries:', err);
+      setError("We couldn't load your food entries right now. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -94,7 +95,7 @@ export function useFoodEntries(options: UseFoodEntriesOptions = {}) {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to save entry');
+        throw new Error(errorData.error || "We couldn't save this entry. Please try again.");
       }
 
       const data = await response.json();
@@ -105,7 +106,8 @@ export function useFoodEntries(options: UseFoodEntriesOptions = {}) {
 
       return newEntry;
     } catch (err: any) {
-      setError(err.message || 'Failed to save entry');
+      console.error('Error saving food entry:', err);
+      setError("We couldn't save this entry. Please try again.");
       throw err;
     } finally {
       setLoading(false);
@@ -123,13 +125,14 @@ export function useFoodEntries(options: UseFoodEntriesOptions = {}) {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to delete entry');
+        throw new Error(errorData.error || "We couldn't delete this entry. Please try again.");
       }
 
       // Remove from local state
       setEntries((prev) => prev.filter((entry) => entry.id !== entryId));
     } catch (err: any) {
-      setError(err.message || 'Failed to delete entry');
+      console.error('Error deleting food entry:', err);
+      setError("We couldn't delete this entry. Please try again.");
       throw err;
     } finally {
       setLoading(false);

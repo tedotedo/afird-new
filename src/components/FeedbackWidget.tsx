@@ -40,9 +40,9 @@ export default function FeedbackWidget() {
         const text = await response.text();
         try {
           const data = JSON.parse(text);
-          throw new Error(data.error || 'Failed to submit feedback');
+          throw new Error(data.error || "Sorry, we couldn't send your feedback. Please try again.");
         } catch {
-          throw new Error(text || 'Failed to submit feedback');
+          throw new Error(text || "Sorry, we couldn't send your feedback. Please try again.");
         }
       }
 
@@ -68,7 +68,8 @@ export default function FeedbackWidget() {
         setSubmitted(false);
       }, 2000);
     } catch (err: any) {
-      setError(err.message || 'Failed to submit feedback');
+      console.error('Error submitting feedback:', err);
+      setError("Sorry, we couldn't send your feedback. Please try again.");
     } finally {
       setSubmitting(false);
     }

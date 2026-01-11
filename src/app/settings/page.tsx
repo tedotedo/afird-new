@@ -41,14 +41,15 @@ export default function SettingsPage() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to delete account');
+        throw new Error(data.error || "ACCOUNT_DELETE_FAILED");
       }
 
       // Redirect to login after successful deletion
       alert(data.message || 'Account deleted successfully');
       router.push('/login');
     } catch (err: any) {
-      setDeleteError(err.message || 'Failed to delete account');
+      console.error('Error deleting account:', err);
+      setDeleteError("We couldn't delete your account right now. Please try again. If this keeps happening, please contact support.");
     } finally {
       setDeleting(false);
     }
