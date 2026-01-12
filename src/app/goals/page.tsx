@@ -239,14 +239,6 @@ export default function GoalsPage() {
             </div>
           )}
 
-          {/* Medical Disclaimer */}
-          <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
-            <p className="text-sm text-yellow-800">
-              <strong>Note:</strong> Goals should be set in consultation with your healthcare provider, dietitian, or physician.
-              This tool is for tracking purposes only and is not medical advice.
-            </p>
-          </div>
-
           {/* Add Goal Button */}
           <div className="flex justify-end">
             <button

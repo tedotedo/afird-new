@@ -102,57 +102,57 @@ export default function Navigation() {
   );
 
   return (
-    <nav className="bg-white shadow-md border-b border-gray-200">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          <div className="flex items-center space-x-6">
-            <Link href="/" className="text-xl font-bold text-blue-600 hover:text-blue-700 transition">
-              ARFID Wellness Tracker
+    <nav className="bg-white/95 backdrop-blur-sm border-b border-gray-100">
+      <div className="container mx-auto px-6">
+        <div className="flex items-center justify-between h-16">
+          <div className="flex items-center space-x-8">
+            <Link href="/" className="text-lg font-semibold text-gray-700 hover:text-blue-600 transition-colors">
+              ARFID Wellness
             </Link>
-            
+
             {/* Desktop: Home + Grouped Dropdowns */}
             <div className="hidden md:flex items-center space-x-1">
-              <Link 
+              <Link
                 href="/home"
-                className={`px-4 py-2 rounded-md text-sm font-medium transition ${
+                className={`px-3 py-2 rounded-lg text-sm font-normal transition-colors ${
                   pathname === '/home'
-                    ? 'bg-blue-100 text-blue-700'
-                    : 'text-gray-700 hover:bg-gray-100'
+                    ? 'bg-blue-50 text-blue-600'
+                    : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                🏠 Home
+                Home
               </Link>
-              <DropdownMenu 
-                label="Track" 
-                items={navGroups.track} 
+              <DropdownMenu
+                label="Track"
+                items={navGroups.track}
                 currentPath={pathname}
               />
-              <DropdownMenu 
-                label="Monitor" 
-                items={navGroups.monitor} 
+              <DropdownMenu
+                label="Monitor"
+                items={navGroups.monitor}
                 currentPath={pathname}
               />
-              <DropdownMenu 
-                label="Manage" 
-                items={navGroups.manage} 
+              <DropdownMenu
+                label="Manage"
+                items={navGroups.manage}
                 currentPath={pathname}
               />
             </div>
           </div>
 
           {/* Right side: User controls */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3">
             <ChildSelector />
-            
+
             {user && (
-              <span className="text-sm text-gray-600 hidden lg:block truncate max-w-[200px]">
+              <span className="text-xs text-gray-400 hidden lg:block truncate max-w-[180px]">
                 {user.email}
               </span>
             )}
 
             <button
               onClick={handleLogout}
-              className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-md transition hidden sm:inline-flex"
+              className="px-3 py-1.5 text-sm font-normal text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded-lg transition-colors hidden sm:inline-flex"
             >
               Logout
             </button>

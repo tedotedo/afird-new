@@ -218,12 +218,6 @@ export default function NutrientDetailCard({ nutrient, onClose }: NutrientDetail
               </div>
             </div>
 
-            {/* Disclaimer */}
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-              <p className="text-xs text-yellow-800">
-                <strong>Disclaimer:</strong> This information is for educational purposes only and should not replace professional medical advice. Always consult with a healthcare provider or registered dietitian for personalized nutrition guidance.
-              </p>
-            </div>
           </div>
 
           {/* Footer */}

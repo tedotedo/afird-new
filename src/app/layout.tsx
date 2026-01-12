@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import { ChildProvider } from '@/contexts/ChildContext';
 import { ConsentProvider } from '@/contexts/ConsentContext';
 import ConsentManager from '@/components/ConsentManager';
+import DisclaimerReminder from '@/components/DisclaimerReminder';
 import FeedbackWidget from '@/components/FeedbackWidget';
 import ScrollButton from '@/components/ScrollButton';
 import ChunkReloadOnFailure from '@/components/ChunkReloadOnFailure';
@@ -52,6 +53,7 @@ export default function RootLayout({
             </main>
             <Footer />
             <ConsentManager />
+            <DisclaimerReminder />
             <FeedbackWidget />
             <ScrollButton />
             <ChunkReloadOnFailure />

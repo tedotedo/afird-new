@@ -233,15 +233,6 @@ export default function SummaryPage() {
               </p>
             </div>
 
-            {/* Medical Disclaimer */}
-            <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 rounded text-sm">
-              <p className="text-yellow-800">
-                <span className="font-semibold">Disclaimer:</span> Nutritional analyses are estimates based on AI and food databases. 
-                Considerable inaccuracies may occur. This tool is for tracking purposes only. 
-                Always seek professional medical advice for any health or dietary concerns.
-              </p>
-            </div>
-
             {/* New Foods Card */}
             {foodStats && foodStats.newFoodsThisWeek > 0 && (
               <Link href="/food-journey" legacyBehavior>

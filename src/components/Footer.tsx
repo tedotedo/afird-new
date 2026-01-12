@@ -33,6 +33,7 @@ export default function Footer() {
       { href: '/arfid-info', label: 'About ARFID', icon: '💙' },
       { href: '/about', label: 'About the Author', icon: 'ℹ️' },
       { href: '/help', label: 'Help & FAQ', icon: '❓' },
+      { href: '/privacy#disclaimer', label: 'Medical Disclaimer', icon: '⚕️' },
     ],
     manage: [
       { href: '/profile', label: 'Children', icon: '👶' },

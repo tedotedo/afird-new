@@ -98,17 +98,17 @@ export default function DropdownMenu({ label, items, currentPath }: DropdownMenu
       <button
         onClick={handleClick}
         onKeyDown={handleKeyDown}
-        className={`px-4 py-2 rounded-md text-sm font-medium transition-all flex items-center gap-1.5 ${
+        className={`px-3 py-2 rounded-lg text-sm font-normal transition-colors flex items-center gap-1 ${
           isActive
-            ? 'bg-blue-50 text-blue-700'
-            : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+            ? 'bg-blue-50 text-blue-600'
+            : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
         }`}
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
         {label}
         <svg
-          className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+          className={`w-3.5 h-3.5 transition-transform duration-200 opacity-60 ${isOpen ? 'rotate-180' : ''}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -118,7 +118,7 @@ export default function DropdownMenu({ label, items, currentPath }: DropdownMenu
       </button>
 
       {isOpen && (
-        <div className="absolute left-0 top-full mt-1 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50 animate-fadeIn">
+        <div className="absolute left-0 top-full mt-2 w-52 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50 animate-fadeIn">
           {items.map((item) => (
             <Link
               key={item.href}
@@ -126,11 +126,11 @@ export default function DropdownMenu({ label, items, currentPath }: DropdownMenu
               onClick={() => setIsOpen(false)}
               className={`flex items-center gap-3 px-4 py-2.5 text-sm transition-colors ${
                 currentPath === item.href
-                  ? 'bg-blue-50 text-blue-700 font-medium'
-                  : 'text-gray-700 hover:bg-gray-50'
+                  ? 'bg-blue-50 text-blue-600'
+                  : 'text-gray-600 hover:bg-gray-50 hover:text-gray-800'
               }`}
             >
-              {item.icon && <span className="text-lg">{item.icon}</span>}
+              {item.icon && <span className="text-base opacity-70">{item.icon}</span>}
               {item.label}
             </Link>
           ))}
