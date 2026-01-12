@@ -274,8 +274,8 @@ export default function CameraScreen() {
   }
 
   return (
-    <div className="relative h-screen bg-black overflow-hidden">
-      <div className="absolute inset-0">
+    <div className="fixed inset-0 z-[60] bg-black overflow-hidden flex flex-col">
+      <div className="flex-1 relative min-h-0 overflow-hidden">
         {cameraStarted ? (
           <video
             ref={videoRef}
@@ -373,54 +373,52 @@ export default function CameraScreen() {
           </div>
         )}
         
-        <div className="absolute inset-0 pointer-events-none">
-          {cameraStarted && (
-            <div className="bg-gradient-to-b from-black/70 to-transparent p-6 pt-16 text-center">
-              <h1 className="text-2xl font-bold text-white drop-shadow">ARFID Wellness Tracker</h1>
-            </div>
-          )}
-
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent px-2 pt-1 pb-[calc(env(safe-area-inset-bottom)+1.5rem)] pointer-events-auto">
-            <div className="flex items-center gap-2">
-              <div className="flex-1 flex justify-start">
-                <button
-                  onClick={handleGalleryClick}
-                  type="button"
-                  className="px-3 py-2 sm:px-4 rounded-lg bg-white bg-opacity-20 text-white cursor-pointer hover:bg-opacity-30 transition backdrop-blur-sm"
-                >
-                  <span className="text-xs sm:text-sm font-semibold">Gallery</span>
-                </button>
-                <input
-                  ref={galleryInputRef}
-                  type="file"
-                  accept="image/*"
-                  onChange={handleFileSelect}
-                  className="hidden"
-                />
-              </div>
-
-              <button
-                onClick={handleCapture}
-                className="w-16 h-16 sm:w-[4.5rem] sm:h-[4.5rem] rounded-full bg-white border-4 border-blue-500 flex items-center justify-center hover:scale-105 transition shadow-2xl z-10 relative disabled:opacity-60 disabled:cursor-not-allowed"
-                disabled={analyzing || !cameraStarted}
-                style={{
-                  boxShadow: '0 0 20px rgba(59, 130, 246, 0.5), 0 4px 6px rgba(0, 0, 0, 0.3)'
-                }}
-              >
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-blue-500"></div>
-              </button>
-
-              <div className="flex-1 flex justify-end">
-                <button
-                  onClick={toggleCameraFacing}
-                  className="px-3 py-2 sm:px-4 rounded-lg bg-white bg-opacity-20 text-white hover:bg-opacity-30 transition backdrop-blur-sm disabled:opacity-60 disabled:cursor-not-allowed"
-                  disabled={!cameraStarted}
-                >
-                  <span className="text-xs sm:text-sm font-semibold">Flip</span>
-                </button>
-              </div>
-            </div>
+        {/* Title overlay when camera is active */}
+        {cameraStarted && (
+          <div className="absolute top-0 left-0 right-0 bg-gradient-to-b from-black/70 to-transparent p-6 pt-16 text-center pointer-events-none">
+            <h1 className="text-2xl font-bold text-white drop-shadow">ARFID Wellness Tracker</h1>
           </div>
+        )}
+      </div>
+
+      {/* Bottom controls - always visible, not overlapping */}
+      <div className="flex-shrink-0 bg-black px-4 py-3 pb-[max(env(safe-area-inset-bottom),12px)]">
+        <div className="flex items-center justify-between gap-4">
+          <button
+            onClick={handleGalleryClick}
+            type="button"
+            className="px-4 py-2.5 rounded-lg bg-white/20 text-white cursor-pointer hover:bg-white/30 transition backdrop-blur-sm"
+          >
+            <span className="text-sm font-semibold">Gallery</span>
+          </button>
+          <input
+            ref={galleryInputRef}
+            type="file"
+            accept="image/*"
+            onChange={handleFileSelect}
+            className="hidden"
+          />
+
+          <button
+            onClick={handleCapture}
+            className="w-18 h-18 rounded-full bg-white border-4 border-blue-500 flex items-center justify-center hover:scale-105 transition shadow-2xl disabled:opacity-60 disabled:cursor-not-allowed"
+            disabled={analyzing || !cameraStarted}
+            style={{
+              width: '72px',
+              height: '72px',
+              boxShadow: '0 0 20px rgba(59, 130, 246, 0.5), 0 4px 6px rgba(0, 0, 0, 0.3)'
+            }}
+          >
+            <div className="w-14 h-14 rounded-full bg-blue-500"></div>
+          </button>
+
+          <button
+            onClick={toggleCameraFacing}
+            className="px-4 py-2.5 rounded-lg bg-white/20 text-white hover:bg-white/30 transition backdrop-blur-sm disabled:opacity-60 disabled:cursor-not-allowed"
+            disabled={!cameraStarted}
+          >
+            <span className="text-sm font-semibold">Flip</span>
+          </button>
         </div>
       </div>
 
