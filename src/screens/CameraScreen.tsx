@@ -10,6 +10,7 @@ import ChristmasLoading from '@/components/ChristmasLoading';
 const INSTALL_SNOOZE_KEY = 'pwaInstallDismissedUntil';
 const INSTALL_HIDE_KEY = 'pwaInstallHideForever';
 const PROMPT_COOLDOWN_DAYS = 7;
+const CAMERA_USED_KEY = 'cameraPermissionGranted';
 
 export default function CameraScreen() {
   const router = useRouter();
@@ -22,6 +23,7 @@ export default function CameraScreen() {
   const [facingMode, setFacingMode] = useState<'user' | 'environment'>('environment');
   const [cameraStarted, setCameraStarted] = useState(false);
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
+  const [checkingPermission, setCheckingPermission] = useState(true);
 
   const handleGalleryClick = () => {
     if (galleryInputRef.current) {
@@ -37,6 +39,27 @@ export default function CameraScreen() {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
+      // Check if camera permission was previously granted and auto-start
+      const checkCameraPermission = async () => {
+        try {
+          const hasUsedCamera = localStorage.getItem(CAMERA_USED_KEY) === 'true';
+
+          if (hasUsedCamera && navigator.permissions) {
+            const permission = await navigator.permissions.query({ name: 'camera' as PermissionName });
+            if (permission.state === 'granted') {
+              // Permission already granted, auto-start camera
+              setCameraStarted(true);
+            }
+          }
+        } catch {
+          // Permissions API not supported or error, show manual start
+        } finally {
+          setCheckingPermission(false);
+        }
+      };
+
+      checkCameraPermission();
+
       // Detect if app is already installed / standalone; show prompt otherwise (respect snooze/forever hide)
       const isStandalone = window.matchMedia?.('(display-mode: standalone)').matches || (window.navigator as any).standalone;
       if (!isStandalone) {
@@ -49,12 +72,11 @@ export default function CameraScreen() {
               setShowInstallPrompt(true);
             }
           }
-        } catch (e) {
+        } catch {
           // If storage unavailable, fall back to showing prompt
           setShowInstallPrompt(true);
         }
       }
-
     }
   }, []);
 
@@ -71,15 +93,22 @@ export default function CameraScreen() {
   const startCamera = async () => {
     try {
       stopCamera(); // Stop any existing stream
-      
+
       const stream = await navigator.mediaDevices.getUserMedia({
         video: { facingMode },
       });
-      
+
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
         streamRef.current = stream;
         setError(null);
+
+        // Remember that camera permission was granted for future visits
+        try {
+          localStorage.setItem(CAMERA_USED_KEY, 'true');
+        } catch {
+          // Ignore storage errors
+        }
       }
     } catch (err: any) {
       console.error('Error accessing camera:', err);
@@ -240,7 +269,7 @@ export default function CameraScreen() {
     setShowInstallPrompt(false);
   };
 
-  if (analyzing) {
+  if (analyzing || checkingPermission) {
     return <ChristmasLoading />;
   }
 
