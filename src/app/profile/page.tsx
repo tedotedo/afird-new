@@ -102,7 +102,9 @@ export default function ProfilePage() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "We couldn't add this child profile. Please try again.");
+        const errorMsg = data.error || "We couldn't add this child profile. Please try again.";
+        const hintMsg = data.hint ? ` (${data.hint})` : '';
+        throw new Error(errorMsg + hintMsg);
       }
 
       // Reset form
@@ -118,7 +120,9 @@ export default function ProfilePage() {
       await fetchChildren();
     } catch (err: any) {
       console.error('Error adding child:', err);
-      setError("We couldn't add this child profile. Please try again.");
+      // Show the actual error if available for debugging
+      const errorMessage = err.message || "We couldn't add this child profile. Please try again.";
+      setError(errorMessage);
     }
   };
 

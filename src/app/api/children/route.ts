@@ -89,9 +89,15 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ child }, { status: 201 });
   } catch (error: any) {
     console.error('Error creating child:', error);
+    // Return the actual error message to help diagnose issues
+    const errorMessage = error.message || 'Failed to create child';
+    const isSchemaError = errorMessage.includes('schema') || errorMessage.includes('column');
     return NextResponse.json(
-      { error: error.message || 'Failed to create child' },
-      { status: 500 }
+      {
+        error: errorMessage,
+        hint: isSchemaError ? 'Database migration may be required. Check DATABASE_MIGRATION.md section 6.' : undefined
+      },
+      { status: isSchemaError ? 503 : 500 }
     );
   }
 }

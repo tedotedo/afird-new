@@ -35,6 +35,15 @@ export async function createChild(input: CreateChildInput): Promise<Child> {
     .single();
 
   if (childError) {
+    console.error('Supabase error creating child:', childError);
+    // Check for column not found error which indicates missing migration
+    if (childError.message?.includes('column') || childError.code === '42703') {
+      throw new Error(
+        `Database schema error: ${childError.message}. ` +
+        `Please ensure the parental consent migration has been applied. ` +
+        `See DATABASE_MIGRATION.md section 6 for the required SQL.`
+      );
+    }
     throw new Error(`Failed to create child: ${childError.message}`);
   }
 

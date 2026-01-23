@@ -178,6 +178,29 @@ CREATE POLICY "Users can delete their own measurements"
   USING (auth.uid() = user_id);
 ```
 
+### 6. Add parental consent columns to children table (REQUIRED)
+
+```sql
+-- Add parental consent tracking to children table (GDPR compliance)
+ALTER TABLE children
+ADD COLUMN IF NOT EXISTS parental_consent_given BOOLEAN DEFAULT false,
+ADD COLUMN IF NOT EXISTS parental_consent_timestamp TIMESTAMP WITH TIME ZONE,
+ADD COLUMN IF NOT EXISTS parental_consent_ip TEXT;
+
+-- Update existing records to have consent (retroactive - assumes existing children have consent)
+UPDATE children
+SET parental_consent_given = true,
+    parental_consent_timestamp = created_at
+WHERE parental_consent_given IS NULL OR parental_consent_given = false;
+
+-- Comment on columns
+COMMENT ON COLUMN children.parental_consent_given IS 'Parental/guardian consent for processing child data under GDPR';
+COMMENT ON COLUMN children.parental_consent_timestamp IS 'When parental consent was given';
+COMMENT ON COLUMN children.parental_consent_ip IS 'IP address when consent was given (for audit trail)';
+```
+
+**IMPORTANT:** This migration is required for adding new children profiles. Without these columns, the application will fail when trying to create new child profiles.
+
 ## Verification
 
 After running the migrations, verify the tables were created:
@@ -190,9 +213,17 @@ WHERE table_schema = 'public'
 AND table_name IN ('children', 'child_measurements', 'parent_measurements');
 
 -- Check if child_id column was added to food_entries
-SELECT column_name, data_type 
-FROM information_schema.columns 
-WHERE table_name = 'food_entries' 
+SELECT column_name, data_type
+FROM information_schema.columns
+WHERE table_name = 'food_entries'
 AND column_name = 'child_id';
+
+-- Check if parental consent columns exist (required for adding children)
+SELECT column_name, data_type
+FROM information_schema.columns
+WHERE table_name = 'children'
+AND column_name IN ('parental_consent_given', 'parental_consent_timestamp', 'parental_consent_ip');
 ```
+
+**Note:** If the parental consent columns query returns 0 rows, you need to run Section 6 above.
 
