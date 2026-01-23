@@ -257,7 +257,8 @@ export async function getChildMeasurements(childId: string): Promise<ChildMeasur
     .from('child_measurements')
     .select('*')
     .eq('child_id', childId)
-    .order('measurement_date', { ascending: false });
+    .order('measurement_date', { ascending: false })
+    .order('created_at', { ascending: false });
 
   if (error) {
     throw new Error(`Failed to fetch measurements: ${error.message}`);
