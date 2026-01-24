@@ -24,34 +24,34 @@ a {
   text-decoration: none;
 }
 
-/* Christmas Loading Animations */
-@keyframes christmas-snow {
+/* Food Analysis Loading Animations */
+@keyframes food-float {
   0% {
-    transform: translateY(-100vh) rotate(0deg);
+    transform: translateY(100vh) rotate(0deg);
     opacity: 0;
   }
   10% {
-    opacity: 1;
+    opacity: 0.8;
   }
   90% {
-    opacity: 1;
+    opacity: 0.8;
   }
   100% {
-    transform: translateY(100vh) rotate(360deg);
+    transform: translateY(-100px) rotate(20deg);
     opacity: 0;
   }
 }
 
-@keyframes christmas-bounce {
+@keyframes food-pulse {
   0%, 100% {
-    transform: translateY(0);
+    transform: scale(1);
   }
   50% {
-    transform: translateY(-10px);
+    transform: scale(1.1);
   }
 }
 
-@keyframes christmas-spin {
+@keyframes food-orbit {
   from {
     transform: rotate(0deg);
   }
@@ -60,31 +60,46 @@ a {
   }
 }
 
-@keyframes christmas-twinkle {
+@keyframes food-sparkle {
   0%, 100% {
-    opacity: 0.3;
-    transform: scale(1);
+    opacity: 0.4;
+    transform: scale(1) rotate(0deg);
   }
   50% {
     opacity: 1;
-    transform: scale(1.2);
+    transform: scale(1.3) rotate(10deg);
   }
 }
 
-.christmas-snow {
-  animation: christmas-snow linear infinite;
+@keyframes food-bounce {
+  0%, 80%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  40% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
 }
 
-.christmas-bounce {
-  animation: christmas-bounce 2s ease-in-out infinite;
+.food-float {
+  animation: food-float linear infinite;
 }
 
-.christmas-spin {
-  animation: christmas-spin 3s linear infinite;
+.food-pulse {
+  animation: food-pulse 1.5s ease-in-out infinite;
 }
 
-.christmas-twinkle {
-  animation: christmas-twinkle 1.5s ease-in-out infinite;
+.food-orbit {
+  animation: food-orbit 2s linear infinite;
+}
+
+.food-sparkle {
+  animation: food-sparkle 1.2s ease-in-out infinite;
+}
+
+.food-bounce {
+  animation: food-bounce 1.4s ease-in-out infinite;
 }
 
 /* Dropdown animations */

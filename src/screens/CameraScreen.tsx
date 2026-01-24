@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { resizeImageForAnalysis, convertToBase64 } from '@/services/imageService';
 import { analyzeFoodImage } from '@/services/geminiService';
 import { FoodAnalysisResult } from '@/types/nutrition';
-import ChristmasLoading from '@/components/ChristmasLoading';
+import FoodAnalysisLoading from '@/components/FoodAnalysisLoading';
 
 const INSTALL_SNOOZE_KEY = 'pwaInstallDismissedUntil';
 const INSTALL_HIDE_KEY = 'pwaInstallHideForever';
@@ -270,7 +270,7 @@ export default function CameraScreen() {
   };
 
   if (analyzing || checkingPermission) {
-    return <ChristmasLoading />;
+    return <FoodAnalysisLoading />;
   }
 
   return (
