@@ -227,3 +227,90 @@ AND column_name IN ('parental_consent_given', 'parental_consent_timestamp', 'par
 
 **Note:** If the parental consent columns query returns 0 rows, you need to run Section 6 above.
 
+### 7. Create food_milestones table (REQUIRED for Food Journey)
+
+```sql
+-- Create food_milestones table to track new foods tried by children and parents
+CREATE TABLE IF NOT EXISTS food_milestones (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
+  child_id UUID REFERENCES children(id) ON DELETE CASCADE,
+  food_name TEXT NOT NULL,
+  food_category TEXT CHECK (food_category IN ('vegetable', 'fruit', 'protein', 'grain', 'dairy', 'snack', 'beverage', 'other')),
+  date_tried DATE NOT NULL,
+  attempt_number INTEGER DEFAULT 1,
+  success_level TEXT CHECK (success_level IN ('refused', 'touched', 'licked', 'nibble', 'bite', 'finished')),
+  texture TEXT CHECK (texture IN ('smooth', 'crunchy', 'soft', 'chewy', 'crispy', 'mixed', 'other')),
+  temperature TEXT CHECK (temperature IN ('cold', 'room', 'warm', 'hot')),
+  notes TEXT,
+  photo_url TEXT,
+  food_entry_id UUID REFERENCES food_entries(id) ON DELETE SET NULL,
+  created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
+);
+
+-- Create indexes
+CREATE INDEX idx_food_milestones_user_id ON food_milestones(user_id);
+CREATE INDEX idx_food_milestones_child_id ON food_milestones(child_id);
+CREATE INDEX idx_food_milestones_date ON food_milestones(date_tried);
+CREATE INDEX idx_food_milestones_success ON food_milestones(success_level);
+
+-- Enable Row Level Security
+ALTER TABLE food_milestones ENABLE ROW LEVEL SECURITY;
+
+-- RLS Policies
+CREATE POLICY "Users can read own food milestones"
+  ON food_milestones FOR SELECT USING (auth.uid() = user_id);
+
+CREATE POLICY "Users can insert own food milestones"
+  ON food_milestones FOR INSERT WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "Users can update own food milestones"
+  ON food_milestones FOR UPDATE USING (auth.uid() = user_id);
+
+CREATE POLICY "Users can delete own food milestones"
+  ON food_milestones FOR DELETE USING (auth.uid() = user_id);
+```
+
+### 8. Create achievement_preferences table (REQUIRED for Food Journey)
+
+```sql
+-- Create achievement_preferences table to store custom achievement settings
+CREATE TABLE IF NOT EXISTS achievement_preferences (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE NOT NULL,
+  child_id UUID REFERENCES children(id) ON DELETE CASCADE,
+  achievement_type TEXT NOT NULL,
+  custom_threshold INTEGER,
+  custom_name TEXT,
+  custom_icon TEXT,
+  is_enabled BOOLEAN DEFAULT true,
+  created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
+);
+
+-- Create unique constraint to prevent duplicate preferences
+CREATE UNIQUE INDEX idx_achievement_preferences_unique
+  ON achievement_preferences(user_id, COALESCE(child_id, '00000000-0000-0000-0000-000000000000'::uuid), achievement_type);
+
+-- Create indexes for faster lookups
+CREATE INDEX idx_achievement_preferences_user_id ON achievement_preferences(user_id);
+CREATE INDEX idx_achievement_preferences_child_id ON achievement_preferences(child_id);
+
+-- Enable Row Level Security
+ALTER TABLE achievement_preferences ENABLE ROW LEVEL SECURITY;
+
+-- RLS Policies
+CREATE POLICY "Users can read own achievement preferences"
+  ON achievement_preferences FOR SELECT USING (auth.uid() = user_id);
+
+CREATE POLICY "Users can insert own achievement preferences"
+  ON achievement_preferences FOR INSERT WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "Users can update own achievement preferences"
+  ON achievement_preferences FOR UPDATE USING (auth.uid() = user_id);
+
+CREATE POLICY "Users can delete own achievement preferences"
+  ON achievement_preferences FOR DELETE USING (auth.uid() = user_id);
+```
+
