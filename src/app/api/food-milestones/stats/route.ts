@@ -29,9 +29,8 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
-  if (!milestones) {
-    return NextResponse.json({ error: 'No milestones found' }, { status: 404 });
-  }
+  // Handle case where milestones is null (shouldn't happen but be safe)
+  const safeMilestones = milestones || [];
 
   // Calculate statistics
   const now = new Date();
@@ -39,33 +38,33 @@ export async function GET(request: NextRequest) {
   const oneMonthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
   const oneYearAgo = new Date(now.getTime() - 365 * 24 * 60 * 60 * 1000);
 
-  const totalFoodsTried = new Set(milestones.map(m => m.food_name.toLowerCase())).size;
-  const totalAttempts = milestones.length;
+  const totalFoodsTried = new Set(safeMilestones.map(m => m.food_name.toLowerCase())).size;
+  const totalAttempts = safeMilestones.length;
 
-  const thisWeek = milestones.filter(m => 
+  const thisWeek = safeMilestones.filter(m =>
     new Date(m.date_tried) >= oneWeekAgo
   );
   const newFoodsThisWeek = new Set(thisWeek.map(m => m.food_name.toLowerCase())).size;
 
-  const thisMonth = milestones.filter(m => 
+  const thisMonth = safeMilestones.filter(m =>
     new Date(m.date_tried) >= oneMonthAgo
   );
   const newFoodsThisMonth = new Set(thisMonth.map(m => m.food_name.toLowerCase())).size;
 
-  const thisYear = milestones.filter(m => 
+  const thisYear = safeMilestones.filter(m =>
     new Date(m.date_tried) >= oneYearAgo
   );
   const newFoodsThisYear = new Set(thisYear.map(m => m.food_name.toLowerCase())).size;
 
   // Category breakdown
-  const categories = milestones.reduce((acc, m) => {
+  const categories = safeMilestones.reduce((acc, m) => {
     const cat = m.food_category || 'other';
     acc[cat] = (acc[cat] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
 
   // Texture breakdown
-  const textures = milestones.reduce((acc, m) => {
+  const textures = safeMilestones.reduce((acc, m) => {
     if (m.texture) {
       acc[m.texture] = (acc[m.texture] || 0) + 1;
     }
@@ -76,7 +75,7 @@ export async function GET(request: NextRequest) {
 
   // Check for "all colors" achievement (rainbow eater)
   const colorCategories = ['fruit', 'vegetable'];
-  const colorFoods = milestones.filter(m => 
+  const colorFoods = safeMilestones.filter(m =>
     m.food_category && colorCategories.includes(m.food_category)
   );
   const hasRainbowFoods = colorFoods.length >= 5; // Simplified check
@@ -91,7 +90,12 @@ export async function GET(request: NextRequest) {
     prefsQuery = prefsQuery.eq('child_id', childId);
   }
 
-  const { data: customPrefs } = await prefsQuery;
+  const { data: customPrefs, error: prefsError } = await prefsQuery;
+
+  // Log but don't fail if preferences can't be fetched (table might not exist yet)
+  if (prefsError) {
+    console.error('Error fetching achievement preferences:', prefsError);
+  }
 
   // Create a map of custom preferences
   const prefsMap = new Map(
@@ -165,7 +169,7 @@ export async function GET(request: NextRequest) {
   }
 
   // Recent milestones (last 5)
-  const recentMilestones = milestones
+  const recentMilestones = safeMilestones
     .sort((a, b) => new Date(b.date_tried).getTime() - new Date(a.date_tried).getTime())
     .slice(0, 5);
 
