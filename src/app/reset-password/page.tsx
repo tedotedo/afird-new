@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/hooks/useAuth';
+import { createClient } from '@/lib/supabase/client';
 
 export default function ResetPasswordPage() {
   const [password, setPassword] = useState('');
@@ -10,22 +10,68 @@ export default function ResetPasswordPage() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
-  const { updatePassword, user } = useAuth();
+  const [sessionReady, setSessionReady] = useState(false);
+  const [checkingSession, setCheckingSession] = useState(true);
   const router = useRouter();
+  const supabase = createClient();
 
-  // Check if user came from a valid reset link (they'll be logged in temporarily)
   useEffect(() => {
-    // Give Supabase a moment to process the auth token from URL
-    const timer = setTimeout(() => {
-      // User should be authenticated via the magic link
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, []);
+    // Handle the password reset token from the URL
+    const handlePasswordReset = async () => {
+      try {
+        // Check if there's a session (from the reset link)
+        const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+
+        if (sessionError) {
+          console.error('Session error:', sessionError);
+          setError('Invalid or expired reset link. Please request a new one.');
+          setCheckingSession(false);
+          return;
+        }
+
+        if (session) {
+          setSessionReady(true);
+        } else {
+          // Listen for auth state changes (the token might still be processing)
+          const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+            if (event === 'PASSWORD_RECOVERY' || (event === 'SIGNED_IN' && session)) {
+              setSessionReady(true);
+              setCheckingSession(false);
+            }
+          });
+
+          // Give it a moment then check again
+          setTimeout(async () => {
+            const { data: { session: retrySession } } = await supabase.auth.getSession();
+            if (retrySession) {
+              setSessionReady(true);
+            } else {
+              setError('Invalid or expired reset link. Please request a new one.');
+            }
+            setCheckingSession(false);
+          }, 2000);
+
+          return () => subscription.unsubscribe();
+        }
+      } catch (err) {
+        console.error('Error checking session:', err);
+        setError('Something went wrong. Please try again.');
+      }
+      setCheckingSession(false);
+    };
+
+    handlePasswordReset();
+  }, [supabase.auth]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setSuccess('');
+
+    if (!sessionReady) {
+      setError('Auth session missing! Please use the link from your email.');
+      return;
+    }
 
     if (password !== confirmPassword) {
       setError('Passwords do not match');
@@ -40,8 +86,16 @@ export default function ResetPasswordPage() {
     setLoading(true);
 
     try {
-      await updatePassword(password);
+      const { error: updateError } = await supabase.auth.updateUser({
+        password: password,
+      });
+
+      if (updateError) throw updateError;
+
       setSuccess('Password updated successfully! Redirecting to login...');
+
+      // Sign out and redirect to login
+      await supabase.auth.signOut();
       setTimeout(() => {
         router.push('/login');
       }, 2000);
@@ -51,6 +105,17 @@ export default function ResetPasswordPage() {
       setLoading(false);
     }
   };
+
+  if (checkingSession) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+        <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-8 text-center">
+          <div className="text-4xl mb-4 animate-pulse">🔐</div>
+          <p className="text-gray-600">Verifying your reset link...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
@@ -113,7 +178,7 @@ export default function ResetPasswordPage() {
 
           <button
             type="submit"
-            disabled={loading}
+            disabled={loading || !sessionReady}
             className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? 'Updating...' : 'Update Password'}
