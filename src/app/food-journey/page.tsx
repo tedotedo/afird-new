@@ -44,6 +44,7 @@ const SUCCESS_LEVEL_ICONS: Record<string, string> = {
   touched: '👆',
   licked: '👅',
   nibble: '🤏',
+  sip: '🥤',
   bite: '😊',
   finished: '🎉',
 };
@@ -53,6 +54,7 @@ const SUCCESS_LEVEL_NAMES: Record<string, string> = {
   touched: 'Touched/Explored',
   licked: 'Licked',
   nibble: 'Small Nibble',
+  sip: 'Took a Sip',
   bite: 'Took a Bite',
   finished: 'Finished It!',
 };

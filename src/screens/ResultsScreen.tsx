@@ -228,6 +228,7 @@ export default function ResultsScreen() {
                   <option value="touched">👆 Touched or explored</option>
                   <option value="licked">👅 Licked</option>
                   <option value="nibble">🤏 Small nibble</option>
+                  <option value="sip">🥤 Took a sip</option>
                   <option value="bite">😊 Took a bite</option>
                   <option value="finished">🎉 Finished it!</option>
                 </select>

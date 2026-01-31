@@ -239,7 +239,7 @@ CREATE TABLE IF NOT EXISTS food_milestones (
   food_category TEXT CHECK (food_category IN ('vegetable', 'fruit', 'protein', 'grain', 'dairy', 'snack', 'beverage', 'other')),
   date_tried DATE NOT NULL,
   attempt_number INTEGER DEFAULT 1,
-  success_level TEXT CHECK (success_level IN ('refused', 'touched', 'licked', 'nibble', 'bite', 'finished')),
+  success_level TEXT CHECK (success_level IN ('refused', 'touched', 'licked', 'nibble', 'sip', 'bite', 'finished')),
   texture TEXT CHECK (texture IN ('smooth', 'crunchy', 'soft', 'chewy', 'crispy', 'mixed', 'other')),
   temperature TEXT CHECK (temperature IN ('cold', 'room', 'warm', 'hot')),
   notes TEXT,
