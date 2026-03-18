@@ -14,36 +14,35 @@ export default function ConsentManager() {
   const [showMedical, setShowMedical] = useState(false);
   const [showGDPR, setShowGDPR] = useState(false);
 
-  // Don't show consent on login page
-  const isLoginPage = pathname === '/login';
-
   useEffect(() => {
-    if (!loading && !isLoginPage) {
-      // Show modals in sequence: cookies -> medical -> GDPR
+    if (!loading) {
+      // Show modals in sequence: medical -> cookies -> GDPR
       // Only show if not already accepted
-      if (!consents.cookies) {
-        setShowCookies(true);
-      } else if (!consents.medical_disclaimer) {
+      if (!consents.medical_disclaimer) {
         setShowMedical(true);
+      } else if (!consents.cookies) {
+        setShowCookies(true);
       } else if (!consents.gdpr) {
         setShowGDPR(true);
       }
     }
-  }, [loading, consents, isLoginPage]);
-
-  const handleCookieAccept = async () => {
-    await acceptConsent('cookies');
-    setShowCookies(false);
-    // After accepting cookies, show medical disclaimer if not accepted
-    if (!consents.medical_disclaimer) {
-      setShowMedical(true);
-    }
-  };
+  }, [loading, consents]);
 
   const handleMedicalAccept = async () => {
     await acceptConsent('medical_disclaimer');
     setShowMedical(false);
-    // After accepting medical disclaimer, show GDPR if not accepted
+    // After accepting medical, show cookies if not accepted
+    if (!consents.cookies) {
+      setShowCookies(true);
+    } else if (!consents.gdpr) {
+      setShowGDPR(true);
+    }
+  };
+
+  const handleCookieAccept = async () => {
+    await acceptConsent('cookies');
+    setShowCookies(false);
+    // After accepting cookies, show GDPR if not accepted
     if (!consents.gdpr) {
       setShowGDPR(true);
     }
@@ -54,17 +53,16 @@ export default function ConsentManager() {
     setShowGDPR(false);
   };
 
-  // Don't render anything while loading or on login page
-  if (loading || isLoginPage) {
+  // Don't render anything while loading
+  if (loading) {
     return null;
   }
 
   return (
     <>
-      {showCookies && <CookieConsent onAccept={handleCookieAccept} />}
       {showMedical && <MedicalDisclaimerModal onAccept={handleMedicalAccept} />}
+      {showCookies && <CookieConsent onAccept={handleCookieAccept} />}
       {showGDPR && <GDPRModal onAccept={handleGDPRAccept} />}
     </>
   );
 }
-

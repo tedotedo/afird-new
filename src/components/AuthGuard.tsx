@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
 
 interface AuthGuardProps {
@@ -15,12 +15,33 @@ export default function AuthGuard({
 }: AuthGuardProps) {
   const { user, loading } = useAuth();
   const router = useRouter();
+  const pathname = usePathname();
+
+  // Define route prefixes that contain personal data or settings
+  const protectedPrefixes = [
+    '/camera',
+    '/results',
+    '/summary',
+    '/trends',
+    '/history',
+    '/profile',
+    '/achievement-settings',
+    '/settings',
+    '/goals',
+    '/admin',
+    '/bmi-trends'
+  ];
+  
+  // Check if current path starts with any of the protected prefixes
+  const isProtectedPath = protectedPrefixes.some(
+    prefix => pathname === prefix || pathname.startsWith(`${prefix}/`)
+  );
 
   useEffect(() => {
-    if (!loading && !user) {
+    if (!loading && !user && isProtectedPath) {
       router.push(redirectTo);
     }
-  }, [user, loading, router, redirectTo]);
+  }, [user, loading, router, redirectTo, isProtectedPath]);
 
   if (loading) {
     return (
@@ -30,12 +51,12 @@ export default function AuthGuard({
     );
   }
 
-  if (!user) {
-    return null; // Will redirect
+  // If path is protected and no user, return null while redirecting
+  if (!user && isProtectedPath) {
+    return null; 
   }
 
+  // Allow access to children for unprotected paths, or authenticated users
   return <>{children}</>;
 }
-
-
 
