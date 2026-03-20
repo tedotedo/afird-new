@@ -44,7 +44,7 @@ export default function AboutPage() {
 
               <div className="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-r-lg my-8">
                 <p className="text-gray-700 italic">
-                  "The best approach combines scientific rigour with honest, straightforward communication. That's what I've tried to bring to this work."
+                  &quot;The best approach combines scientific rigour with honest, straightforward communication. That&apos;s what I&apos;ve tried to bring to this work.&quot;
                 </p>
               </div>
 
