@@ -13,21 +13,45 @@ export default function ArfidPage() {
 
       <h2 className="mt-10 font-display text-2xl text-ink">What is ARFID?</h2>
       <p className="mt-3 leading-relaxed text-ink-muted">
-        ARFID means a child (or adult) avoids many foods, or eats very little overall — enough to
-        affect growth, nutrition, energy, or daily life. It is not about wanting to be thin. There
-        is no drive to lose weight or control shape. That is the main difference from anorexia.
+        Avoidant/Restrictive Food Intake Disorder (ARFID) means eating has become so limited —
+        through sensory aversion, fear after choking, gagging or vomiting, or simply low interest
+        in food — that growth, nutrition, energy, or daily life is affected. The child (or adult)
+        is not trying to be thin. There is no drive to lose weight or control body shape. That is
+        the main difference from anorexia.
       </p>
       <p className="mt-4 leading-relaxed text-ink-muted">
         Three patterns show up often. Some children refuse foods because of texture, smell, colour,
         or brand (sensory). Some are frightened of choking, gagging, or being sick after a bad
         experience. Others simply have little interest in food and forget to eat. Many children
-        show a mix. Autism and other neurodevelopmental conditions overlap a lot with the sensory
-        pattern — that does not make the eating problem less real.
+        show a mix. Refusal is never because the child is being difficult — the sensory load, fear,
+        or low drive is real.
       </p>
-      <p className="mt-4 rounded-md border border-rule bg-paper-card p-4 text-sm leading-relaxed text-ink-muted">
-        ARFID is a recognised medical condition, not &ldquo;just picky eating&rdquo; or a phase you can wait
-        out. A toddler who refuses greens is common. A school-age child stuck on five foods, losing
-        weight, or terrified at the table needs proper assessment.
+      <p className="mt-4 leading-relaxed text-ink-muted">
+        Clinicians diagnose ARFID using recognised criteria in DSM-5-TR and ICD-11. In practice they
+        are looking for persistent restriction that harms physical health or day-to-day functioning,
+        without the body-image focus of anorexia. That assessment belongs in clinic — this page is
+        background, not a checklist to tick at home.
+      </p>
+
+      <h2 className="mt-10 font-display text-2xl text-ink">Picky eating and the spectrum</h2>
+      <p className="mt-3 leading-relaxed text-ink-muted">
+        Many toddlers and young children are selective and still grow and thrive. That is common,
+        and it often eases with time. ARFID is when the restriction is severe enough, or stuck
+        enough, to harm health, nutrition, growth, or daily life — not a label for every child who
+        pushes peas aside.
+      </p>
+      <p className="mt-4 leading-relaxed text-ink-muted">
+        The middle is messy. The same sensory patterns can appear in both ordinary picky eating and
+        ARFID. There is overlap; both sit on a spectrum rather than in two tidy boxes. Autism and
+        other neurodivergence often travel with the sensory pattern — that does not make the eating
+        problem less real, and it does not mean you should wait it out if health is slipping.
+      </p>
+      <p className="mt-4 leading-relaxed text-ink-muted">
+        Your job is not to win the label argument at the kitchen table. Get assessment when the
+        accepted food list is shrinking, growth or weight is slipping, or mealtimes have become
+        unmanageable. A school-age child stuck on a handful of foods, losing weight, or terrified at
+        the table needs proper clinical review — that is the practical line, not a debate about
+        whether it is &ldquo;just picky eating.&rdquo;
       </p>
 
       <h2 className="mt-10 font-display text-2xl text-ink">Signs at the table</h2>
