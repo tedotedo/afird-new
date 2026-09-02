@@ -18,6 +18,7 @@ export default function Footer() {
             <h3 className="text-sm font-medium uppercase tracking-[0.12em] text-white">Explore</h3>
             <ul className="mt-4 space-y-2.5 text-sm">
               <li><Link href="/arfid" className="hover:text-white">About ARFID</Link></li>
+              <li><Link href="/supplements" className="hover:text-white">Vitamins &amp; textures</Link></li>
               <li><Link href="/resources" className="hover:text-white">UK resources</Link></li>
               <li><Link href="/notes" className="hover:text-white">Notes for clinic</Link></li>
               <li><Link href="/about" className="hover:text-white">About</Link></li>

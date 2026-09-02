@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 const links = [
   { href: '/arfid', label: 'About ARFID' },
+  { href: '/supplements', label: 'Vitamins & textures' },
   { href: '/resources', label: 'UK resources' },
   { href: '/notes', label: 'Notes for clinic' },
   { href: '/about', label: 'About' },

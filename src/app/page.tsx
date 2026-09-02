@@ -7,6 +7,11 @@ const topics = [
     body: 'What it is in plain English, signs at the table, and how it differs from picky eating.',
   },
   {
+    href: '/supplements',
+    title: 'Vitamins & textures',
+    body: "UK children's liquids, sprays, gummies and powders compared by flavour and mouthfeel — options to discuss with a dietitian, not a shopping list.",
+  },
+  {
     href: '/resources',
     title: 'UK resources',
     body: 'Beat, ARFID Awareness UK, NHS links, helplines — plus what to ask your GP.',

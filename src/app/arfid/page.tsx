@@ -55,6 +55,12 @@ export default function ArfidPage() {
       <p className="mt-4 leading-relaxed text-ink-muted">
         Do not start supplements, meal replacements, or major diet changes without advice from
         your GP or a dietitian. Cutting out food groups on your own can make nutrition worse.
+        If nutrition gaps are already on the table in clinic, ask the dietitian which format is
+        realistic — liquids, sprays, gummies and powders fail for different sensory reasons. See{' '}
+        <Link href="/supplements" className="underline decoration-rule underline-offset-2 hover:text-ink">
+          Vitamins &amp; textures
+        </Link>{' '}
+        for a UK product comparison (not a recommendation to buy).
       </p>
 
       <h2 className="mt-10 font-display text-2xl text-ink">When to see the GP</h2>
