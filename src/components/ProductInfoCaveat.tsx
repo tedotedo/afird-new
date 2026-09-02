@@ -9,7 +9,7 @@ type Props = {
 /** Standing safety block for vitamins and oral-nutrition comparison pages. */
 export default function ProductInfoCaveat({ extras, footerNote }: Props) {
   return (
-    <aside className="mt-8 rounded-lg border border-rule bg-paper-card p-5 text-sm leading-relaxed text-ink-muted">
+    <aside className="mt-8 rounded-xl border border-rule bg-paper-card p-5 text-sm leading-relaxed text-ink-muted shadow-card">
       <p className="font-medium text-ink">Not medical advice — check labels; discuss with GP or dietitian</p>
       <ul className="mt-3 list-disc space-y-2 pl-5">
         <li>

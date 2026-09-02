@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Source_Sans_3, Libre_Baskerville } from 'next/font/google';
+import { Source_Sans_3, Source_Serif_4 } from 'next/font/google';
 import './globals.css';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -7,7 +7,12 @@ import MedicalDisclaimerGate from '@/components/MedicalDisclaimerGate';
 import ConsentAnalytics from '@/components/ConsentAnalytics';
 
 const sans = Source_Sans_3({ subsets: ['latin'], display: 'swap', variable: '--font-sans' });
-const serif = Libre_Baskerville({ subsets: ['latin'], weight: ['400', '700'], display: 'swap', variable: '--font-serif' });
+const serif = Source_Serif_4({
+  subsets: ['latin'],
+  weight: ['400', '600'],
+  display: 'swap',
+  variable: '--font-serif',
+});
 
 export const metadata: Metadata = {
   title: { default: 'ARFID Wellness', template: '%s — ARFID Wellness' },
@@ -27,7 +32,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#f7f6f2',
+  themeColor: '#faf5ee',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

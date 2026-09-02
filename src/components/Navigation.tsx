@@ -42,7 +42,7 @@ export default function Navigation() {
             <Link
               key={l.href}
               href={l.href}
-              className="rounded-md px-3 py-2 text-sm text-ink-muted hover:bg-white hover:text-ink"
+              className="rounded-md px-3 py-2 text-sm text-ink-muted hover:bg-paper-card hover:text-ink"
             >
               {l.label}
             </Link>
@@ -51,7 +51,7 @@ export default function Navigation() {
 
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-md border border-rule bg-paper px-3 py-2 text-sm text-ink hover:bg-white sm:hidden"
+          className="inline-flex items-center justify-center rounded-md border border-rule bg-paper-card px-3 py-2 text-sm text-ink hover:border-accent/40 sm:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           onClick={() => setOpen((v) => !v)}
@@ -71,7 +71,7 @@ export default function Navigation() {
               <li key={l.href}>
                 <Link
                   href={l.href}
-                  className="block rounded-md px-3 py-2.5 text-sm text-ink-muted hover:bg-white hover:text-ink"
+                  className="block rounded-md px-3 py-2.5 text-sm text-ink-muted hover:bg-paper-card hover:text-ink"
                   onClick={() => setOpen(false)}
                 >
                   {l.label}

@@ -17,10 +17,18 @@ const resources = [
     blurb: 'Charity focused on awareness and practical support for ARFID.',
   },
   {
-    name: 'CNTW NHS ARFID resources',
-    url: 'https://www.cntw.nhs.uk/resource-library/support-for-avoidant-restrictive-food-intake-disorder-arfid/',
+    name: 'CNTW — Support for Avoidant Restrictive Food Intake Disorder (ARFID)',
+    url: 'https://www.cntw.nhs.uk/resources/support-avoidant-restrictive-food-intake-disorder-arfid',
     org: 'CNTW NHS',
-    blurb: 'NHS resource library co-produced with clinicians and families.',
+    blurb:
+      'NHS pages from Cumbria, Northumberland, Tyne and Wear — co-produced ARFID information, tips, and webinars for families.',
+  },
+  {
+    name: 'NENC — help for eating issues',
+    url: 'https://northeastnorthcumbria.nhs.uk/here-to-help-you/health-advice-and-support/children-and-young-people-support/help-for-eating-issues/',
+    org: 'North East & North Cumbria NHS ICB',
+    blurb:
+      'Covers eating difficulties including picky and selective eating pathways for families in that region — a useful starting point; local pathways vary.',
   },
   {
     name: 'NHS Inform Scotland — ARFID',
@@ -54,7 +62,13 @@ export default function ResourcesPage() {
 
       <div className="mt-8 grid gap-4 md:grid-cols-2">
         {resources.map((r) => (
-          <a key={r.url} href={r.url} target="_blank" rel="noopener noreferrer" className="rounded-lg border border-rule bg-paper-card p-5 hover:border-ink/20">
+          <a
+            key={r.url}
+            href={r.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-xl border border-rule bg-paper-card p-5 shadow-card transition hover:border-accent/30"
+          >
             <p className="text-xs uppercase tracking-wide text-ink-faint">{r.org}</p>
             <h2 className="mt-1 font-display text-xl text-ink">{r.name}</h2>
             <p className="mt-2 text-sm leading-relaxed text-ink-muted">{r.blurb}</p>
@@ -66,7 +80,7 @@ export default function ResourcesPage() {
       <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-muted">
         Take a written list of accepted foods (include brands). It saves time and stops you
         forgetting under pressure. Draft it in{' '}
-        <Link href="/notes" className="underline decoration-rule underline-offset-2 hover:text-ink">
+        <Link href="/notes" className="text-accent underline decoration-accent/30 underline-offset-2 hover:decoration-accent">
           Notes for clinic
         </Link>{' '}
         if that helps.
@@ -80,7 +94,7 @@ export default function ResourcesPage() {
       <h2 className="mt-12 font-display text-2xl text-ink">Helplines</h2>
       <ul className="mt-4 space-y-3">
         {helplines.map((h) => (
-          <li key={h.name} className="rounded-md border border-rule bg-paper-card px-4 py-3 text-sm">
+          <li key={h.name} className="rounded-xl border border-rule bg-paper-card px-4 py-3 text-sm shadow-card">
             <span className="font-medium text-ink">{h.name}</span>
             <span className="mt-1 block text-ink-muted">{h.detail}</span>
           </li>
