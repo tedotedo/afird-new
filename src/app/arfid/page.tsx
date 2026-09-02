@@ -60,7 +60,11 @@ export default function ArfidPage() {
         <Link href="/supplements" className="underline decoration-rule underline-offset-2 hover:text-ink">
           Vitamins &amp; textures
         </Link>{' '}
-        for a UK product comparison (not a recommendation to buy).
+        for a UK product comparison (not a recommendation to buy). For energy and protein
+        products (sip feeds, puddings, fortifiers), see{' '}
+        <Link href="/nutrition-support" className="underline decoration-rule underline-offset-2 hover:text-ink">
+          Sip feeds &amp; fortifiers
+        </Link>.
       </p>
 
       <h2 className="mt-10 font-display text-2xl text-ink">When to see the GP</h2>

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import SupplementsExplorer from '@/components/SupplementsExplorer';
-import { INFO_CHECKED } from '@/data/supplements';
+import ProductInfoCaveat from '@/components/ProductInfoCaveat';
 
 export const metadata: Metadata = {
   title: 'Vitamins & textures',
@@ -18,39 +18,28 @@ export default function SupplementsPage() {
         mouthfeel — the bits that often decide whether an ARFID child will take them at all.
       </p>
 
-      <aside className="mt-8 rounded-lg border border-rule bg-paper-card p-5 text-sm leading-relaxed text-ink-muted">
-        <p className="font-medium text-ink">Not medical advice — discuss with GP or dietitian</p>
-        <ul className="mt-3 list-disc space-y-2 pl-5">
-          <li>
-            This page helps families <strong className="font-medium text-ink">see options</strong> to
-            talk through with a GP, paediatrician or dietitian. It does not recommend doses, brands
-            to buy, or “the right vitamin for ARFID”.
-          </li>
-          <li>
-            Many children with ARFID refuse supplements because of texture, smell, sweetness or
-            aftertaste — not because they are being difficult. Matching format to sensory tolerance
-            matters as much as the nutrient list.
-          </li>
-          <li>
-            Do not start, stop or combine supplements on your own if your child is under clinical
-            care, already on vitamins, or has a restricted diet. Stacking products can overshoot
-            vitamin A or D.
-          </li>
-          <li>
-            <strong className="font-medium text-ink">Iron:</strong> products flagged “Contains iron”
-            need extra care — metallic taste, constipation in some children, and serious overdose
-            risk if tablets or liquids are left where younger siblings can reach them.
-          </li>
-          <li>
-            No affiliate links. Prefer manufacturer, NHS or pharmacy information over marketplace
-            listings.
-          </li>
-        </ul>
-        <p className="mt-4 text-xs text-ink-faint">
-          Information checked {INFO_CHECKED} — always read the current label; formulations change.
-          UK availability and stock (e.g. Abidec / Dalivit) can fluctuate.
-        </p>
-      </aside>
+      <ProductInfoCaveat
+        footerNote="always read the current label; formulations change. UK availability and stock (e.g. Abidec / Dalivit) can fluctuate."
+        extras={
+          <>
+            <li>
+              Many children with ARFID refuse supplements because of texture, smell, sweetness or
+              aftertaste — not because they are being difficult. Matching format to sensory tolerance
+              matters as much as the nutrient list.
+            </li>
+            <li>
+              Do not start, stop or combine supplements on your own if your child is under clinical
+              care, already on vitamins, or has a restricted diet. Stacking products can overshoot
+              vitamin A or D.
+            </li>
+            <li>
+              <strong className="font-medium text-ink">Iron:</strong> products flagged “Contains iron”
+              need extra care — metallic taste, constipation in some children, and serious overdose
+              risk if tablets or liquids are left where younger siblings can reach them.
+            </li>
+          </>
+        }
+      />
 
       <section className="mt-10 max-w-prose">
         <h2 className="font-display text-2xl text-ink">Healthy Start (England and beyond)</h2>
@@ -81,7 +70,14 @@ export default function SupplementsPage() {
           </li>
           <li>
             Nutrition gaps from a narrow diet still need a proper assessment. Supplements do not
-            fix energy intake, protein, or fibre on their own.
+            fix energy intake, protein, or fibre on their own — see{' '}
+            <Link
+              href="/nutrition-support"
+              className="underline decoration-rule underline-offset-2 hover:text-ink"
+            >
+              Sip feeds &amp; fortifiers
+            </Link>{' '}
+            if calories/protein are the issue under discussion.
           </li>
         </ul>
         <p className="mt-4 text-sm leading-relaxed text-ink-muted">
