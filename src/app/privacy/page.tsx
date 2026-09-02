@@ -12,7 +12,7 @@ export default function PrivacyPage() {
           No accounts. No cloud food logs. No camera uploads. No BMI tools that store results.
         </p>
         <p>
-          Optional notes on the Notes for clinic page use browser localStorage on your device.
+          Optional notes and weight dates on the Notes for clinic page use browser localStorage on your device.
           We cannot read them.
         </p>
         <p>
