@@ -54,8 +54,9 @@ export default function NotesPage() {
       <h1 className="font-display text-4xl text-ink">Notes for clinic</h1>
       <p className="mt-4 text-ink-muted leading-relaxed">
         Use this before a GP, paediatric, or dietitian appointment. List accepted foods, feared
-        foods, and the questions you want answered. Notes stay in{' '}
-        <strong className="font-medium text-ink">this browser only</strong>. Nothing is uploaded.
+        foods, and the questions you want answered. You can save them on this phone with the button
+        below — they stay on{' '}
+        <strong className="font-medium text-ink">this device only</strong>. Nothing is uploaded.
         Clearing site data removes them.
       </p>
       <textarea
