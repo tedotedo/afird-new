@@ -9,23 +9,28 @@ export default function PrivacyPage() {
       <div className="mt-8 space-y-4 text-ink-muted leading-relaxed">
         <p>
           <strong className="font-medium text-ink">ARFID Wellness does not collect child or health data.</strong>{" "}
-          There are no accounts, no food logs in the cloud, no camera uploads, and no BMI calculators that store results.
+          No accounts. No cloud food logs. No camera uploads. No BMI tools that store results.
         </p>
         <p>
-          Optional notes on the Notes page use browser localStorage on your device only. We cannot see them.
+          Optional notes on the Notes for clinic page use browser localStorage on your device.
+          We cannot read them.
         </p>
         <p>
-          If you accept analytics cookies, we use Google Analytics 4 for anonymous traffic (pages, devices, approximate region).
-          Measurement ID is set via environment; it is not a tracking product for food or sleep.
+          If you accept analytics cookies, we use Google Analytics 4 for anonymous site traffic
+          (pages viewed, device type, rough region). That is not used to track food, sleep, or
+          anything about your child.
         </p>
         <p>
-          Hosting is on Netlify. The domain may remain arfidwellnesstracker.com for continuity even though the product name is ARFID Wellness.
+          The site is hosted on Netlify. It may appear at arfidwellnesstracker.com and
+          arfidwellness.co.uk. Same site, same privacy rules — the older tracker domain is kept
+          so existing links still work.
         </p>
         <p>
-          Contact via{" "}
+          Questions:{" "}
           <a className="text-accent underline-offset-2 hover:underline" href="https://practical-autism-research.co.uk">
             practical-autism-research.co.uk
-          </a>.
+          </a>
+          .
         </p>
       </div>
     </article>

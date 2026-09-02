@@ -12,7 +12,7 @@ const serif = Libre_Baskerville({ subsets: ['latin'], weight: ['400', '700'], di
 export const metadata: Metadata = {
   title: { default: 'ARFID Wellness', template: '%s — ARFID Wellness' },
   description:
-    'Quiet UK information for families living with Avoidant/Restrictive Food Intake Disorder. Notes stay on this device. This site does not collect child or health data.',
+    'Practical UK information for families dealing with Avoidant/Restrictive Food Intake Disorder. Notes stay on this device. This site does not collect child or health data.',
   applicationName: 'ARFID Wellness',
   manifest: '/site.webmanifest',
   icons: {

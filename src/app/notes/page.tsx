@@ -4,6 +4,19 @@ import { useEffect, useState } from "react";
 
 const KEY = "aw-local-notes";
 
+const PLACEHOLDER = `Accepted foods (include brands):
+-
+
+Feared / refused foods:
+-
+
+What happens at mealtimes:
+-
+
+Questions for GP / dietitian:
+-
+`;
+
 export default function NotesPage() {
   const [text, setText] = useState("");
   const [savedAt, setSavedAt] = useState<string | null>(null);
@@ -38,17 +51,19 @@ export default function NotesPage() {
 
   return (
     <article className="mx-auto max-w-prose px-4 py-12 sm:px-6">
-      <h1 className="font-display text-4xl text-ink">Private notes</h1>
+      <h1 className="font-display text-4xl text-ink">Notes for clinic</h1>
       <p className="mt-4 text-ink-muted leading-relaxed">
-        Optional notes stay in <strong className="font-medium text-ink">this browser only</strong>.
-        Nothing is uploaded. Clearing site data removes them.
+        Use this before a GP, paediatric, or dietitian appointment. List accepted foods, feared
+        foods, and the questions you want answered. Notes stay in{' '}
+        <strong className="font-medium text-ink">this browser only</strong>. Nothing is uploaded.
+        Clearing site data removes them.
       </p>
       <textarea
         value={text}
         onChange={(e) => setText(e.target.value)}
-        rows={12}
+        rows={14}
         className="mt-6 w-full rounded-md border border-rule bg-paper-card p-3 text-ink shadow-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
-        placeholder="Questions for clinic, foods to try, wins…"
+        placeholder={PLACEHOLDER}
       />
       <div className="mt-4 flex flex-wrap gap-3">
         <button type="button" onClick={save} className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent-hover">

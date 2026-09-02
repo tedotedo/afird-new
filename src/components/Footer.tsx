@@ -9,9 +9,9 @@ export default function Footer() {
           <div>
             <h3 className="font-display text-lg text-white">ARFID Wellness</h3>
             <p className="mt-3 text-sm leading-relaxed text-[#b7b3aa]">
-              Quiet information for families living with Avoidant/Restrictive Food Intake
-              Disorder. Written by a UK consultant community paediatrician. Notes stay on
-              this device — nothing is uploaded.
+              Plain UK information for families dealing with Avoidant/Restrictive Food Intake
+              Disorder. Written by a consultant community paediatrician. Notes stay on this
+              device — nothing is uploaded.
             </p>
           </div>
           <div>
@@ -19,7 +19,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-2.5 text-sm">
               <li><Link href="/arfid" className="hover:text-white">About ARFID</Link></li>
               <li><Link href="/resources" className="hover:text-white">UK resources</Link></li>
-              <li><Link href="/notes" className="hover:text-white">Private notes</Link></li>
+              <li><Link href="/notes" className="hover:text-white">Notes for clinic</Link></li>
               <li><Link href="/about" className="hover:text-white">About</Link></li>
               <li><Link href="/privacy" className="hover:text-white">Privacy</Link></li>
             </ul>
@@ -38,8 +38,8 @@ export default function Footer() {
           <p>© {new Date().getFullYear()} ARFID Wellness. Dr Odet Mark Aszkenasy.</p>
           <p className="mt-2 text-xs"><CookiePreferences /></p>
           <p className="mt-2 max-w-2xl text-xs leading-relaxed">
-            General information only — not a substitute for professional medical advice.
-            Always consult your GP, paediatrician, or healthcare team about feeding and nutrition.
+            General information only — not a substitute for professional advice.
+            Talk to your GP, paediatrician, or healthcare team about feeding and nutrition.
           </p>
         </div>
       </div>

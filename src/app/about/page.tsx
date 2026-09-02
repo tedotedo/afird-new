@@ -13,9 +13,25 @@ export default function AboutPage() {
         </div>
       </div>
       <div className="mt-8 space-y-4 text-ink-muted leading-relaxed">
-        <p>I qualified in medicine in London in 1982. After general medicine and paediatrics, I entered neurodevelopmental paediatrics in 1996 and later specialised in autism.</p>
-        <p>As clinical lead for autism in a busy paediatric service in the north-east of England, I meet families every week who are trying to understand their child's needs. ARFID Wellness is a quiet companion site: information only, no cloud food tracking.</p>
-        <p className="rounded-md border border-rule bg-paper-card p-4 text-sm italic">The best approach combines scientific rigour with honest, straightforward communication.</p>
+        <p>
+          I qualified in medicine in London in 1982. After general medicine and paediatrics, I
+          moved into neurodevelopmental work in 1996 and later specialised in autism. I work as a
+          consultant community paediatrician in the Tees / North East.
+        </p>
+        <p>
+          Families kept asking for something simple on ARFID — what it is, what to try at home,
+          and when to push for help — without another app harvesting meal photos and growth data.
+          That is why this site exists.
+        </p>
+        <p>
+          An earlier food-tracking idea was dropped. Collecting children&apos;s health data on a
+          public site was the wrong approach. ARFID Wellness is information only. Optional notes
+          stay in your browser. Nothing is uploaded to us.
+        </p>
+        <p>
+          I am registered with the GMC. This site does not replace your GP, paediatrician, or
+          dietitian, and it is not a shop.
+        </p>
       </div>
     </article>
   );
