@@ -54,6 +54,38 @@ export default function ArfidPage() {
         whether it is &ldquo;just picky eating.&rdquo;
       </p>
 
+      <h2 className="mt-10 font-display text-2xl text-ink">What good support looks like</h2>
+      <p className="mt-3 leading-relaxed text-ink-muted">
+        ARFID responds best to a team that understands it — usually including a paediatrician or GP
+        who will track growth, a dietitian, and often psychology or an eating-disorder / feeding
+        service. There is no single national NICE pathway yet, so what is on offer varies by area.
+      </p>
+      <p className="mt-4 leading-relaxed text-ink-muted">
+        With regular monitoring, the right nutritional plan (food first, supplements when needed),
+        and support that does not treat the child as &ldquo;difficult,&rdquo; most children keep
+        feeding by mouth. The aim is growth, energy, and a wider safe food list — not perfect eating
+        overnight.
+      </p>
+      <p className="mt-4 leading-relaxed text-ink-muted">
+        A smaller number need tube feeding (usually a nasogastric tube for a period; sometimes a PEG
+        if longer support is required) when they cannot take enough by mouth to stay safe or grow.
+        That is a medical decision, not a failure of parenting. Many children who need a tube later
+        return to exclusive oral feeding with specialist help; a few need longer-term tube support.
+        If a tube is discussed, ask for the plan: why now, how nutrition will be monitored, and what
+        the steps back toward oral feeding look like.
+      </p>
+      <p className="mt-4 leading-relaxed text-ink-muted">
+        Do not start, stop or change{' '}
+        <Link href="/nutrition-support" className="underline decoration-rule underline-offset-2 hover:text-ink">
+          sip feeds
+        </Link>
+        ,{' '}
+        <Link href="/supplements" className="underline decoration-rule underline-offset-2 hover:text-ink">
+          supplements
+        </Link>{' '}
+        or tube regimens without the clinical team.
+      </p>
+
       <h2 className="mt-10 font-display text-2xl text-ink">Signs at the table</h2>
       <ul className="mt-3 list-disc space-y-2 pl-5 text-ink-muted">
         <li>Very short list of accepted foods — often the same brand or packaging</li>
