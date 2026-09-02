@@ -17,6 +17,9 @@ Feared / refused foods:
 What happens at mealtimes:
 -
 
+Progress since last appointment (look / smell / touch, sitting longer, new brand of a safe food, one bite of a near-safe texture, less distress):
+-
+
 Questions for GP / dietitian:
 -
 `;
@@ -115,8 +118,8 @@ export default function NotesPage() {
       <h1 className="font-display text-4xl text-ink">Notes for clinic</h1>
       <p className="mt-4 text-ink-muted leading-relaxed">
         Use this before a GP, paediatric, or dietitian appointment. List accepted foods, feared
-        foods, and the questions you want answered. You can save them on this phone with the button
-        below — they stay on{" "}
+        foods, small signs of progress, and the questions you want answered. You can save them on
+        this phone with the button below — they stay on{" "}
         <strong className="font-medium text-ink">this device only</strong>. Nothing is uploaded.
         Clearing site data removes them.
       </p>
@@ -127,6 +130,26 @@ export default function NotesPage() {
         className="mt-6 w-full rounded-md border border-rule bg-paper-card p-3 text-ink shadow-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
         placeholder={PLACEHOLDER}
       />
+
+      <section className="mt-8" aria-labelledby="progress-heading">
+        <h2 id="progress-heading" className="font-display text-2xl text-ink">
+          Progress worth noting
+        </h2>
+        <p className="mt-2 text-sm text-ink-muted leading-relaxed">
+          Clinic teams often need more than &ldquo;ate a new food.&rdquo; Use the notes box above for
+          anything like this — small steps still count:
+        </p>
+        <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm text-ink-muted">
+          <li>Looked at, smelled, or touched a food before tasting</li>
+          <li>Stayed at the table a bit longer</li>
+          <li>Tried a new brand or pack of a safe food</li>
+          <li>One bite of a near-safe texture</li>
+          <li>Less distress, or shorter stand-offs, at mealtimes</li>
+        </ul>
+        <p className="mt-3 text-sm text-ink-muted leading-relaxed">
+          Weight trend has its own log below if you need it.
+        </p>
+      </section>
 
       <section className="mt-8" aria-labelledby="weights-heading">
         <h2 id="weights-heading" className="font-display text-2xl text-ink">
