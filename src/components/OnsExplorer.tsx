@@ -20,7 +20,7 @@ function FormBadge({ form }: { form: OnsForm }) {
 
 function ProductCard({ product }: { product: OnsProduct }) {
   return (
-    <article className="rounded-lg border border-rule bg-paper-card p-5">
+    <article className="rounded-xl border border-rule bg-paper-card p-5 shadow-card">
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div>
           <p className="text-xs uppercase tracking-wide text-ink-faint">{product.brand}</p>
@@ -109,8 +109,8 @@ export default function OnsExplorer() {
               onClick={() => setForm(s.id)}
               className={`rounded-md px-3 py-1.5 text-sm ${
                 form === s.id
-                  ? 'bg-ink text-white'
-                  : 'border border-rule bg-paper-card text-ink-muted hover:border-ink/20 hover:text-ink'
+                  ? 'bg-accent text-white'
+                  : 'border border-rule bg-paper-card text-ink-muted hover:border-accent/30 hover:text-ink'
               }`}
             >
               {s.label}

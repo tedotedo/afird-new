@@ -3,11 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --ink: #12141a;
-  --slate: #4a5060;
-  --rule: #e4e2dc;
-  --paper: #f7f6f2;
-  --card: #fffcf8;
+  --ink: #2e2b27;
+  --slate: #5e5952;
+  --rule: #ebe4d8;
+  --paper: #faf5ee;
+  --card: #fffcf7;
+  --accent: #3f7d6c;
 }
 
 html { scroll-behavior: smooth; }
@@ -20,6 +21,7 @@ body {
 }
 
 h1, h2, h3, .font-display {
-  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
-  letter-spacing: -0.02em;
+  font-family: var(--font-serif), "Source Serif 4", Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.015em;
 }

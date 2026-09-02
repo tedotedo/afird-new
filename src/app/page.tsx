@@ -51,10 +51,10 @@ export default function HomePage() {
             your browser only.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/arfid" className="rounded-md bg-ink px-4 py-2.5 text-sm text-white hover:bg-ink-muted">
+            <Link href="/arfid" className="rounded-md bg-accent px-4 py-2.5 text-sm text-white hover:bg-accent-hover">
               Read about ARFID
             </Link>
-            <Link href="/resources" className="rounded-md border border-rule bg-paper px-4 py-2.5 text-sm text-ink hover:bg-white">
+            <Link href="/resources" className="rounded-md border border-rule bg-paper-card px-4 py-2.5 text-sm text-ink hover:border-accent/40">
               UK resources
             </Link>
           </div>
@@ -65,7 +65,7 @@ export default function HomePage() {
         <h2 className="font-display text-2xl text-ink">On this site</h2>
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
           {topics.map((t) => (
-            <Link key={t.href} href={t.href} className="rounded-lg border border-rule bg-paper-card p-5 hover:border-ink/20">
+            <Link key={t.href} href={t.href} className="rounded-xl border border-rule bg-paper-card p-5 shadow-card transition hover:border-accent/30">
               <h3 className="font-display text-xl text-ink">{t.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-ink-muted">{t.body}</p>
             </Link>

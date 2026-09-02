@@ -62,7 +62,7 @@ export default function ConsentAnalytics() {
   if (!visible) return null;
 
   return (
-    <div role="dialog" aria-live="polite" aria-label="Cookie choices" className="fixed inset-x-0 bottom-0 z-50 border-t border-rule bg-paper-card/95 p-4 shadow-[0_-8px_30px_rgba(18,20,26,0.08)] backdrop-blur sm:p-5">
+    <div role="dialog" aria-live="polite" aria-label="Cookie choices" className="fixed inset-x-0 bottom-0 z-50 border-t border-rule bg-paper-card/95 p-4 shadow-[0_-8px_30px_rgba(46,43,39,0.08)] backdrop-blur sm:p-5">
       <div className="mx-auto flex max-w-site flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div className="max-w-2xl">
           <p className="text-sm font-medium text-ink">Cookies</p>
@@ -72,8 +72,8 @@ export default function ConsentAnalytics() {
           </p>
         </div>
         <div className="flex shrink-0 flex-wrap gap-2">
-          <button type="button" onClick={reject} className="rounded-md border border-rule bg-paper px-3.5 py-2 text-sm text-ink hover:bg-white">Essential only</button>
-          <button type="button" onClick={accept} className="rounded-md bg-ink px-3.5 py-2 text-sm text-white hover:bg-ink-muted">Accept analytics</button>
+          <button type="button" onClick={reject} className="rounded-md border border-rule bg-paper px-3.5 py-2 text-sm text-ink hover:border-accent/40">Essential only</button>
+          <button type="button" onClick={accept} className="rounded-md bg-accent px-3.5 py-2 text-sm text-white hover:bg-accent-hover">Accept analytics</button>
         </div>
       </div>
     </div>
