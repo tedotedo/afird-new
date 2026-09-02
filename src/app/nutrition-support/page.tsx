@@ -30,9 +30,9 @@ export default function NutritionSupportPage() {
               everyday “meal replacements” without advice.
             </li>
             <li>
-              Many children with ARFID refuse sip feeds because of sweetness, milkiness, oiliness or
-              aftertaste — not because they “won’t try”. Matching texture to sensory tolerance is part of
-              the clinical conversation.
+              If a sip feed is too sweet, milky or oily, many children with ARFID will not drink it.
+              That is not refusal for the sake of it — texture belongs in the conversation with the
+              dietitian.
             </li>
             <li>
               Modular fortifiers (Calogen, Pro-Cal, Duocal) are <strong className="font-medium text-ink">not

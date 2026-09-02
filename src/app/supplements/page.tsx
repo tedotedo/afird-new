@@ -23,9 +23,9 @@ export default function SupplementsPage() {
         extras={
           <>
             <li>
-              Many children with ARFID refuse supplements because of texture, smell, sweetness or
-              aftertaste — not because they are being difficult. Matching format to sensory tolerance
-              matters as much as the nutrient list.
+              If the texture, smell or aftertaste is wrong, many children with ARFID simply will not
+              take it. That is not being difficult. Form and flavour matter as much as the vitamins
+              listed on the bottle.
             </li>
             <li>
               Do not start, stop or combine supplements on your own if your child is under clinical
