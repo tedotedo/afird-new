@@ -34,7 +34,7 @@ export default function Navigation() {
     <header className="sticky top-0 z-40 border-b border-rule bg-paper/95 backdrop-blur">
       <div className="mx-auto flex max-w-site items-center justify-between gap-4 px-4 py-3 sm:px-6">
         <Link href="/" className="font-display text-lg text-ink">
-          ARFID Wellness
+          Practical ARFID
         </Link>
 
         <nav className="hidden items-center gap-1 sm:flex" aria-label="Main">
