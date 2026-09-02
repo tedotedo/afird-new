@@ -43,15 +43,13 @@ export default function ArfidPage() {
       <p className="mt-4 leading-relaxed text-ink-muted">
         The middle is messy. The same sensory patterns can appear in both ordinary picky eating and
         ARFID. There is overlap; both sit on a spectrum rather than in two tidy boxes. Autism and
-        other neurodivergence often travel with the sensory pattern — that does not make the eating
-        problem less real, and it does not mean you should wait it out if health is slipping.
+        other neurodivergence often travel with the sensory pattern — when they do, assess the eating
+        difficulty on its own merits.
       </p>
       <p className="mt-4 leading-relaxed text-ink-muted">
-        Your job is not to win the label argument at the kitchen table. Get assessment when the
-        accepted food list is shrinking, growth or weight is slipping, or mealtimes have become
-        unmanageable. A school-age child stuck on a handful of foods, losing weight, or terrified at
-        the table needs proper clinical review — that is the practical line, not a debate about
-        whether it is &ldquo;just picky eating.&rdquo;
+        Seek assessment when the accepted food list is shrinking, growth or weight is slipping, or
+        mealtimes have become unmanageable. A school-age child stuck on a handful of foods, losing
+        weight, or terrified at the table needs proper clinical review.
       </p>
 
       <h2 className="mt-10 font-display text-2xl text-ink">What good support looks like</h2>
@@ -63,8 +61,8 @@ export default function ArfidPage() {
       <p className="mt-4 leading-relaxed text-ink-muted">
         With regular monitoring, the right nutritional plan (food first, supplements when needed),
         and support that does not treat the child as &ldquo;difficult,&rdquo; most children keep
-        feeding by mouth. The aim is growth, energy, and a wider safe food list — not perfect eating
-        overnight.
+        feeding by mouth. The aim is growth, energy, and to very gradually widen your child&rsquo;s safe
+        food list.
       </p>
       <p className="mt-4 leading-relaxed text-ink-muted">
         A smaller number need tube feeding (usually a nasogastric tube for a period; sometimes a PEG
