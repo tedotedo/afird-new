@@ -184,7 +184,26 @@ export const supplements: Supplement[] = [
     infoLabel: 'Haliborange — Multivitamin Softies',
   },
   {
+    id: 'wellkid-smart-chewable',
+    name: 'Wellkid Multi-vitamin Smart Chewable',
+    brand: 'Vitabiotics Wellkid',
+    form: 'chewable',
+    formLabel: 'Chewable tablet',
+    flavours: 'Mixed fruit (lemon, raspberry, strawberry, apple flavourings)',
+    textureNotes:
+      'Chewable tablet (not designed to be swallowed whole). Low sugar; xylitol sweetener — excess may loosen stools. Firmer chew than Soft Jelly pastilles. Citrus/fruit acidity.',
+    keyContents:
+      '21 nutrients per tablet including vitamins A, C, D3 10 µg, B-complex, E; magnesium; iron 7 mg; zinc; copper; manganese; selenium; chromium; iodine; flaxseed oil powder 114 mg',
+    ageBand: '4–12 years (not under 4)',
+    containsIron: true,
+    notes:
+      'Food supplement. Contains iron — keep out of reach of younger children; overdose risk. Vegetarian. Vitamin E from soya (allergen on ingredients list — check current label). Made in a site that may handle nuts/peanuts. Different product from Wellkid Soft Jelly Pastilles (which has no iron and uses bovine gelatine).',
+    infoUrl: 'https://www.vitabiotics.com/products/wellkid-smart-chewable',
+    infoLabel: 'Vitabiotics — Wellkid Smart Chewable',
+  },
+  {
     id: 'wellkid-soft-jelly',
+
     name: 'Wellkid Soft Jelly Pastilles',
     brand: 'Vitabiotics Wellkid',
     form: 'chewable',
@@ -196,7 +215,8 @@ export const supplements: Supplement[] = [
       '11 vitamins (B-complex, C, D3 10 µg per 2 pastilles, E) plus flaxseed oil — no iron, calcium or zinc in this pastille',
     ageBand: '4–12 years (not under 4)',
     containsIron: false,
-    notes: 'Food supplement. Designed to be chewed, not swallowed whole.',
+    notes:
+      'Food supplement. Designed to be chewed, not swallowed whole. Not the same as Wellkid Smart Chewable (that tablet contains iron and minerals; Soft Jelly does not). Bovine gelatine — not vegetarian.',
     infoUrl: 'https://www.vitabiotics.com/products/wellkid-soft-jelly-pastilles',
     infoLabel: 'Vitabiotics — Wellkid Soft Jelly Pastilles',
   },
