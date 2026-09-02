@@ -64,8 +64,8 @@ export default function NutritionSupportPage() {
             brands so clinics can trial small amounts.
           </li>
           <li>
-            Adult sip feeds (e.g. many Ensure/Fortisip lines) are a different conversation — paediatric
-            products are listed first here for a reason.
+            Most adult bottle drinks (many Ensure and Fortisip lines) are a different conversation —
+            children&apos;s products are listed first here for a reason.
           </li>
         </ul>
         <p className="mt-4 text-sm leading-relaxed text-ink-muted">
@@ -86,10 +86,11 @@ export default function NutritionSupportPage() {
       <section className="mt-14 max-w-prose border-t border-rule pt-10">
         <h2 className="font-display text-xl text-ink">Not listed / skipped</h2>
         <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-          We skipped adult-primary lines (many Fortisip / Ensure Plus SKUs) except where clearly used as
-          paediatric modular products with published age limits. Peptide / elemental feeds, tube-feed-only
-          presentations, and brand variants without a clear current UK manufacturer page were omitted
-          rather than guessed. Local formularies decide what is actually available on FP10.
+          We left out most adult sip feeds (many Fortisip and Ensure Plus bottles) unless a product is
+          clearly labelled for children with a published age range. Tube-feed-only products, highly
+          specialised hospital feeds, and anything we could not check on a current UK manufacturer page
+          are not listed — we would rather leave a gap than guess. What your GP or dietitian can prescribe
+          on the NHS still depends on your local area.
         </p>
       </section>
     </div>
