@@ -31,8 +31,8 @@ export default function NutritionSupportPage() {
             </li>
             <li>
               If a sip feed is too sweet, milky or oily, many children with ARFID will not drink it.
-              That is not refusal for the sake of it — texture belongs in the conversation with the
-              dietitian.
+              That is never because they are being difficult. Texture belongs in the conversation with
+              the dietitian.
             </li>
             <li>
               Modular fortifiers (Calogen, Pro-Cal, Duocal) are <strong className="font-medium text-ink">not
