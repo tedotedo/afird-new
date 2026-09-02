@@ -96,8 +96,8 @@ export default function ArfidPage() {
 
       <h2 className="mt-10 font-display text-2xl text-ink">What to try carefully this week</h2>
       <p className="mt-3 leading-relaxed text-ink-muted">
-        There is no miracle diet. Pressure and bribes usually make mealtime anxiety worse. Small,
-        steady steps work better than big confrontations.
+        Change the food list slowly. Keep pressure low at the table — long battles and bribes often
+        raise anxiety and make the next meal harder.
       </p>
       <ul className="mt-3 list-disc space-y-2 pl-5 text-ink-muted">
         <li>Keep mealtimes calm and predictable. Same place, same rough time, no long battles.</li>
