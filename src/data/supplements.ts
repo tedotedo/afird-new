@@ -67,13 +67,13 @@ export const supplements: Supplement[] = [
     formLabel: 'Liquid drops',
     flavours: 'Natural flavour/aroma of the vitamins (not a fruit flavour)',
     textureNotes:
-      'Yellow/brown liquid; characteristic vitamin smell/taste. Contains refined peanut (arachis) oil — oily mouthfeel possible. Also contains sucrose.',
+      'Yellow/brown liquid; characteristic vitamin smell/taste. Contains refined peanut (arachis) oil — oily mouthfeel possible. Also contains sucrose. Not the same as Dalivit (no peanut oil; different vitamin A strength).',
     keyContents:
       'Vitamins A, D2, B1, B2, B6, nicotinamide (B3), C (licensed multivitamin drops)',
     ageBand: 'Babies and children from birth to 12 years (per PIL)',
     containsIron: false,
     notes:
-      'Peanut/soya allergy: contains arachis oil — do not use if allergic. UK supply of Abidec drops has been intermittent (pharmacy supply notifications); pharmacists may suggest alternatives. Always check the current pack.',
+      'Not the same as Dalivit Oral Drops: Abidec contains refined peanut (arachis) oil — do not use if allergic to peanut/soya; Dalivit does not use peanut oil and has higher vitamin A per dose, so they are not interchangeable millilitre-for-millilitre. UK supply of Abidec drops has been intermittent (pharmacy supply notifications); pharmacists may suggest alternatives. Always check the current pack.',
     infoUrl: 'https://www.drugs.com/uk/abidec-multivitamin-drops-leaflet.html',
     infoLabel: 'Abidec Multivitamin Drops — patient leaflet',
   },
@@ -91,7 +91,7 @@ export const supplements: Supplement[] = [
     ageBand: 'Licensed from 6 weeks of age (infants/children; older ages as directed)',
     containsIron: false,
     notes:
-      'Supply has also been intermittent at times. Contains sodium methyl hydroxybenzoate (E219). Not interchangeable millilitre-for-millilitre with Abidec because of different vitamin A content — discuss with GP/pharmacist/dietitian.',
+      'Not the same as Abidec Multivitamin Drops: Dalivit has no peanut oil, but higher vitamin A per dose — not interchangeable ml-for-ml; discuss with GP/pharmacist/dietitian. Supply has also been intermittent at times. Contains sodium methyl hydroxybenzoate (E219).',
     infoUrl: 'https://imedi.co.uk/dalivit-drops',
     infoLabel: 'Dalivit Drops — leaflet summary',
   },
@@ -103,13 +103,13 @@ export const supplements: Supplement[] = [
     formLabel: 'Liquid syrup (mix into milk/water)',
     flavours: 'Natural orange (Swiss Alpine malt; orange oil on some labels)',
     textureNotes:
-      'Sweet syrupy liquid with malt; orange note. Can stain and may leave residue. Manufacturer directs mixing into usual milk or water for younger infants — not from the teaspoon directly in the youngest age band.',
+      'Sweet syrupy liquid with malt; orange note. Can stain and may leave residue. Manufacturer directs mixing into usual milk or water for younger infants — not from the teaspoon directly in the youngest age band. Not the same as Wellbaby Multi-vitamin Drops (syringe, smaller volume) or Wellbaby Vitamin D Drops (D-only olive oil).',
     keyContents:
       '14 vitamins/minerals including A, C, D3 (10 µg per 5 ml), B vitamins, iron, zinc, copper — plus malt extract',
     ageBand: '6 months to 4 years',
     containsIron: true,
     notes:
-      'Contains iron (excess harmful to young children — keep out of reach). Contains gluten from barley malt. Colour may darken after opening (iron). Vegetarian; not vegan (vitamin D from lanolin). Food supplement, not a medicine.',
+      'Not the same as Wellbaby Multi-vitamin Drops (4–24 months, syringe) or Wellbaby Vitamin D Drops (vitamin D only in olive oil from birth). Contains iron (excess harmful to young children — keep out of reach). Contains gluten from barley malt. Colour may darken after opening (iron). Vegetarian; not vegan (vitamin D from lanolin). Food supplement, not a medicine.',
     infoUrl: 'https://www.vitabiotics.com/products/wellbaby-multi-vitamin-liquid',
     infoLabel: 'Vitabiotics — Wellbaby Multi-vitamin Liquid',
   },
@@ -121,15 +121,32 @@ export const supplements: Supplement[] = [
     formLabel: 'Liquid drops (syringe)',
     flavours: 'Malt (Swiss Alpine malt); some pack copy also mentions orange',
     textureNotes:
-      'Measured with included syringe. Sweet malt taste. Smaller volume than the 5 ml liquid — may suit children who refuse spoonfuls of syrup.',
+      'Measured with included syringe. Sweet malt taste. Smaller volume than the 5 ml liquid — may suit children who refuse spoonfuls of syrup. Not the same as Wellbaby Vitamin D Drops (D-only, olive oil, no malt/iron).',
     keyContents:
       'Vitamins A, C, D plus B vitamins, iron, zinc and L-lysine (14+ nutrients; check current label for exact list)',
     ageBand: '4 to 24 months (manufacturer age banding)',
     containsIron: true,
     notes:
-      'Contains iron — overdose risk in the household. Contains barley malt (gluten). Food supplement. Confirm age directions on the box before use.',
+      'Not the same as Wellbaby Multi-vitamin Liquid (syrup, 6 months–4 years) or Wellbaby Vitamin D Drops (D-only olive oil drops from birth — no iron, no malt). Contains iron — overdose risk in the household. Contains barley malt (gluten). Food supplement. Confirm age directions on the box before use.',
     infoUrl: 'https://www.vitabiotics.com/products/wellbaby-multi-vitamin-drops',
     infoLabel: 'Vitabiotics — Wellbaby Multi-vitamin Drops',
+  },
+  {
+    id: 'wellbaby-vitamin-d-drops',
+    name: 'Wellbaby Vitamin D Drops',
+    brand: 'Vitabiotics Wellbaby',
+    form: 'liquid',
+    formLabel: 'Oil-based vitamin D drops (dropper)',
+    flavours: 'No fruit flavour — natural olive oil base only',
+    textureNotes:
+      'Oil drops in olive oil — oily mouthfeel, no malt syrup. Measured with included dropper (0.5 ml). For 0–6 months manufacturer directs drop-by-drop onto nipple/teat; from 6 months into usual milk or water. Distinct from the multi-vitamin drops (malt, iron, many nutrients).',
+    keyContents: 'Vitamin D3 only — 10 µg (400 IU) per 0.5 ml daily dose',
+    ageBand: 'From birth to 4 years',
+    containsIron: false,
+    notes:
+      'Not the same as Wellbaby Multi-vitamin Drops or Wellbaby Multi-vitamin Liquid — this is vitamin D only (no A, C, iron or malt). Ingredients: olive oil and vitamin D3. Vegetarian; gluten-free; no artificial flavours/colours/sweeteners. Made in a site that may handle nuts/peanuts — manufacturer states not suitable for nut/peanut allergy. Food supplement. Do not stack with other vitamin D products without advice.',
+    infoUrl: 'https://www.vitabiotics.com/products/wellbaby-vitamin-d-drops',
+    infoLabel: 'Vitabiotics — Wellbaby Vitamin D Drops',
   },
   {
     id: 'prod3-drops',
@@ -140,13 +157,14 @@ export const supplements: Supplement[] = [
     flavours: 'Orange',
     textureNotes:
       'Oil drops (sunflower seed oil / MCT base) — oily mouthfeel. Can be mixed into food or drink, or taken directly. Citrus orange flavour.',
-    keyContents: 'Vitamin D3 (cholecalciferol) only — typically 100 IU (2.5 µg) per drop; strength variants exist',
+    keyContents:
+      'Vitamin D3 (cholecalciferol) only — typically 100 IU (2.5 µg) per drop on the liquid-drops pack; other Pro D3 liquids list different IU strengths (e.g. 2000 IU/ml, Forte) — check the label on the bottle you hold',
     ageBand: 'Manufacturer materials: infants/children (commonly stated from 6 months for the 100 IU drops) — follow labelled age and clinician advice',
     containsIron: false,
     notes:
-      'Vitamin D only — not a multivitamin. Free from peanut and soya per pharmacy product information. Used when vitamin D alone is the gap under discussion. Do not stack multiple vitamin D products without advice.',
-    infoUrl: 'https://www.synergybiologics.co.uk/pro-d3',
-    infoLabel: 'Synergy Biologics — Pro D3',
+      'Vitamin D only — not a multivitamin. Multiple Pro D3 formats and IU strengths exist (100 IU/drop drops; separate higher-strength liquids such as 2000 IU/ml and Forte) — always match the pack strength to clinical advice; do not assume bottles are interchangeable. Free from peanut and soya per pharmacy product information. Do not stack multiple vitamin D products without advice.',
+    infoUrl: 'https://www.prod3.co.uk/products/pro-d3-liquid-drops-20ml-vitamin-d3',
+    infoLabel: 'Pro D3 — Liquid Drops (100 IU/drop)',
   },
   {
     id: 'betteryou-kids-spray',
@@ -156,13 +174,13 @@ export const supplements: Supplement[] = [
     formLabel: 'Oral spray (into cheek)',
     flavours: 'Chocolate and marshmallow',
     textureNotes:
-      'Fine spray onto the inside of the cheek — no tablet, no gummy chew. Sugar-free (xylitol). Flavour is sweet/chocolate-marshmallow rather than fruity; some ARFID children prefer this, others refuse novelty flavours.',
+      'Fine spray onto the inside of the cheek — no tablet, no gummy chew. Sugar-free (xylitol). Flavour is sweet/chocolate-marshmallow rather than fruity; some ARFID children prefer this, others refuse novelty flavours. Not a Haliborange Softie (different brand, spray vs gummy).',
     keyContents:
       '14 nutrients including vitamins A, C, D3 (10 µg), K1, B-complex, iodine, selenium — no iron',
     ageBand: '1 year and above',
     containsIron: false,
     notes:
-      'Contains vitamin K — unsuitable with some anticoagulants; seek medical advice if relevant. Vegetarian. Food supplement.',
+      'Not a Haliborange Softie — BetterYou oral spray is a different product and brand (cheek spray, not a gelatine gummy). Contains vitamin K — unsuitable with some anticoagulants; seek medical advice if relevant. Vegetarian. Food supplement.',
     infoUrl: 'https://betteryou.com/collections/roald-dahl-kids-range/products/multivitamin-kids-daily-oral-spray',
     infoLabel: 'BetterYou — Multivitamin Kids Oral Spray',
   },
@@ -174,14 +192,66 @@ export const supplements: Supplement[] = [
     formLabel: 'Gummy softies',
     flavours: 'Orange; strawberry (separate packs)',
     textureNotes:
-      'Chewy gelatine softie — sweet, fruity, sticky. Bovine gelatine (not vegetarian). Sugar + glucose syrup. Texture is often a deal-breaker or a win for sensory-driven ARFID; do not assume “kids like gummies”.',
+      'Chewy gelatine softie — sweet, fruity, sticky. Bovine gelatine (not vegetarian). Sugar + glucose syrup. Texture is often a deal-breaker or a win for sensory-driven ARFID; do not assume “kids like gummies”. Not the same as Haliborange Iron Softies or Calcium & Vitamin D Softies (different nutrients).',
     keyContents: 'Vitamins A, C, D, E, niacin, B6, B12 (7 vitamins; no iron/zinc in this Softies line)',
     ageBand: '3–12 years',
     containsIron: false,
     notes:
-      'Food supplement. Soft vitamin D per softie is lower than many liquid multis — check the label if vitamin D dose is under discussion with a clinician.',
+      'Not the same as Haliborange Iron Softies (iron + vitamin C only; pectin gelling — check label) or Haliborange Multivitamins Calcium & Iron chewable tablets (chalky chewable, not a softie). Food supplement. Soft vitamin D per softie is lower than many liquid multis — check the label if vitamin D dose is under discussion with a clinician. Bovine gelatine.',
     infoUrl: 'https://www.haliborange.com/product/multivitamin-softies-orange-x30/',
     infoLabel: 'Haliborange — Multivitamin Softies',
+  },
+  {
+    id: 'haliborange-iron-softies',
+    name: 'Iron Softies (Iron & Vitamin C Softies)',
+    brand: 'Haliborange',
+    form: 'gummy',
+    formLabel: 'Gummy softies',
+    flavours: 'Strawberry',
+    textureNotes:
+      'Chewy softie — strawberry flavour, sweet/sticky. Standard kids’ pack uses pectin as gelling agent (not bovine gelatine on the current manufacturer ingredients list — confirm on the pack you buy; themed variants can differ). Not the same as Multivitamin Softies (seven vitamins, no iron) or Calcium & Iron chewables.',
+    keyContents: 'Iron 2.5 mg and vitamin C 12 mg per softie (not a full multivitamin)',
+    ageBand: '3–12 years (children over 3 years)',
+    containsIron: true,
+    notes:
+      'Not the same as Haliborange Multivitamin Softies or Multivitamins Calcium & Iron chewable tablets. Iron-focused softie only — does not replace a multi if other vitamins are the gap under discussion. Contains iron — keep out of reach of younger children; overdose risk. Current manufacturer page ingredients list pectin (no gelatine listed) plus sugar/glucose syrup; themed Frozen Softies packs can use bovine gelatine and a different nutrient list — always read the pack. Food supplement.',
+    infoUrl: 'https://www.haliborange.com/product/iron-vitamin-c/',
+    infoLabel: 'Haliborange — Iron & Vitamin C Softies',
+  },
+  {
+    id: 'haliborange-calcium-vitamin-d-softies',
+    name: 'Calcium & Vitamin D Softies',
+    brand: 'Haliborange',
+    form: 'gummy',
+    formLabel: 'Gummy softies',
+    flavours: 'Strawberry (brand category listing)',
+    textureNotes:
+      'Chewy softie — fruity/strawberry. Bovine gelatine (not vegetarian). Sugar + glucose syrup. Not a multivitamin softie and not the Calcium & Iron chewable tablet.',
+    keyContents: 'Calcium 140 mg and vitamin D 5 µg per softie (bones/teeth focus — not a full multi)',
+    ageBand: '3–12 years (children over 3 years; 1–2 softies daily per label)',
+    containsIron: false,
+    notes:
+      'Not the same as Haliborange Multivitamin Softies, Iron Softies, or Multivitamins Calcium & Iron chewable tablets. Calcium + vitamin D only — no iron on this Softies line. Bovine gelatine — not vegetarian. Food supplement. Confirm flavour and allergen lines on the pack (themed packs exist).',
+    infoUrl: 'https://www.haliborange.com/product/calcium-vitamin-d-x30/',
+    infoLabel: 'Haliborange — Calcium & Vitamin D Softies',
+  },
+  {
+    id: 'wellkid-liquid',
+    name: 'Wellkid Multi-vitamin Liquid',
+    brand: 'Vitabiotics Wellkid',
+    form: 'liquid',
+    formLabel: 'Liquid syrup',
+    flavours: 'Natural orange (orange oil extract)',
+    textureNotes:
+      'Sweet syrupy liquid with malt and orange note — spoon dose, not a chewable or Soft Jelly pastille. Can stain; may leave sticky residue. Distinct mouthfeel from Smart Chewable / Immune Chewable tablets.',
+    keyContents:
+      '15 nutrients per 5 ml including vitamins A, C, D3 10 µg, B vitamins, E; iron 5 mg; zinc; copper; iodine — plus malt extract 500 mg',
+    ageBand: '4–12 years (not under 4; 4–10 years 5 ml; 11–12 years 10 ml per label)',
+    containsIron: true,
+    notes:
+      'Not the same as Wellkid Soft Jelly Pastilles, Smart Chewable, or Immune Chewable — liquid syrup with malt, different nutrient mix and iron level. Contains iron — keep out of reach of younger children; overdose risk. Contains gluten from barley malt; sugar and glucose liquid. Vegetarian. Made in a site that may handle nuts. Food supplement.',
+    infoUrl: 'https://www.vitabiotics.com/products/wellkid-multi-vitamin-liquid',
+    infoLabel: 'Vitabiotics — Wellkid Multi-vitamin Liquid',
   },
   {
     id: 'wellkid-smart-chewable',
@@ -191,32 +261,49 @@ export const supplements: Supplement[] = [
     formLabel: 'Chewable tablet',
     flavours: 'Mixed fruit (lemon, raspberry, strawberry, apple flavourings)',
     textureNotes:
-      'Chewable tablet (not designed to be swallowed whole). Low sugar; xylitol sweetener — excess may loosen stools. Firmer chew than Soft Jelly pastilles. Citrus/fruit acidity.',
+      'Chewable tablet (not designed to be swallowed whole). Low sugar; xylitol sweetener — excess may loosen stools. Firmer chew than Soft Jelly pastilles. Citrus/fruit acidity. Not the same as Immune Chewable (orange & lemon; 24 nutrients) or the liquid.',
     keyContents:
       '21 nutrients per tablet including vitamins A, C, D3 10 µg, B-complex, E; magnesium; iron 7 mg; zinc; copper; manganese; selenium; chromium; iodine; flaxseed oil powder 114 mg',
     ageBand: '4–12 years (not under 4)',
     containsIron: true,
     notes:
-      'Food supplement. Contains iron — keep out of reach of younger children; overdose risk. Vegetarian. Vitamin E from soya (allergen on ingredients list — check current label). Made in a site that may handle nuts/peanuts. Different product from Wellkid Soft Jelly Pastilles (which has no iron and uses bovine gelatine).',
+      'Not the same as Wellkid Soft Jelly Pastilles (no iron; bovine gelatine), Wellkid Immune Chewable (orange & lemon; 24 nutrients including bioflavonoids/grapeseed; D3 12.5 µg), or Wellkid Multi-vitamin Liquid (syrup with malt). Food supplement. Contains iron — keep out of reach of younger children; overdose risk. Vegetarian. Vitamin E from soya (allergen on ingredients list — check current label). Made in a site that may handle nuts/peanuts.',
     infoUrl: 'https://www.vitabiotics.com/products/wellkid-smart-chewable',
     infoLabel: 'Vitabiotics — Wellkid Smart Chewable',
   },
   {
+    id: 'wellkid-immune-chewable',
+    name: 'Wellkid Immune Chewable',
+    brand: 'Vitabiotics Wellkid',
+    form: 'chewable',
+    formLabel: 'Chewable tablet',
+    flavours: 'Orange and lemon',
+    textureNotes:
+      'Chewable tablet (not designed to be swallowed whole). Low sugar; xylitol and sucralose — excess xylitol may loosen stools. Firmer than Soft Jelly; citrus orange/lemon rather than mixed-fruit Smart Chewable flavour.',
+    keyContents:
+      '24 nutrients per tablet including vitamins A, C, D3 12.5 µg, B-complex, E; iron 7 mg; zinc; magnesium; minerals; plus flaxseed oil powder, citrus bioflavonoids, betacarotene and grapeseed extract',
+    ageBand: '4–12 years (not under 4)',
+    containsIron: true,
+    notes:
+      'Not the same as Wellkid Smart Chewable (mixed fruit; 21 nutrients; D3 10 µg), Soft Jelly Pastilles (no iron; gelatine), or Wellkid Liquid (syrup). Food supplement. Contains iron — keep out of reach of younger children; overdose risk. Vegetarian. Vitamin E from soya (allergen on ingredients list). Made in a site that may handle nuts. Manufacturer: no need to take an additional multi-vitamin with this product.',
+    infoUrl: 'https://www.vitabiotics.com/products/wellkid-immune-chewable',
+    infoLabel: 'Vitabiotics — Wellkid Immune Chewable',
+  },
+  {
     id: 'wellkid-soft-jelly',
-
     name: 'Wellkid Soft Jelly Pastilles',
     brand: 'Vitabiotics Wellkid',
     form: 'chewable',
     formLabel: 'Chewable soft jelly pastilles',
     flavours: 'Strawberry or orange',
     textureNotes:
-      'Soft chewable jelly (not hard tablet). Sugar-free sweeteners (maltitol/sorbitol) — excess may loosen stools. Bovine gelatine (not vegetarian). Citrus acidity in orange variant.',
+      'Soft chewable jelly (not hard tablet). Sugar-free sweeteners (maltitol/sorbitol) — excess may loosen stools. Bovine gelatine (not vegetarian). Citrus acidity in orange variant. Not the same as Smart Chewable / Immune Chewable tablets or Wellkid Liquid.',
     keyContents:
       '11 vitamins (B-complex, C, D3 10 µg per 2 pastilles, E) plus flaxseed oil — no iron, calcium or zinc in this pastille',
     ageBand: '4–12 years (not under 4)',
     containsIron: false,
     notes:
-      'Food supplement. Designed to be chewed, not swallowed whole. Not the same as Wellkid Smart Chewable (that tablet contains iron and minerals; Soft Jelly does not). Bovine gelatine — not vegetarian.',
+      'Not the same as Wellkid Smart Chewable or Immune Chewable (those tablets contain iron and minerals; Soft Jelly does not) or Wellkid Multi-vitamin Liquid (syrup with iron and malt). Food supplement. Designed to be chewed, not swallowed whole. Bovine gelatine — not vegetarian.',
     infoUrl: 'https://www.vitabiotics.com/products/wellkid-soft-jelly-pastilles',
     infoLabel: 'Vitabiotics — Wellkid Soft Jelly Pastilles',
   },
@@ -228,12 +315,12 @@ export const supplements: Supplement[] = [
     formLabel: 'Chewable tablet',
     flavours: 'Orange',
     textureNotes:
-      'Chewable/crunchy tablet — chalky mineral mouthfeel possible (calcium + iron). Sweet orange. May contain lactose in flavourings (check current label — milk allergen on some packs).',
+      'Chewable/crunchy tablet — chalky mineral mouthfeel possible (calcium + iron). Sweet orange. May contain lactose in flavourings (check current label — milk allergen on some packs). Not a Softie gummy.',
     keyContents: 'Vitamins A, C, D, B1, B2, B6, niacin, plus calcium and iron',
     ageBand: '3 years and over',
     containsIron: true,
     notes:
-      'Contains iron — keep out of reach of younger children; overdose risk. Iron can taste metallic and contribute to constipation in some children. Vegetarian per brand FAQ for this product. Food supplement.',
+      'Not the same as Haliborange Multivitamin Softies or Iron Softies (those are gummies) or Calcium & Vitamin D Softies (calcium + D only, no iron). Contains iron — keep out of reach of younger children; overdose risk. Iron can taste metallic and contribute to constipation in some children. Vegetarian per brand FAQ for this product. Food supplement.',
     infoUrl: 'https://www.haliborange.com/product/multivitamins-calcium-iron-x30/',
     infoLabel: 'Haliborange — Multivitamins Calcium & Iron',
   },
@@ -269,7 +356,7 @@ export const supplements: Supplement[] = [
     ageBand: '6 years and above',
     containsIron: true,
     notes:
-      'Contains iron. Vegetarian (vitamin D from lanolin — not vegan). Older Forceval Junior hard capsules are no longer the current junior offering — Soluble Junior is the manufacturer’s current junior food-supplement format. Sometimes listed on NHS formularies for children who cannot swallow tablets; still discuss with the clinical team.',
+      'Not the same as adult Forceval (soluble or capsules) — Soluble Junior is the manufacturer’s current junior food-supplement format for children 6+; adult Forceval strengths and formats differ and are not interchangeable. Contains iron. Vegetarian (vitamin D from lanolin — not vegan). Older Forceval Junior hard capsules are no longer the current junior offering. Sometimes listed on NHS formularies for children who cannot swallow tablets; still discuss with the clinical team.',
     infoUrl: 'https://forceval.co.uk/soluble-junior/',
     infoLabel: 'Forceval — Soluble Junior',
   },
