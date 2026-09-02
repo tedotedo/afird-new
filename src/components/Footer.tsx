@@ -1,174 +1,48 @@
-'use client';
-
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useAuth } from '@/hooks/useAuth';
+import CookiePreferences from '@/components/CookiePreferences';
 
 export default function Footer() {
-  const pathname = usePathname();
-  const { user } = useAuth();
-  
-  const isAdminUser = user?.email?.toLowerCase() === 'aszkenasy@gmail.com';
-
-  // Don't show footer on login page
-  if (pathname === '/login') {
-    return null;
-  }
-
-  const footerLinks = {
-    quick: [
-      { href: '/home', label: 'Home', icon: '🏠' },
-      { href: '/camera', label: 'Camera', icon: '📸' },
-      { href: '/history', label: 'History', icon: '📜' },
-      { href: '/food-journey', label: 'Food Journey', icon: '🌟' },
-    ],
-    monitor: [
-      { href: '/summary', label: 'Summary', icon: '📊' },
-      { href: '/trends', label: 'Trends', icon: '📈' },
-      { href: '/goals', label: 'Goals', icon: '🎯' },
-      { href: '/nutrition-info', label: 'Nutrition Info', icon: '🥗' },
-      { href: '/supplements-info', label: 'Supplement Guidance', icon: '💊' },
-    ],
-    learn: [
-      { href: '/arfid-info', label: 'About ARFID', icon: '💙' },
-      { href: '/about', label: 'About the Author', icon: 'ℹ️' },
-      { href: '/help', label: 'Help & FAQ', icon: '❓' },
-      { href: '/privacy#disclaimer', label: 'Medical Disclaimer', icon: '⚕️' },
-    ],
-    manage: [
-      { href: '/profile', label: 'Children', icon: '👶' },
-      { href: '/settings', label: 'Settings', icon: '⚙️' },
-      { href: '/privacy', label: 'Privacy & Terms', icon: '🔒' },
-      ...(isAdminUser ? [{ href: '/admin', label: 'Admin', icon: '👤' }] : []),
-    ],
-  };
-
   return (
-    <footer className="bg-white border-t border-gray-200 mt-auto">
-      <div className="container mx-auto px-4 py-12">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-          {/* Quick Links Section */}
+    <footer className="mt-auto border-t border-rule bg-ink text-[#d7d3ca]">
+      <div className="mx-auto max-w-site px-4 py-12 sm:px-6">
+        <div className="grid gap-10 md:grid-cols-3">
           <div>
-            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
-              Quick Links
-            </h3>
-            <ul className="space-y-3">
-              {footerLinks.quick.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className={`text-sm flex items-center gap-2 transition-colors ${
-                      pathname === link.href
-                        ? 'text-blue-600 font-medium'
-                        : 'text-gray-600 hover:text-blue-600'
-                    }`}
-                  >
-                    <span>{link.icon}</span>
-                    <span>{link.label}</span>
-                  </Link>
-                </li>
-              ))}
+            <h3 className="font-display text-lg text-white">ARFID Wellness</h3>
+            <p className="mt-3 text-sm leading-relaxed text-[#b7b3aa]">
+              Quiet information for families living with Avoidant/Restrictive Food Intake
+              Disorder. Written by a UK consultant community paediatrician. Notes stay on
+              this device — nothing is uploaded.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-sm font-medium uppercase tracking-[0.12em] text-white">Explore</h3>
+            <ul className="mt-4 space-y-2.5 text-sm">
+              <li><Link href="/arfid" className="hover:text-white">About ARFID</Link></li>
+              <li><Link href="/resources" className="hover:text-white">UK resources</Link></li>
+              <li><Link href="/notes" className="hover:text-white">Private notes</Link></li>
+              <li><Link href="/about" className="hover:text-white">About</Link></li>
+              <li><Link href="/privacy" className="hover:text-white">Privacy</Link></li>
             </ul>
           </div>
-
-          {/* Monitor Section */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
-              Monitor
-            </h3>
-            <ul className="space-y-3">
-              {footerLinks.monitor.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className={`text-sm flex items-center gap-2 transition-colors ${
-                      pathname === link.href
-                        ? 'text-blue-600 font-medium'
-                        : 'text-gray-600 hover:text-blue-600'
-                    }`}
-                  >
-                    <span>{link.icon}</span>
-                    <span>{link.label}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Learn Section */}
-          <div>
-            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
-              Learn
-            </h3>
-            <ul className="space-y-3">
-              {footerLinks.learn.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className={`text-sm flex items-center gap-2 transition-colors ${
-                      pathname === link.href
-                        ? 'text-blue-600 font-medium'
-                        : 'text-gray-600 hover:text-blue-600'
-                    }`}
-                  >
-                    <span>{link.icon}</span>
-                    <span>{link.label}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Manage Section */}
-          <div>
-            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
-              Manage
-            </h3>
-            <ul className="space-y-3">
-              {footerLinks.manage.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className={`text-sm flex items-center gap-2 transition-colors ${
-                      pathname === link.href
-                        ? 'text-blue-600 font-medium'
-                        : 'text-gray-600 hover:text-blue-600'
-                    }`}
-                  >
-                    <span>{link.icon}</span>
-                    <span>{link.label}</span>
-                  </Link>
-                </li>
-              ))}
+            <h3 className="text-sm font-medium uppercase tracking-[0.12em] text-white">Trusted sources</h3>
+            <ul className="mt-4 space-y-2.5 text-sm">
+              <li><a href="https://www.beateatingdisorders.org.uk/types/arfid" target="_blank" rel="noopener noreferrer" className="hover:text-white">Beat — ARFID</a></li>
+              <li><a href="https://www.arfidawarenessuk.org/" target="_blank" rel="noopener noreferrer" className="hover:text-white">ARFID Awareness UK</a></li>
+              <li><a href="https://www.nhs.uk" target="_blank" rel="noopener noreferrer" className="hover:text-white">NHS</a></li>
+              <li><a href="https://www.practical-autism-research.co.uk" target="_blank" rel="noopener noreferrer" className="hover:text-white">Practical Autism Research</a></li>
             </ul>
           </div>
         </div>
-
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-gray-200">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-center md:text-left">
-              <Link href="/" className="text-xl font-bold text-blue-600 hover:text-blue-700 transition-colors">
-                ARFID Wellness Tracker
-              </Link>
-              <p className="text-sm text-gray-600 mt-1">
-                Supporting families with comprehensive nutritional tracking
-              </p>
-            </div>
-            <div className="text-center md:text-right">
-              <p className="text-sm text-gray-500">
-                © {new Date().getFullYear()} Dr. Odet Aszkenasy
-              </p>
-              <p className="text-xs text-gray-400 mt-1">
-                Professional neurodevelopmental paediatrics support
-              </p>
-            </div>
-          </div>
+        <div className="mt-10 border-t border-white/10 pt-8 text-sm text-[#8f8b82]">
+          <p>© {new Date().getFullYear()} ARFID Wellness. Dr Odet Mark Aszkenasy.</p>
+          <p className="mt-2 text-xs"><CookiePreferences /></p>
+          <p className="mt-2 max-w-2xl text-xs leading-relaxed">
+            General information only — not a substitute for professional medical advice.
+            Always consult your GP, paediatrician, or healthcare team about feeding and nutrition.
+          </p>
         </div>
       </div>
     </footer>
   );
 }
-
-
