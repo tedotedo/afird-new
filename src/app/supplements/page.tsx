@@ -24,8 +24,8 @@ export default function SupplementsPage() {
           <>
             <li>
               If the texture, smell or aftertaste is wrong, many children with ARFID simply will not
-              take it. That is not being difficult. Form and flavour matter as much as the vitamins
-              listed on the bottle.
+              take it. That is never because they are being difficult. Form and flavour matter as much
+              as the vitamins listed on the bottle.
             </li>
             <li>
               Do not start, stop or combine supplements on your own if your child is under clinical
