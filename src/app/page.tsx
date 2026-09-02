@@ -39,7 +39,7 @@ export default function HomePage() {
       <section className="border-b border-rule bg-paper-card">
         <div className="mx-auto max-w-site px-4 py-14 sm:px-6 sm:py-20">
           <p className="text-sm font-medium uppercase tracking-[0.14em] text-ink-faint">For parents and carers</p>
-          <h1 className="mt-3 max-w-2xl font-display text-4xl text-ink sm:text-5xl">ARFID Wellness</h1>
+          <h1 className="mt-3 max-w-2xl font-display text-4xl text-ink sm:text-5xl">Practical ARFID</h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-muted">
             Your child eats a handful of foods. Mealtimes feel like a battle. You worry about growth,
             choking, or whether this is autism-related sensory stuff. That is the problem this site

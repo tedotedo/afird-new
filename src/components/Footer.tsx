@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="mx-auto max-w-site px-4 py-12 sm:px-6">
         <div className="grid gap-10 md:grid-cols-3">
           <div>
-            <h3 className="font-display text-lg text-white">ARFID Wellness</h3>
+            <h3 className="font-display text-lg text-white">Practical ARFID</h3>
             <p className="mt-3 text-sm leading-relaxed text-[#c9c2b4]">
               Plain UK information for families dealing with Avoidant/Restrictive Food Intake
               Disorder. Written by a consultant community paediatrician. Notes stay on this
@@ -37,7 +37,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-10 border-t border-white/10 pt-8 text-sm text-[#a39e92]">
-          <p>© {new Date().getFullYear()} ARFID Wellness. Dr Odet Mark Aszkenasy.</p>
+          <p>© {new Date().getFullYear()} Practical ARFID. Dr Odet Mark Aszkenasy.</p>
           <p className="mt-2 text-xs"><CookiePreferences /></p>
           <p className="mt-2 max-w-2xl text-xs leading-relaxed">
             General information only — not a substitute for professional advice.

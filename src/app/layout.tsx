@@ -15,10 +15,10 @@ const serif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
-  title: { default: 'ARFID Wellness', template: '%s — ARFID Wellness' },
+  title: { default: 'Practical ARFID', template: '%s — Practical ARFID' },
   description:
     'Practical UK information for families dealing with Avoidant/Restrictive Food Intake Disorder. Notes stay on this device. This site does not collect child or health data.',
-  applicationName: 'ARFID Wellness',
+  applicationName: 'Practical ARFID',
   manifest: '/site.webmanifest',
   icons: {
     icon: [
