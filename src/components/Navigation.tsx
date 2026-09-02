@@ -3,7 +3,7 @@ import Link from 'next/link';
 const links = [
   { href: '/arfid', label: 'About ARFID' },
   { href: '/resources', label: 'UK resources' },
-  { href: '/notes', label: 'Private notes' },
+  { href: '/notes', label: 'Notes for clinic' },
   { href: '/about', label: 'About' },
 ];
 
