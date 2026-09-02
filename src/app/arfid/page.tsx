@@ -68,18 +68,16 @@ export default function ArfidPage() {
       </p>
 
       <h2 className="mt-10 font-display text-2xl text-ink">When to see the GP</h2>
-      <p className="mt-3 font-medium text-ink">Seek urgent help (same day / A&amp;E / 999) if:</p>
-      <ul className="mt-2 list-disc space-y-2 pl-5 text-ink-muted">
-        <li>Your child cannot keep fluids down, is dehydrated, or is rapidly losing weight</li>
-        <li>They collapse, are unusually drowsy, or you are worried they are seriously unwell</li>
-        <li>There is acute choking risk you cannot manage at home</li>
-      </ul>
-      <p className="mt-4 font-medium text-ink">Book a routine GP appointment if:</p>
+      <p className="mt-3 font-medium text-ink">Book a routine GP appointment if:</p>
       <ul className="mt-2 list-disc space-y-2 pl-5 text-ink-muted">
         <li>The accepted food list is getting shorter, or mealtimes have become unmanageable</li>
         <li>Growth has slowed, weight has dropped, or school energy is poor</li>
         <li>Fear of choking or being sick is stopping them eating safely</li>
         <li>You suspect autism or sensory issues and eating is part of the picture</li>
+      </ul>
+      <p className="mt-4 font-medium text-ink">Seek urgent help (same day / A&amp;E / 999) if:</p>
+      <ul className="mt-2 list-disc space-y-2 pl-5 text-ink-muted">
+        <li>Your child cannot keep fluids down, is dehydrated, or is rapidly losing weight</li>
       </ul>
       <p className="mt-4 leading-relaxed text-ink-muted">
         The GP can check growth, rule out medical causes, and refer to community paediatrics,
