@@ -41,7 +41,7 @@ export default function HomePage() {
           <p className="text-sm font-medium uppercase tracking-[0.14em] text-ink-faint">For parents and carers</p>
           <h1 className="mt-3 max-w-2xl font-display text-4xl text-ink sm:text-5xl">Practical ARFID</h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-muted">
-            Your child eats from a short list of foods. Mealtimes mean dread, tears, or long stand-offs, or your child barely seems interested in food at all. You worry about growth, about choking, about whether this is sensory and autism-related. That is what this site is for.
+            Your child eats from a short list of foods. Mealtimes mean dread, tears, or long stand-offs, or your child barely seems interested in food at all. You might worry about growth, or whether this is sensory and possibly autism-related. That is what this site is for.
           </p>
           <p className="mt-4 max-w-2xl leading-relaxed text-ink-muted">
             Plain UK information on Avoidant/Restrictive Food Intake Disorder — UK products, UK
