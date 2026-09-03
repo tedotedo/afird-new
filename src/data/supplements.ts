@@ -50,7 +50,7 @@ export const supplements: Supplement[] = [
     formLabel: 'Liquid drops',
     flavours: 'Banana flavour (PIL lists banana flavour among ingredients)',
     textureNotes:
-      'Thin drops; glycerol base. Not oily like peanut-oil products. Sweetish banana note may help or put off sensory-sensitive children — try a tiny taste only after professional advice.',
+      'Thin drops; glycerol base. Not oily like peanut-oil products. Sweetish banana note — helps some sensory-sensitive children and puts others off.',
     keyContents: 'Vitamins A, C and D (government-aligned Healthy Start children’s formula)',
     ageBand: 'From birth to 4th birthday (scheme eligibility rules apply; not needed if ≥500 ml infant formula/day)',
     containsIron: false,
@@ -67,7 +67,7 @@ export const supplements: Supplement[] = [
     formLabel: 'Liquid drops',
     flavours: 'Natural flavour/aroma of the vitamins (not a fruit flavour)',
     textureNotes:
-      'Yellow/brown liquid; characteristic vitamin smell/taste. Contains refined peanut (arachis) oil — oily mouthfeel possible. Also contains sucrose. Not the same as Dalivit (no peanut oil; different vitamin A strength).',
+      'Yellow/brown liquid; characteristic vitamin smell/taste. Contains refined peanut (arachis) oil — oily mouthfeel possible. Also contains sucrose.',
     keyContents:
       'Vitamins A, D2, B1, B2, B6, nicotinamide (B3), C (licensed multivitamin drops)',
     ageBand: 'Babies and children from birth to 12 years (per PIL)',
@@ -85,7 +85,7 @@ export const supplements: Supplement[] = [
     formLabel: 'Liquid drops',
     flavours: 'No named fruit flavour on SmPC; yellowish-orange liquid',
     textureNotes:
-      'Slightly viscous yellowish-orange liquid. Contains sucrose. No peanut oil (unlike Abidec). Higher vitamin A per dose than Abidec — relevant if comparing products with a clinician.',
+      'Slightly viscous yellowish-orange liquid. Contains sucrose.',
     keyContents:
       'Vitamins A (higher IU than Abidec per 0.6 ml), D2, B1, B2, B6, C, nicotinamide',
     ageBand: 'Licensed from 6 weeks of age (infants/children; older ages as directed)',
@@ -103,7 +103,7 @@ export const supplements: Supplement[] = [
     formLabel: 'Liquid syrup (mix into milk/water)',
     flavours: 'Natural orange (Swiss Alpine malt; orange oil on some labels)',
     textureNotes:
-      'Sweet syrupy liquid with malt; orange note. Can stain and may leave residue. Manufacturer directs mixing into usual milk or water for younger infants — not from the teaspoon directly in the youngest age band. Not the same as Wellbaby Multi-vitamin Drops (syringe, smaller volume) or Wellbaby Vitamin D Drops (D-only olive oil).',
+      'Sweet syrupy liquid with malt; orange note. Can stain and may leave residue. Manufacturer directs mixing into usual milk or water for younger infants — not from the teaspoon directly in the youngest age band.',
     keyContents:
       '14 vitamins/minerals including A, C, D3 (10 µg per 5 ml), B vitamins, iron, zinc, copper — plus malt extract',
     ageBand: '6 months to 4 years',
@@ -121,7 +121,7 @@ export const supplements: Supplement[] = [
     formLabel: 'Liquid drops (syringe)',
     flavours: 'Malt (Swiss Alpine malt); some pack copy also mentions orange',
     textureNotes:
-      'Measured with included syringe. Sweet malt taste. Smaller volume than the 5 ml liquid — may suit children who refuse spoonfuls of syrup. Not the same as Wellbaby Vitamin D Drops (D-only, olive oil, no malt/iron).',
+      'Measured with included syringe. Sweet malt taste. Smaller volume than the 5 ml liquid — may suit children who refuse spoonfuls of syrup.',
     keyContents:
       'Vitamins A, C, D plus B vitamins, iron, zinc and L-lysine (14+ nutrients; check current label for exact list)',
     ageBand: '4 to 24 months (manufacturer age banding)',
@@ -139,7 +139,7 @@ export const supplements: Supplement[] = [
     formLabel: 'Oil-based vitamin D drops (dropper)',
     flavours: 'No fruit flavour — natural olive oil base only',
     textureNotes:
-      'Oil drops in olive oil — oily mouthfeel, no malt syrup. Measured with included dropper (0.5 ml). For 0–6 months manufacturer directs drop-by-drop onto nipple/teat; from 6 months into usual milk or water. Distinct from the multi-vitamin drops (malt, iron, many nutrients).',
+      'Oil drops in olive oil — oily mouthfeel, no malt syrup. Measured with included dropper (0.5 ml). For 0–6 months manufacturer directs drop-by-drop onto nipple/teat; from 6 months into usual milk or water.',
     keyContents: 'Vitamin D3 only — 10 µg (400 IU) per 0.5 ml daily dose',
     ageBand: 'From birth to 4 years',
     containsIron: false,
@@ -174,7 +174,7 @@ export const supplements: Supplement[] = [
     formLabel: 'Oral spray (into cheek)',
     flavours: 'Chocolate and marshmallow',
     textureNotes:
-      'Fine spray onto the inside of the cheek — no tablet, no gummy chew. Sugar-free (xylitol). Flavour is sweet/chocolate-marshmallow rather than fruity; some ARFID children prefer this, others refuse novelty flavours. Not a Haliborange Softie (different brand, spray vs gummy).',
+      'Fine spray onto the inside of the cheek — no tablet, no gummy chew. Sugar-free (xylitol). Flavour is sweet/chocolate-marshmallow rather than fruity; some ARFID children prefer this, others refuse novelty flavours.',
     keyContents:
       '14 nutrients including vitamins A, C, D3 (10 µg), K1, B-complex, iodine, selenium — no iron',
     ageBand: '1 year and above',
@@ -192,7 +192,7 @@ export const supplements: Supplement[] = [
     formLabel: 'Gummy softies',
     flavours: 'Orange; strawberry (separate packs)',
     textureNotes:
-      'Chewy gelatine softie — sweet, fruity, sticky. Bovine gelatine (not vegetarian). Sugar + glucose syrup. Texture is often a deal-breaker or a win for sensory-driven ARFID; do not assume “kids like gummies”. Not the same as Haliborange Iron Softies or Calcium & Vitamin D Softies (different nutrients).',
+      'Chewy gelatine softie — sweet, fruity, sticky. Bovine gelatine (not vegetarian). Sugar + glucose syrup. Texture is often a deal-breaker or a win for sensory-driven ARFID; do not assume “kids like gummies”.',
     keyContents: 'Vitamins A, C, D, E, niacin, B6, B12 (7 vitamins; no iron/zinc in this Softies line)',
     ageBand: '3–12 years',
     containsIron: false,
@@ -209,7 +209,7 @@ export const supplements: Supplement[] = [
     formLabel: 'Gummy softies',
     flavours: 'Strawberry',
     textureNotes:
-      'Chewy softie — strawberry flavour, sweet/sticky. Standard kids’ pack uses pectin as gelling agent (not bovine gelatine on the current manufacturer ingredients list — confirm on the pack you buy; themed variants can differ). Not the same as Multivitamin Softies (seven vitamins, no iron) or Calcium & Iron chewables.',
+      'Chewy softie — strawberry flavour, sweet/sticky. Standard kids’ pack uses pectin as gelling agent (not bovine gelatine on the current manufacturer ingredients list — confirm on the pack you buy; themed variants can differ).',
     keyContents: 'Iron 2.5 mg and vitamin C 12 mg per softie (not a full multivitamin)',
     ageBand: '3–12 years (children over 3 years)',
     containsIron: true,
@@ -226,7 +226,7 @@ export const supplements: Supplement[] = [
     formLabel: 'Gummy softies',
     flavours: 'Strawberry (brand category listing)',
     textureNotes:
-      'Chewy softie — fruity/strawberry. Bovine gelatine (not vegetarian). Sugar + glucose syrup. Not a multivitamin softie and not the Calcium & Iron chewable tablet.',
+      'Chewy softie — fruity/strawberry. Bovine gelatine (not vegetarian). Sugar + glucose syrup.',
     keyContents: 'Calcium 140 mg and vitamin D 5 µg per softie (bones/teeth focus — not a full multi)',
     ageBand: '3–12 years (children over 3 years; 1–2 softies daily per label)',
     containsIron: false,
@@ -261,7 +261,7 @@ export const supplements: Supplement[] = [
     formLabel: 'Chewable tablet',
     flavours: 'Mixed fruit (lemon, raspberry, strawberry, apple flavourings)',
     textureNotes:
-      'Chewable tablet (not designed to be swallowed whole). Low sugar; xylitol sweetener — excess may loosen stools. Firmer chew than Soft Jelly pastilles. Citrus/fruit acidity. Not the same as Immune Chewable (orange & lemon; 24 nutrients) or the liquid.',
+      'Chewable tablet (not designed to be swallowed whole). Low sugar; xylitol sweetener — excess may loosen stools. Firmer chew than Soft Jelly pastilles. Citrus/fruit acidity.',
     keyContents:
       '21 nutrients per tablet including vitamins A, C, D3 10 µg, B-complex, E; magnesium; iron 7 mg; zinc; copper; manganese; selenium; chromium; iodine; flaxseed oil powder 114 mg',
     ageBand: '4–12 years (not under 4)',
@@ -297,7 +297,7 @@ export const supplements: Supplement[] = [
     formLabel: 'Chewable soft jelly pastilles',
     flavours: 'Strawberry or orange',
     textureNotes:
-      'Soft chewable jelly (not hard tablet). Sugar-free sweeteners (maltitol/sorbitol) — excess may loosen stools. Bovine gelatine (not vegetarian). Citrus acidity in orange variant. Not the same as Smart Chewable / Immune Chewable tablets or Wellkid Liquid.',
+      'Soft chewable jelly (not hard tablet). Sugar-free sweeteners (maltitol/sorbitol) — excess may loosen stools. Bovine gelatine (not vegetarian). Citrus acidity in orange variant.',
     keyContents:
       '11 vitamins (B-complex, C, D3 10 µg per 2 pastilles, E) plus flaxseed oil — no iron, calcium or zinc in this pastille',
     ageBand: '4–12 years (not under 4)',
@@ -315,7 +315,7 @@ export const supplements: Supplement[] = [
     formLabel: 'Chewable tablet',
     flavours: 'Orange',
     textureNotes:
-      'Chewable/crunchy tablet — chalky mineral mouthfeel possible (calcium + iron). Sweet orange. May contain lactose in flavourings (check current label — milk allergen on some packs). Not a Softie gummy.',
+      'Chewable/crunchy tablet — chalky mineral mouthfeel possible (calcium + iron). Sweet orange. May contain lactose in flavourings (check current label — milk allergen on some packs).',
     keyContents: 'Vitamins A, C, D, B1, B2, B6, niacin, plus calcium and iron',
     ageBand: '3 years and over',
     containsIron: true,

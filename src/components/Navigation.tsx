@@ -6,8 +6,8 @@ import { usePathname } from 'next/navigation';
 
 const links = [
   { href: '/arfid', label: 'About ARFID' },
-  { href: '/supplements', label: 'Vitamins' },
-  { href: '/nutrition-support', label: 'Sip feeds' },
+  { href: '/supplements', label: 'Vitamins & textures' },
+  { href: '/nutrition-support', label: 'Sip feeds & fortifiers' },
   { href: '/resources', label: 'UK resources' },
   { href: '/notes', label: 'Notes for clinic' },
   { href: '/about', label: 'About' },

@@ -36,7 +36,7 @@ function ProductCard({ product }: { product: OnsProduct }) {
           <dd className="mt-0.5 text-ink-muted">{product.flavours}</dd>
         </div>
         <div>
-          <dt className="font-medium text-ink">Texture / mouthfeel (ARFID-relevant)</dt>
+          <dt className="font-medium text-ink">Texture / flavour / mouthfeel</dt>
           <dd className="mt-0.5 text-ink-muted">{product.textureNotes}</dd>
         </div>
         <div>

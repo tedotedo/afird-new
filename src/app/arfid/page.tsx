@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata: Metadata = { title: 'About ARFID' };
+export const metadata: Metadata = { title: 'About ARFID', authors: [{ name: 'Dr Odet Mark Aszkenasy' }] };
 
 export default function ArfidPage() {
   return (
@@ -13,11 +13,13 @@ export default function ArfidPage() {
 
       <h2 className="mt-10 font-display text-2xl text-ink">What is ARFID?</h2>
       <p className="mt-3 leading-relaxed text-ink-muted">
-        Avoidant/Restrictive Food Intake Disorder (ARFID) means eating has become so limited —
-        through sensory aversion, fear after choking, gagging or vomiting, or simply low interest
-        in food — that growth, nutrition, energy, or daily life is affected. The child (or adult)
-        is not trying to be thin. There is no drive to lose weight or control body shape. That is
-        the main difference from anorexia.
+        Avoidant/Restrictive Food Intake Disorder (ARFID) means eating has become limited enough to
+        affect growth, nutrition, energy, or daily life. The restriction comes from sensory aversion,
+        from fear after choking, gagging or vomiting, or simply from low interest in food.
+      </p>
+      <p className="mt-4 leading-relaxed text-ink-muted">
+        The child is not trying to be thin. There is no drive to lose weight or control body shape.
+        That is the main difference from anorexia, and it is the point most often missed.
       </p>
       <p className="mt-4 leading-relaxed text-ink-muted">
         Three patterns show up often. Some children refuse foods because of texture, smell, colour,
@@ -29,8 +31,8 @@ export default function ArfidPage() {
       <p className="mt-4 leading-relaxed text-ink-muted">
         Clinicians diagnose ARFID using recognised criteria in DSM-5-TR and ICD-11. In practice they
         are looking for persistent restriction that harms physical health or day-to-day functioning,
-        without the body-image focus of anorexia. That assessment belongs in clinic — this page is
-        background, not a checklist to tick at home.
+        without the body-image focus of anorexia. That assessment belongs in clinic. This page is background, so the
+        conversation there can start further along.
       </p>
 
       <h2 className="mt-10 font-display text-2xl text-ink">Picky eating and the spectrum</h2>
@@ -43,12 +45,13 @@ export default function ArfidPage() {
       <p className="mt-4 leading-relaxed text-ink-muted">
         The middle is messy. The same sensory patterns can appear in both ordinary picky eating and
         ARFID. There is overlap; both sit on a spectrum rather than in two tidy boxes. Autism and
-        other neurodivergence often travel with the sensory pattern — when they do, assess the eating
-        difficulty on its own merits.
+        other neurodivergence often travel with the sensory pattern. Where they do, the eating
+        difficulty still deserves attention in its own right — it should not be filed away as
+        &ldquo;just part of the autism.&rdquo;
       </p>
       <p className="mt-4 leading-relaxed text-ink-muted">
-        Seek assessment when the accepted food list is shrinking, growth or weight is slipping, or
-        mealtimes have become unmanageable. A school-age child stuck on a handful of foods, losing
+        It is worth asking for an assessment when the accepted food list is shrinking, when growth
+        or weight is slipping, or when mealtimes have become unmanageable. A school-age child stuck on a handful of foods, losing
         weight, or terrified at the table needs proper clinical review.
       </p>
 
@@ -61,8 +64,7 @@ export default function ArfidPage() {
       <p className="mt-4 leading-relaxed text-ink-muted">
         With regular monitoring, the right nutritional plan (food first, supplements when needed),
         and support that does not treat the child as &ldquo;difficult,&rdquo; most children keep
-        feeding by mouth. The aim is growth, energy, and to very gradually widen your child&rsquo;s safe
-        food list.
+        feeding by mouth. The aim is growth, energy, and a safe food list that widens very gradually.
       </p>
       <p className="mt-4 leading-relaxed text-ink-muted">
         A smaller number need tube feeding (usually a nasogastric tube for a period; sometimes a PEG
@@ -73,15 +75,14 @@ export default function ArfidPage() {
         the steps back toward oral feeding look like.
       </p>
       <p className="mt-4 leading-relaxed text-ink-muted">
-        Do not start, stop or change{' '}
         <Link href="/nutrition-support" className="underline decoration-rule underline-offset-2 hover:text-ink">
-          sip feeds
+          Sip feeds
         </Link>
         ,{' '}
         <Link href="/supplements" className="underline decoration-rule underline-offset-2 hover:text-ink">
           supplements
         </Link>{' '}
-        or tube regimens without the clinical team.
+        and tube regimens are best changed with your clinical team rather than between appointments.
       </p>
 
       <h2 className="mt-10 font-display text-2xl text-ink">Signs at the table</h2>
@@ -94,27 +95,24 @@ export default function ArfidPage() {
         <li>Avoiding parties, school dinners, or eating with other people</li>
       </ul>
 
-      <h2 className="mt-10 font-display text-2xl text-ink">What to try carefully this week</h2>
-      <p className="mt-3 leading-relaxed text-ink-muted">
-        Widen the food list in small steps. Keep mealtimes as calm and predictable as you can.
-      </p>
+      <h2 className="mt-10 font-display text-2xl text-ink">What you can try this week</h2>
       <ul className="mt-3 list-disc space-y-2 pl-5 text-ink-muted">
-        <li>Keep mealtimes calm and predictable. Same place, same rough time, no long battles.</li>
+        <li>Keep mealtimes calm and predictable. Same place, same rough time, no long stand-offs.</li>
         <li>Offer one safe food alongside a tiny amount of something new — no requirement to eat it.</li>
         <li>Let the child look at, smell, or touch a new food before tasting. That counts as progress.</li>
-        <li>Do not hide new foods inside accepted ones if trust is already fragile.</li>
+        <li>Think twice before hiding new foods inside accepted ones. If it is discovered, the accepted food is often lost too — and that list is hard to rebuild.</li>
         <li>Write down what they actually eat in a normal week. You will need that list for clinic.</li>
       </ul>
       <p className="mt-4 leading-relaxed text-ink-muted">
-        Do not start supplements, meal replacements, or major diet changes without advice from
-        your GP or a dietitian. Cutting out food groups on your own can make nutrition worse.
-        If nutrition gaps are already on the table in clinic, ask the dietitian which format is
-        realistic — liquids, sprays, gummies and powders fail for different sensory reasons. See{' '}
+        Supplements and meal replacements are worth discussing, but they work best chosen with a
+        dietitian — liquids, sprays, gummies and powders each fail for different sensory reasons,
+        and the wrong format simply gets refused. Cutting out food groups without advice tends to
+        narrow nutrition further rather than protect it. See{' '}
         <Link href="/supplements" className="underline decoration-rule underline-offset-2 hover:text-ink">
           Vitamins &amp; textures
         </Link>{' '}
-        for a UK product comparison (not a recommendation to buy). For energy and protein
-        products (sip feeds, puddings, fortifiers), see{' '}
+        for a UK product comparison. For energy and protein products (sip feeds, puddings,
+        fortifiers), see{' '}
         <Link href="/nutrition-support" className="underline decoration-rule underline-offset-2 hover:text-ink">
           Sip feeds &amp; fortifiers
         </Link>.
@@ -140,7 +138,7 @@ export default function ArfidPage() {
 
       <h2 className="mt-10 font-display text-2xl text-ink">Prepare for the appointment</h2>
       <p className="mt-3 leading-relaxed text-ink-muted">
-        Ten minutes of notes help more than a long story under stress. Bring:
+        Ten minutes of notes will get you further than a long story told under stress. Bring:
       </p>
       <ul className="mt-3 list-disc space-y-2 pl-5 text-ink-muted">
         <li>A list of foods they will eat (brands matter — write them down)</li>

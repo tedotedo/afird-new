@@ -118,10 +118,9 @@ export default function NotesPage() {
       <h1 className="font-display text-4xl text-ink">Notes for clinic</h1>
       <p className="mt-4 text-ink-muted leading-relaxed">
         Use this before a GP, paediatric, or dietitian appointment. List accepted foods, feared
-        foods, small signs of progress, and the questions you want answered. You can save them on
-        this phone with the button below — they stay on{" "}
-        <strong className="font-medium text-ink">this device only</strong>. Nothing is uploaded.
-        Clearing site data removes them.
+        foods, small signs of progress, and the questions you want answered. Save them on this
+        device with the button below. Nothing is uploaded, and clearing your browser data will
+        remove them — so if the list matters, take a photo of it too.
       </p>
       <textarea
         value={text}
@@ -136,8 +135,8 @@ export default function NotesPage() {
           Progress worth noting
         </h2>
         <p className="mt-2 text-sm text-ink-muted leading-relaxed">
-          Clinic teams often need more than &ldquo;ate a new food.&rdquo; Use the notes box above for
-          anything like this — small steps still count:
+          Progress rarely looks like &ldquo;ate a new food,&rdquo; and a week can feel like nothing
+          happened when it did. Anything here is worth writing down:
         </p>
         <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm text-ink-muted">
           <li>Looked at, smelled, or touched a food before tasting</li>
