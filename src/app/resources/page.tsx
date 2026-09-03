@@ -1,40 +1,40 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata: Metadata = { title: 'UK resources' };
+export const metadata: Metadata = { title: 'UK resources', authors: [{ name: 'Dr Odet Mark Aszkenasy' }] };
 
 const resources = [
   {
     name: 'Beat — ARFID',
     url: 'https://www.beateatingdisorders.org.uk/types/arfid',
-    org: 'Beat',
+    org: 'Beat · UK-wide',
     blurb: 'UK eating-disorder charity: clear information, support, and helplines.',
   },
   {
     name: 'ARFID Awareness UK',
     url: 'https://www.arfidawarenessuk.org/',
-    org: 'ARFID Awareness UK',
+    org: 'ARFID Awareness UK · UK-wide',
     blurb: 'Charity focused on awareness and practical support for ARFID.',
   },
   {
     name: 'CNTW — Support for Avoidant Restrictive Food Intake Disorder (ARFID)',
     url: 'https://www.cntw.nhs.uk/resources/support-avoidant-restrictive-food-intake-disorder-arfid',
-    org: 'CNTW NHS',
+    org: 'CNTW NHS · regional, useful anywhere',
     blurb:
-      'NHS pages from Cumbria, Northumberland, Tyne and Wear — co-produced ARFID information, tips, and webinars for families.',
+      'NHS pages from Cumbria, Northumberland, Tyne and Wear — co-produced ARFID information, tips, and webinars for families. Regional, but useful anywhere.',
   },
   {
     name: 'NENC — help for eating issues',
     url: 'https://northeastnorthcumbria.nhs.uk/here-to-help-you/health-advice-and-support/children-and-young-people-support/help-for-eating-issues/',
-    org: 'North East & North Cumbria NHS ICB',
+    org: 'North East & North Cumbria NHS ICB · regional, useful anywhere',
     blurb:
-      'Covers eating difficulties including picky and selective eating pathways for families in that region — a useful starting point; local pathways vary.',
+      'Covers eating difficulties including picky and selective eating pathways for families in that region — regional, useful anywhere as a starting point; local pathways vary.',
   },
   {
     name: 'NHS Inform Scotland — ARFID',
     url: 'https://www.nhsinform.scot/illnesses-and-conditions/mental-health/eating-disorders/avoidant-restrictive-food-intake-disorder-arfid/',
-    org: 'NHS Inform',
-    blurb: 'Scottish NHS guide to symptoms, diagnosis, and when to seek help.',
+    org: 'NHS Inform · Scotland (regional, useful anywhere)',
+    blurb: 'Scottish NHS guide to symptoms, diagnosis, and when to seek help. Regional, useful anywhere.',
   },
 ];
 
@@ -78,8 +78,8 @@ export default function ResourcesPage() {
 
       <h2 className="mt-12 font-display text-2xl text-ink">What to ask your GP</h2>
       <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-muted">
-        Take a written list of accepted foods (include brands). It saves time and stops you
-        forgetting under pressure. Draft it in{' '}
+        Take a written list of accepted foods, brands included. It saves time, and it stops the
+        appointment turning into a memory test at the worst possible moment. Draft it in{' '}
         <Link href="/notes" className="text-accent underline decoration-accent/30 underline-offset-2 hover:decoration-accent">
           Notes for clinic
         </Link>{' '}
@@ -100,6 +100,7 @@ export default function ResourcesPage() {
           </li>
         ))}
       </ul>
+      <p className="mt-3 text-xs text-ink-faint">Helpline numbers and hours checked September 2026.</p>
     </div>
   );
 }

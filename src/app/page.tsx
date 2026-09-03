@@ -9,12 +9,12 @@ const topics = [
   {
     href: '/supplements',
     title: 'Vitamins & textures',
-    body: "UK children's liquids, sprays, gummies and powders compared by flavour and mouthfeel — options to discuss with a dietitian, not a shopping list.",
+    body: "UK children's liquids, sprays, gummies and powders, compared by form, flavour and mouthfeel — including which lookalike products are not interchangeable.",
   },
   {
     href: '/nutrition-support',
     title: 'Sip feeds & fortifiers',
-    body: 'Paediatric ONS, smoothie and pudding-style feeds, and calorie fortifiers — forms and textures to discuss with a dietitian.',
+    body: 'Paediatric sip feeds, smoothie and pudding-style products, and calorie fortifiers — what the forms and textures are actually like.',
   },
   {
     href: '/resources',
@@ -29,7 +29,7 @@ const topics = [
   {
     href: '/about',
     title: 'About',
-    body: 'Why this site exists. Written by Dr Mark Aszkenasy, consultant community paediatrician.',
+    body: 'Why this site exists. Written by Dr Odet Mark Aszkenasy, consultant community paediatrician.',
   },
 ];
 
@@ -41,14 +41,13 @@ export default function HomePage() {
           <p className="text-sm font-medium uppercase tracking-[0.14em] text-ink-faint">For parents and carers</p>
           <h1 className="mt-3 max-w-2xl font-display text-4xl text-ink sm:text-5xl">Practical ARFID</h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-muted">
-            Your child eats a handful of foods. Mealtimes feel like a battle. You worry about growth,
-            choking, or whether this is autism-related sensory stuff. That is the problem this site
-            is for.
+            Your child eats from a short list of foods. Mealtimes are a battle — or your child simply
+            forgets to eat. You worry about growth, about choking, about whether this is
+            autism-related sensory stuff. That is what this site is for.
           </p>
           <p className="mt-4 max-w-2xl leading-relaxed text-ink-muted">
-            Plain UK information on Avoidant/Restrictive Food Intake Disorder. No accounts.
-            No food photos uploaded. No growth charts on our servers. Optional notes stay in
-            your browser only.
+            Plain UK information on Avoidant/Restrictive Food Intake Disorder — UK products, UK
+            services, UK referral routes. Written by a consultant community paediatrician.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href="/arfid" className="rounded-md bg-accent px-4 py-2.5 text-sm text-white hover:bg-accent-hover">
@@ -73,15 +72,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-t border-rule bg-paper-card">
-        <div className="mx-auto max-w-site px-4 py-10 sm:px-6">
-          <h2 className="font-display text-lg text-ink">Medical disclaimer</h2>
-          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-ink-muted">
-            General information only — not a substitute for professional advice. Talk to your GP,
-            paediatrician, or dietitian about feeding and nutrition.
-          </p>
-        </div>
-      </section>
+      <p className="mx-auto max-w-site px-4 pb-10 text-xs leading-relaxed text-ink-faint sm:px-6">
+        Private by design: no accounts, no uploads, nothing about your child on our servers. Any
+        notes you make stay in your browser, on this device.
+      </p>
     </div>
   );
 }

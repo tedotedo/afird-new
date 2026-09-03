@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 
-export const metadata: Metadata = { title: 'About' };
+export const metadata: Metadata = { title: 'About', authors: [{ name: 'Dr Odet Mark Aszkenasy' }] };
 
 export default function AboutPage() {
   return (
@@ -14,7 +14,7 @@ export default function AboutPage() {
       </div>
       <div className="mt-8 space-y-4 text-ink-muted leading-relaxed">
         <p>
-          I qualified in medicine in London in 1982. After general medicine and paediatrics, I
+          I am Dr Odet Mark Aszkenasy. I qualified in medicine in London in 1982. After general medicine and paediatrics, I
           moved into neurodevelopmental work in 1996 and later specialised in autism. I work as a
           consultant community paediatrician in the Tees / North East.
         </p>
