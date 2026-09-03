@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   title: { default: 'Practical ARFID', template: '%s — Practical ARFID' },
   description:
     'Practical UK information for families dealing with Avoidant/Restrictive Food Intake Disorder. Notes stay on this device. This site does not collect child or health data.',
+  robots: { index: true, follow: true },
   applicationName: 'Practical ARFID',
   manifest: '/site.webmanifest',
   icons: {
