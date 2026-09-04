@@ -27,7 +27,7 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="text-sm font-medium uppercase tracking-[0.12em] text-white">Trusted sources</h3>
+            <h3 className="text-sm font-medium uppercase tracking-[0.12em] text-white">Helpful sources</h3>
             <ul className="mt-4 space-y-2.5 text-sm">
               <li><a href="https://www.beateatingdisorders.org.uk/types/arfid" target="_blank" rel="noopener noreferrer" className="hover:text-white/95">Beat — ARFID</a></li>
               <li><a href="https://www.arfidawarenessuk.org/" target="_blank" rel="noopener noreferrer" className="hover:text-white/95">ARFID Awareness UK</a></li>
