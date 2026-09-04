@@ -34,12 +34,10 @@ export default function AboutPage() {
           That is why this site exists.
         </p>
         <p>
-          An earlier food-tracking idea was dropped. Collecting children&apos;s health data on a
-          public site was the wrong approach. ARFID Wellness is information only. Optional notes
-          stay in your browser. Nothing is uploaded to us.
+          Optional notes stay in your browser unless you choose to save them on your device.
         </p>
         <p>
-          I am registered with the GMC. This site does not replace your GP, paediatrician, or
+          This site does not replace your GP, paediatrician, or
           dietitian, and it is not a shop.
         </p>
       </div>
