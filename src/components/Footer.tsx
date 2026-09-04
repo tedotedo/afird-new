@@ -32,7 +32,6 @@ export default function Footer() {
               <li><a href="https://www.beateatingdisorders.org.uk/types/arfid" target="_blank" rel="noopener noreferrer" className="hover:text-white/95">Beat — ARFID</a></li>
               <li><a href="https://www.arfidawarenessuk.org/" target="_blank" rel="noopener noreferrer" className="hover:text-white/95">ARFID Awareness UK</a></li>
               <li><a href="https://www.nhs.uk" target="_blank" rel="noopener noreferrer" className="hover:text-white/95">NHS</a></li>
-              <li><a href="https://www.practical-autism-research.co.uk" target="_blank" rel="noopener noreferrer" className="hover:text-white/95">Practical Autism Research</a></li>
             </ul>
           </div>
         </div>
