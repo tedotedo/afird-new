@@ -15,8 +15,18 @@ export default function AboutPage() {
       <div className="mt-8 space-y-4 text-ink-muted leading-relaxed">
         <p>
           I am Dr Odet Mark Aszkenasy. I qualified in medicine in London in 1982. After general medicine and paediatrics, I
-          moved into neurodevelopmental work in 1996 and later specialised in autism. I work as a
-          consultant community paediatrician in the Tees / North East.
+          moved into neurodevelopmental work in 1996 and later specialised in autism. I worked as a Consultant Community
+          Paediatrician and clinical lead for autism until retirement from the NHS in September 2026, and now work as a
+          consultant paediatrician for Care ADHD. I also write at{' '}
+          <a
+            className="text-accent underline-offset-2 hover:underline"
+            href="https://www.practical-autism-research.co.uk"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Practical Autism Research
+          </a>
+          .
         </p>
         <p>
           Families kept asking for something simple on ARFID — what it is, what to try at home,
